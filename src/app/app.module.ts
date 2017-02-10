@@ -12,6 +12,11 @@ import { HeaderComponent } from './header/header.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
+import { TieringComponent } from './tiering/tiering.component';
+import { ClientTierListComponent } from './tiering/components/client-tier-list/client-tier-list.component';
+import { ClientSearchComponent } from './tiering/components/client-search/client-search.component';
+import { ClientListTableComponent } from './tiering/components/client-list-table/client-list-table.component';
+
 
 
 @NgModule({
@@ -21,7 +26,11 @@ import { MainComponent } from './main/main.component';
     HeaderComponent,
     SideBarComponent,
     FooterComponent,
-    MainComponent
+    MainComponent,
+    TieringComponent,
+    ClientTierListComponent,
+    ClientSearchComponent,
+    ClientListTableComponent
   ],
   imports: [
     BrowserModule,

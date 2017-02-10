@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+body {
+    font-family: ruda, sans-serif;
+}
+h1 {
+    color: #007EBA;
+    font-size: 24px;
+    font-weight: 700;
+}
+h2 {
+    color: #00AFED;
+    font-size: 17px;
+    font-weight: 900;
+}
