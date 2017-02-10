@@ -4,11 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { routes } from './app.routing';
+
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/component/nav.component';
 import { HeaderComponent } from './header/header.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FooterComponent } from './footer/footer.component';
+import { MainComponent } from './main/main.component';
+
 
 @NgModule({
   declarations: [
@@ -16,13 +20,14 @@ import { FooterComponent } from './footer/footer.component';
     NavComponent,
     HeaderComponent,
     SideBarComponent,
-    FooterComponent
+    FooterComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]
