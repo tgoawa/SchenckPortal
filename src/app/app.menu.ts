@@ -1,5 +1,6 @@
 export const MENU = [
   {
+    id: 1,
     path: 'tiering',
     title: 'Tiering',
     children: [
@@ -8,5 +9,11 @@ export const MENU = [
         title: 'Client Tier'
       }
     ]
+  },
+  {
+    id: 2,
+    path: 'goals',
+    title: 'Goals',
+    children: []
   }
 ];

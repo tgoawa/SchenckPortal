@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { MENU } from '../app.menu';
 
 @Component({
   selector: 'app-side-bar',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
+  @Input() menuItemId;
+  private menu = MENU;
+  private sideBarMenuItem = {};
   constructor() { }
 
   ngOnInit() {
+    this.setSideBarMenu(this.menu);
   }
 
+  setSideBarMenu(menuItem) {
+    for (let x = 0; x <= menuItem.length; x++)
+    {
+      if(menuItem[x].id === this.menuItemId) {
+        this.sideBarMenuItem = menuItem[x];
+      }
+    }
+  }
 }

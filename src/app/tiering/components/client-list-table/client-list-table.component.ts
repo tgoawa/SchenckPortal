@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientListTableComponent implements OnInit {
 
+  private clientTierList: any[] = [];
+  private isSearched: boolean = false;
   constructor() { }
 
   ngOnInit() {
