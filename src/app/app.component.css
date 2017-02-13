@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Ruda|Ubuntu');
+
 .header-wrapper {
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); 
 }
 .footer-wrapper {
     background: #58595b;
+    min-height:50px;
 }

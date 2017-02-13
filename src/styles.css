@@ -4,8 +4,11 @@
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
 }
-body {
-    font-family: ruda, sans-serif;
+body, button {
+    font-family: 'Ubuntu', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ruda', sans-serif;
 }
 h1 {
     color: #007EBA;
@@ -16,4 +19,6 @@ h2 {
     color: #00AFED;
     font-size: 17px;
     font-weight: 900;
+    text-transform: uppercase;
+    line-height: 20px;
 }

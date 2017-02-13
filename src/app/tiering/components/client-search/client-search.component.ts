@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ClientTierListService } from '../../services/client-tier-list.service';
+
 @Component({
   selector: 'app-client-search',
   templateUrl: './client-search.component.html',
@@ -8,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class ClientSearchComponent implements OnInit {
 
   private title: string = 'Client Search';
-  constructor() { }
+  constructor(private clientTierListService: ClientTierListService) { }
 
   ngOnInit() {
   }
 
+  search(val) {
+    this.clientTierListService.searchClientTierList(val.clientSearch);
+  }
 }

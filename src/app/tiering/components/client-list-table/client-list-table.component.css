@@ -1,4 +1,15 @@
 thead {
-    background-color: #F7941E;
+    background: #F7941E;
     color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(247, 148, 30, 0.1);
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: rgba(247, 148, 30, 0.2);
 }

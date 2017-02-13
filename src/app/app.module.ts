@@ -17,6 +17,7 @@ import { ClientTierListComponent } from './tiering/components/client-tier-list/c
 import { ClientSearchComponent } from './tiering/components/client-search/client-search.component';
 import { ClientListTableComponent } from './tiering/components/client-list-table/client-list-table.component';
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/client-tier-details.component';
+import { ClientTierListService } from './tiering/services/client-tier-list.service';
 
 
 
@@ -40,7 +41,7 @@ import { ClientTierDetailsComponent } from './tiering/components/client-tier-det
     HttpModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [ClientTierListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

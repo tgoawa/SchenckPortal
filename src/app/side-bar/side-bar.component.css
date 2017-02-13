@@ -1,4 +1,5 @@
 .sidebar-nav {
+    font-family: 'ruda', sans-serif;
     text-align: center;
     font-weight: 700;
 }
@@ -9,6 +10,7 @@
     color: #FFFFFF;
     padding-top: 5px;
     padding-bottom: 5px;
+    text-transform: uppercase;
 }
 .sidebar-nav a {
     background-color: #F3F3F3;
@@ -16,7 +18,14 @@
     display: block;
     padding-top:5px;
     padding-bottom: 5px;
+    color: #58595B;
 }
 .active-link {
-    color: #5FBB46;
+    color: #5FBB46 !important;
 }
+.sidebar-nav a:hover {
+    text-decoration: none;
+    background-color: #58595b;
+    color: #FFFFFF;
+}
+

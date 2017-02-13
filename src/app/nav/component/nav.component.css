@@ -1,0 +1,29 @@
+.navbar-nav {
+    font-family: ruda, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.navbar-nav a {
+    color: #007EBA;
+    padding-left: .8rem;
+    padding-right: .8rem;
+}
+
+.navbar-nav a:hover {
+    background-color: #007EBA;
+    color: #FFFFFF;
+}
+
+.dropdown-menu {
+    background-color: #007EBA;
+}
+
+.dropdown-menu a {
+    color: #FFFFFF;
+}
+
+.dropdown-menu a:hover {
+    background-color: #00AFED;
+}

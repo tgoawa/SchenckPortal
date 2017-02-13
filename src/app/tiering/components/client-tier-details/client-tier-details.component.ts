@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientTierDetailsComponent implements OnInit {
 
+  private title: string = 'Client Tier Details';
+  menuItemId: number = 1;
+
   constructor() { }
 
   ngOnInit() {
