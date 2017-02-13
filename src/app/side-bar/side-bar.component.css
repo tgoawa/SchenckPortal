@@ -1,0 +1,22 @@
+.sidebar-nav {
+    text-align: center;
+    font-weight: 700;
+}
+
+.sidebar-main-bucket {
+    background-color: #5FBB46;
+    font-size: 15px;
+    color: #FFFFFF;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.sidebar-nav a {
+    background-color: #F3F3F3;
+    font-size: 12px;
+    display: block;
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+.active-link {
+    color: #5FBB46;
+}

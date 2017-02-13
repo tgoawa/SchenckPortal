@@ -9,20 +9,22 @@ import { MENU } from '../app.menu';
 })
 export class SideBarComponent implements OnInit {
 
-  @Input() menuItemId;
+  @Input() menuItemId: number;
   private menu = MENU;
   private sideBarMenuItem = {};
   constructor() { }
 
   ngOnInit() {
+    console.log(this.menuItemId);
     this.setSideBarMenu(this.menu);
   }
 
   setSideBarMenu(menuItem) {
     for (let x = 0; x <= menuItem.length; x++)
     {
-      if(menuItem[x].id === this.menuItemId) {
+      if (menuItem[x].id === this.menuItemId) {
         this.sideBarMenuItem = menuItem[x];
+        break;
       }
     }
   }

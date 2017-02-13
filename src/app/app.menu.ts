@@ -6,8 +6,12 @@ export const MENU = [
     children: [
       {
         path: 'client-tier-list',
-        title: 'Client Tier'
-      }
+        title: 'Client Tier List'
+      },
+      {
+        path: 'client-tier-details',
+        title: 'Client Tier Details'
+      },
     ]
   },
   {

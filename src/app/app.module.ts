@@ -16,6 +16,7 @@ import { TieringComponent } from './tiering/tiering.component';
 import { ClientTierListComponent } from './tiering/components/client-tier-list/client-tier-list.component';
 import { ClientSearchComponent } from './tiering/components/client-search/client-search.component';
 import { ClientListTableComponent } from './tiering/components/client-list-table/client-list-table.component';
+import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/client-tier-details.component';
 
 
 
@@ -30,7 +31,8 @@ import { ClientListTableComponent } from './tiering/components/client-list-table
     TieringComponent,
     ClientTierListComponent,
     ClientSearchComponent,
-    ClientListTableComponent
+    ClientListTableComponent,
+    ClientTierDetailsComponent
   ],
   imports: [
     BrowserModule,
