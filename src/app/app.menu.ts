@@ -8,10 +8,6 @@ export const MENU = [
         path: 'client-tier-list',
         title: 'Client Tier List'
       },
-      {
-        path: 'client-tier-details',
-        title: 'Client Tier Details'
-      },
     ]
   },
   {

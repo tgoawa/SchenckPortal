@@ -8,5 +8,5 @@ export const routes: Routes = [
     { path: 'home', component: MainComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'client-tier-list', component: ClientTierListComponent },
-    { path: 'client-tier-details', component: ClientTierDetailsComponent}
+    { path: 'client-tier-details/:id', component: ClientTierDetailsComponent}
 ]
