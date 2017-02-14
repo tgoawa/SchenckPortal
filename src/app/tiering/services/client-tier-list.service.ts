@@ -13,7 +13,7 @@ export class ClientTierListService {
     private dataStore: {
         clientTierList: ClientTierList[]
     }
-    private baseUrl = 'http://webdev.schencksolutions.com:1016/ClientTierService/getParentTiers/';
+    private baseUrl = 'http://webdev.schencksolutions.com:1016/ClientTierService/';
     constructor(private http: Http) {
         this.dataStore = { clientTierList: [] };
         this._clientTierList = <BehaviorSubject<ClientTierList[]>>new BehaviorSubject([]);
@@ -21,11 +21,16 @@ export class ClientTierListService {
     }
 
     searchClientTierList(val) {
-        this.http.get(this.baseUrl + val)
+        this.http.get(this.baseUrl + 'getParentTiers/' + val)
         .map((response: Response) => response.json())
         .subscribe(data => {
             this.dataStore.clientTierList = data;
             this._clientTierList.next(Object.assign({}, this.dataStore).clientTierList);
         }, error => alert('Could not retrieve client data'));
+    }
+
+    getCurrentPeriod(): Observable<any[]> {
+       return this.http.get(this.baseUrl + 'getCurrentPeriod/')
+        .map((response: Response) => response.json());
     }
 }
