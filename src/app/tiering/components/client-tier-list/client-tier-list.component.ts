@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ClientTierListComponent implements OnInit {
 
   private title: string = 'Client Tier List';
+  
   menuItemId: number = 1;
 
   constructor() { }

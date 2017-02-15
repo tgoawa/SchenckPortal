@@ -10,4 +10,32 @@ export class ClientDetailService {
 
   constructor() { }
 
+  getBillings() {
+
+  }
+
+  getRealization() {
+
+  }
+
+  getMultiplier() {
+
+  }
+
+  getPayment() {
+
+  }
+
+  getServiceTouches() {
+
+  }
+
+  getWorkTiming() {
+
+  }
+
+  getTierScore() {
+    
+  }
+
 }

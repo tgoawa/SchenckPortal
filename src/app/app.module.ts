@@ -18,12 +18,7 @@ import { ClientSearchComponent } from './tiering/components/client-search/client
 import { ClientListTableComponent } from './tiering/components/client-list-table/client-list-table.component';
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/client-tier-details.component';
 import { ClientTierListService } from './tiering/services/client-tier-list.service';
-import { BillingComponent } from './tiering/components/billing/billing.component';
-import { RealizationComponent } from './tiering/components/realization/realization.component';
-import { WorkTimingComponent } from './tiering/components/work-timing/work-timing.component';
-import { ServiceTouchesComponent } from './tiering/components/service-touches/service-touches.component';
-import { PaymentTimelinessComponent } from './tiering/components/payment-timeliness/payment-timeliness.component';
-import { MultiplierComponent } from './tiering/components/multiplier/multiplier.component';
+
 
 
 
@@ -40,12 +35,6 @@ import { MultiplierComponent } from './tiering/components/multiplier/multiplier.
     ClientSearchComponent,
     ClientListTableComponent,
     ClientTierDetailsComponent,
-    BillingComponent,
-    RealizationComponent,
-    WorkTimingComponent,
-    ServiceTouchesComponent,
-    PaymentTimelinessComponent,
-    MultiplierComponent
   ],
   imports: [
     BrowserModule,
