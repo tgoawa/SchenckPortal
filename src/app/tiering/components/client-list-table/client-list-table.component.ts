@@ -12,12 +12,13 @@ import { ClientTierListService } from '../../services/client-tier-list.service'
 export class ClientListTableComponent implements OnInit {
 
   private clientTierList: Observable<ClientTierList[]>;
-  private currentPeriod: any[];
+  private currentPeriod: Observable<any>;
   private isSearched: boolean = false;
   constructor(private clientTierListService: ClientTierListService) { }
 
   ngOnInit() {
-    this.clientTierListService.getCurrentPeriod().subscribe(data => this.currentPeriod = data);
+    this.clientTierListService.getCurrentPeriod();
+    this.currentPeriod = this.clientTierListService.currentPeriod;
     this.clientTierList = this.clientTierListService.clientTierList;
   }
 

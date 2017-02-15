@@ -1,3 +1,6 @@
+.navbar {
+    padding-bottom: 0;
+}
 .navbar-nav {
     font-family: ruda, sans-serif;
     font-size: 13px;
@@ -18,10 +21,13 @@
 
 .dropdown-menu {
     background-color: #007EBA;
+    margin: 0;
+    border: none;
 }
 
 .dropdown-menu a {
     color: #FFFFFF;
+    font-size: 12px;
 }
 
 .dropdown-menu a:hover {

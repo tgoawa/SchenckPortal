@@ -1,4 +1,6 @@
 .nav-link {
-    font: 12px;
+    font-family: 'ruda', sans-serif;
+    font-size: 12px;
     color: #fff;
+    font-weight: 700;
 }

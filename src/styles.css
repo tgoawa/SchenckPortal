@@ -7,6 +7,10 @@
 body, button {
     font-family: 'Ubuntu', sans-serif;
 }
+.btn {
+    font-size: 14px;
+    font-weight: 700 !important;
+}
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Ruda', sans-serif;
 }
@@ -21,4 +25,10 @@ h2 {
     font-weight: 900;
     text-transform: uppercase;
     line-height: 20px;
+}
+
+.form-control {
+    font-size: 12px;
+    font-family: 'Ubuntu', sans-serif;
+    height: 38px;
 }

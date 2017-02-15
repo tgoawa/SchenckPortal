@@ -4,9 +4,6 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav justify-content-end">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home</a>
-      </li>
       <li *ngFor="let item of menuItems; let i = index" class="nav-item dropdown" [title]="item.title">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ item.title }}
