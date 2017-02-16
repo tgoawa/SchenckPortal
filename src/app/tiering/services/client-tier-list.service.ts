@@ -11,7 +11,6 @@ export class ClientTierListService {
     clientTierList: Observable<ClientTierList[]>;
 
     private _clientTierList: BehaviorSubject<ClientTierList[]>;
-    private _currentPeriod: BehaviorSubject<any[]>;
     private dataStore: {
         clientTierList: ClientTierList[];
     };
@@ -20,7 +19,6 @@ export class ClientTierListService {
     constructor(private http: Http) {
         this.dataStore = { clientTierList: []};
         this._clientTierList = <BehaviorSubject<ClientTierList[]>>new BehaviorSubject([]);
-        this._currentPeriod = <BehaviorSubject<any>>new BehaviorSubject({});
         this.clientTierList = this._clientTierList.asObservable();
     }
 

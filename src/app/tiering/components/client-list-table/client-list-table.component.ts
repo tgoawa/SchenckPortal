@@ -13,7 +13,7 @@ export class ClientListTableComponent implements OnInit {
 
   private clientTierList: Observable<ClientTierList[]>;
   private currentPeriod: any[];
-  private isSearched: boolean = false;
+  
   constructor(private clientTierListService: ClientTierListService) { }
 
   ngOnInit() {
