@@ -17,10 +17,10 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <p>Score</p>
+            <p>Score: </p>
           </div>
           <div class="col-md-6">
-            <p>Current Value</p>
+            <p>Current Value: {{currentAnalysisData?.billings | currency: 'USD': true}}</p>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
             <p>Score</p>
           </div>
           <div class="col-md-6">
-            <p>Current Value</p>
+            <p>Current Value: {{currentAnalysisData?.realization | percent}}</p>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
             <p>Score</p>
           </div>
           <div class="col-md-6">
-            <p>Current Value</p>
+            <p>Current Value: </p>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
             <p>Score</p>
           </div>
           <div class="col-md-6">
-            <p>Current Value</p>
+            <p>Current Value: {{currentAnalysisData?.timeliness | percent }}</p>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@
             <p>Score</p>
           </div>
           <div class="col-md-6">
-            <p>Current Value</p>
+            <p>Current Value: {{currentAnalysisData?.serviceTouches }}</p>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
             <p>Score</p>
           </div>
           <div class="col-md-6">
-            <p>Current Value</p>
+            <p>Current Value: {{currentAnalysisData?.payment }}</p>
           </div>
         </div>
       </div>

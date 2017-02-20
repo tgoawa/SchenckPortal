@@ -14,13 +14,15 @@ export class ClientTierDetailsComponent implements OnInit {
   menuItemId: number = 1;
 
   private title: string = 'Client Tier Analysis';
-  private currentAnalysisData: Observable<IClientVal[]>;
+  private currentAnalysisData: IClientVal[];
+  private errorMessage: any = '';
 
   constructor(private clientTierAnalysisService: ClientTierAnalysisService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.clientTierAnalysisService.getParentValues(this.route.snapshot.params['id']);
-    this.currentAnalysisData = this.clientTierAnalysisService.currentTierValues;
+    this.clientTierAnalysisService.getParentValues(this.route.snapshot.params['id'])
+                                  .subscribe(data => this.currentAnalysisData = data,
+                                  error => this.errorMessage = <any>error);
   }
 
 }
