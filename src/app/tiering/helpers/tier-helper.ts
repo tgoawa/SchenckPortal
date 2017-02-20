@@ -1,5 +1,7 @@
 import { TierHelperBase } from './tier-helper-base';
-import { ITiering } from '../models/tiering.model';
+import { ITiering, IClientVal, IScore } from '../models/';
+
+import { BillingsHelper } from './';
 
 export class TierHelper extends TierHelperBase {
 
@@ -7,7 +9,7 @@ export class TierHelper extends TierHelperBase {
 
     }
 
-    getBillings() {
+    getBillings(val: IClientVal): IScore {
 
     }
 

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { ClientTierList } from '../models/clientTierList.model';
-import '../../rxjs-operators';
+
 
 @Injectable()
 export class ClientTierListService {

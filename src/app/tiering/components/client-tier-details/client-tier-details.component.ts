@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
-import { IClientVal } from '../../models/clientTierVal.model';
+import { IClientVal } from '../../models/';
 import { ClientTierAnalysisService } from '../../services/client-tier-analysis.service';
 
 @Component({
@@ -14,15 +14,23 @@ export class ClientTierDetailsComponent implements OnInit {
   menuItemId: number = 1;
 
   private title: string = 'Client Tier Analysis';
-  private currentAnalysisData: IClientVal[];
+  private parentAnalysisData: IClientVal[];
+  private displayData: IClientVal[];
   private errorMessage: any = '';
 
   constructor(private clientTierAnalysisService: ClientTierAnalysisService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.clientTierAnalysisService.getParentValues(this.route.snapshot.params['id'])
-                                  .subscribe(data => this.currentAnalysisData = data,
-                                  error => this.errorMessage = <any>error);
+      .then(data =>{
+        this.parentAnalysisData = data,
+        this.displayData = data
+      },
+      error => this.errorMessage = <any>error);
+  }
+
+  reset() {
+    this.displayData = this.parentAnalysisData;
   }
 
 }
