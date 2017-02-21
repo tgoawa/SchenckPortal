@@ -4,12 +4,12 @@ import { IScore } from '../models';
 import { ClientTierScoreService } from '../services';
 
 @Injectable()
-export class BillingsHelper {
+export class RealizationHelper {
 
     constructor(private clientTierService: ClientTierScoreService) { 
     }
 
-    getBillingScore(val, scoreObject): IScore {
+    getRealizationScore(val, scoreObject): IScore {
         for (let x = 0; x < scoreObject.length; x++) {
             if (val >= scoreObject[x].MinValue && val <= scoreObject[x].MaxValue) {
                 return scoreObject[x];

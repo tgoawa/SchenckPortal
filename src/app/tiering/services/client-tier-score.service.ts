@@ -5,7 +5,6 @@ import { IScore } from '../models/';
 
 @Injectable()
 export class ClientTierScoreService {
-  billingsLookup: IScore[];
 
   private baseUrl = 'http://webdev.schencksolutions.com:1016/ClientTierService/';
   private billingsApi = 'getBillingsLookups';
@@ -15,17 +14,50 @@ export class ClientTierScoreService {
   private servicesApi = 'getServiceTouchLookups';
   private tierScoreApi = 'getTierScoreLookups';
   private workTimingApi = 'getWorkTimingLookups';
-  private _billingsLookup: IScore[];
 
   constructor(private http: Http) { }
 
    getBillings(): Promise<IScore[]> {
-    if (this.billingsLookup === undefined) {
     return this.http.get(this.baseUrl + this.billingsApi)
     .toPromise()
     .then((response: Response) => response.json())
     .catch(this.handleError);
-    }
+
+  }
+
+  getRealization(): Promise<IScore[]> {
+    return this.http.get(this.baseUrl + this.realizationApi)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  getMultiplier(): Promise<IScore[]> {
+    return this.http.get(this.baseUrl + this.multiplierApi)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  getWorkTiming(): Promise<IScore[]> {
+    return this.http.get(this.baseUrl + this.workTimingApi)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  getServiceTouch(): Promise<IScore[]> {
+    return this.http.get(this.baseUrl + this.servicesApi)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  getPayment(): Promise<IScore[]> {
+    return this.http.get(this.baseUrl + this.paymentApi)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
   }
 
  private handleError(error: any) {

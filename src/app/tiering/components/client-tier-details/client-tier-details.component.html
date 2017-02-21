@@ -39,8 +39,14 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <p>Score</p>
+          <div class="col-md-2">
+            <p>Score: {{clientTierScore?.RealizationScore.Score}}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Min: {{clientTierScore?.RealizationScore.MinValue | percent}}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Max: {{clientTierScore?.RealizationScore.MaxValue | percent}}</p>
           </div>
           <div class="col-md-6">
             <p>Current Value: {{displayData?.Realization | percent}}</p>
@@ -55,14 +61,20 @@
             <h2>Billing Realization Multiplier</h2>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <p>Score</p>
+        <!--<div class="row">
+          <div class="col-md-2">
+            <p>Score: {{clientTierScore?.MultiplierScore.Score}}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Min: {{clientTierScore?.MultiplierScore.MinValue }}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Max: {{clientTierScore?.MultiplierScore.MaxValue }}</p>
           </div>
           <div class="col-md-6">
             <p>Current Value: </p>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
     <div class="row">
@@ -73,8 +85,14 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <p>Score</p>
+          <div class="col-md-2">
+            <p>Score: {{clientTierScore?.TimelinessScore.Score}}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Min: {{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Max: {{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
           </div>
           <div class="col-md-6">
             <p>Current Value: {{displayData?.PeakPercent | percent }}</p>
@@ -90,8 +108,14 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <p>Score</p>
+          <div class="col-md-2">
+            <p>Score: {{clientTierScore?.ServiceTouchesScore.Score}}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Min: {{clientTierScore?.ServiceTouchesScore.MinValue }}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Max: {{clientTierScore?.ServiceTouchesScore.MaxValue }}</p>
           </div>
           <div class="col-md-6">
             <p>Current Value: {{displayData?.ServiceTouchCount }}</p>
@@ -107,8 +131,14 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <p>Score</p>
+          <div class="col-md-2">
+            <p>Score: {{clientTierScore?.PaymentScore.Score}}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Min: {{clientTierScore?.PaymentScore.MinValue }}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Max: {{clientTierScore?.PaymentScore.MaxValue }}</p>
           </div>
           <div class="col-md-6">
             <p>Current Value: {{displayData?.PaymentTimeliness }}</p>

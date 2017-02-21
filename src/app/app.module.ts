@@ -19,7 +19,13 @@ import { ClientListTableComponent } from './tiering/components/client-list-table
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/client-tier-details.component';
 import { ClientTierListService, ClientTierAnalysisService, ClientTierScoreService } from './tiering/services/';
 import { TierHelper } from './tiering/helpers/';
-import { ClientTierResolver, ClientScoreResolver } from './tiering/resolver/';
+import { ClientTierResolver,
+        BillingScoreResolver,
+        RealizationScoreResolver,
+        MultiplierScoreResolver,
+        WorkTimingScoreResolver,
+        ServiceTouchScoreResolver,
+        PaymentScoreResolver } from './tiering/resolver/';
 
 
 
@@ -50,7 +56,12 @@ import { ClientTierResolver, ClientScoreResolver } from './tiering/resolver/';
     ClientTierScoreService,
     TierHelper,
     ClientTierResolver,
-    ClientScoreResolver],
+    BillingScoreResolver,
+    RealizationScoreResolver,
+    MultiplierScoreResolver,
+    WorkTimingScoreResolver,
+    ServiceTouchScoreResolver,
+    PaymentScoreResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
