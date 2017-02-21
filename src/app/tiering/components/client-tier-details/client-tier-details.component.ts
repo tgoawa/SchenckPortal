@@ -35,12 +35,11 @@ export class ClientTierDetailsComponent implements OnInit {
     scoreRanges.WorkTiming = this.route.snapshot.data['workTiming'];
     scoreRanges.ServiceTouch = this.route.snapshot.data['serviceTouch'];
     scoreRanges.Payment = this.route.snapshot.data['paymentScore'];
-    console.log(scoreRanges.Payment);
     this.displayData = this.parentAnalysisData;
     this.getScores(this.displayData, scoreRanges);
   }
   getScores(displayData: IClientVal, scoreRanges: Scores) {
-   this.clientTierScore = this.tierhelper.getTierScore(displayData, scoreRanges);
+   this.clientTierScore = this.tierhelper.getClientScore(displayData, scoreRanges);
   }
 
   reset() {

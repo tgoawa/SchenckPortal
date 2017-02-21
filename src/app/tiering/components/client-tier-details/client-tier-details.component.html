@@ -18,6 +18,7 @@
         <div class="row">
           <div class="col-md-2">
             <p>Score: {{clientTierScore?.BillingScore.Score}}</p>
+            <p>Weighted Score: {{clientTierScore?.BillingWeighted}}</p>
           </div>
           <div class="col-md-2">
             <p>Min: {{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
@@ -61,9 +62,10 @@
             <h2>Billing Realization Multiplier</h2>
           </div>
         </div>
-        <!--<div class="row">
+        <div class="row">
           <div class="col-md-2">
             <p>Score: {{clientTierScore?.MultiplierScore.Score}}</p>
+            <p>Weighted Score: {{clientTierScore?.MultiplierWeighted}}</p>
           </div>
           <div class="col-md-2">
             <p>Min: {{clientTierScore?.MultiplierScore.MinValue }}</p>
@@ -72,9 +74,9 @@
             <p>Max: {{clientTierScore?.MultiplierScore.MaxValue }}</p>
           </div>
           <div class="col-md-6">
-            <p>Current Value: </p>
+            <p>Current Value: {{clientTierScore?.BillingScore.Score * clientTierScore?.RealizationScore.Score}}</p>
           </div>
-        </div>-->
+        </div>
       </div>
     </div>
     <div class="row">
@@ -87,6 +89,7 @@
         <div class="row">
           <div class="col-md-2">
             <p>Score: {{clientTierScore?.TimelinessScore.Score}}</p>
+            <p>Weighted Score: {{clientTierScore?.TimelinessWeighted}}</p>
           </div>
           <div class="col-md-2">
             <p>Min: {{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
@@ -110,6 +113,7 @@
         <div class="row">
           <div class="col-md-2">
             <p>Score: {{clientTierScore?.ServiceTouchesScore.Score}}</p>
+            <p>Weighted Score: {{clientTierScore?.ServiceTouchWeighted}}</p>
           </div>
           <div class="col-md-2">
             <p>Min: {{clientTierScore?.ServiceTouchesScore.MinValue }}</p>
@@ -133,6 +137,7 @@
         <div class="row">
           <div class="col-md-2">
             <p>Score: {{clientTierScore?.PaymentScore.Score}}</p>
+            <p>Weighted Score: {{clientTierScore?.PaymentWeighted}}</p>
           </div>
           <div class="col-md-2">
             <p>Min: {{clientTierScore?.PaymentScore.MinValue }}</p>
@@ -155,7 +160,7 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <p>Score</p>
+            <p>Score: {{clientTierScore?.WeightedScore}}</p>
           </div>
           <div class="col-md-6">
           </div>
