@@ -15,16 +15,17 @@ export class ClientTierScoreService {
   private servicesApi = 'getServiceTouchLookups';
   private tierScoreApi = 'getTierScoreLookups';
   private workTimingApi = 'getWorkTimingLookups';
+  private _billingsLookup: IScore[];
 
   constructor(private http: Http) { }
 
-  getBillings() {
-    this.http.get(this.baseUrl + this.billingsApi)
+   getBillings(): Promise<IScore[]> {
+    if (this.billingsLookup === undefined) {
+    return this.http.get(this.baseUrl + this.billingsApi)
     .toPromise()
     .then((response: Response) => response.json())
-    .catch(this.handleError)
-    .then(data => this.billingsLookup = data)
     .catch(this.handleError);
+    }
   }
 
  private handleError(error: any) {

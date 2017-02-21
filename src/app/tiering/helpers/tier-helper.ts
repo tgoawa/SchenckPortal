@@ -1,15 +1,24 @@
-import { TierHelperBase } from './tier-helper-base';
-import { ITiering, IClientVal, IScore } from '../models/';
+import { Injectable } from '@angular/core';
 
+import { IScore, IClientVal } from '../models/';
+import { Tiering } from '../models/tiering.model';
 import { BillingsHelper } from './';
+import { ClientTierScoreService } from '../services';
 
-export class TierHelper extends TierHelperBase {
+@Injectable()
+export class TierHelper {
 
-    getTierScore(val: ITiering) {
+    constructor( private service: ClientTierScoreService) { }
 
+    getTierScore(displayScore: IClientVal, billings: IScore[]): Tiering {
+      let tier = new Tiering();
+      tier.BillingScore = this.getBillings(displayScore.Billings, billings);
+       return tier;
     }
 
-    getBillings(val: IClientVal): IScore {
+   private getBillings(val: number, range): IScore {
+        let bill = new BillingsHelper(this.service);
+        return bill.getBillingScore(val, range);
 
     }
 

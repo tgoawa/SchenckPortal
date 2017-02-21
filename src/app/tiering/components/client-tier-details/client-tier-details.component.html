@@ -16,8 +16,14 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <p>Score: </p>
+          <div class="col-md-2">
+            <p>Score: {{clientTierScore?.BillingScore.Score}}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Min: {{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
+          </div>
+          <div class="col-md-2">
+            <p>Max: {{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true}}</p>
           </div>
           <div class="col-md-6">
             <p>Current Value: {{displayData?.Billings | currency: 'USD': true}}</p>

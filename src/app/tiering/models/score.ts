@@ -1,5 +1,5 @@
 export interface IScore {
-    score: number;
-    minBand: number;
-    maxBand: number;
+    Score: number;
+    MinValue: number;
+    MaxValue: number;
 }

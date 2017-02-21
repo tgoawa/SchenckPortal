@@ -12,7 +12,7 @@ export class ClientTierAnalysisService {
 
   constructor(private http: Http) { }
 
-   getParentValues(val: number): Promise<IClientVal[]> {
+   getParentValues(val: number): Promise<IClientVal> {
      return this.http.get(this.baseUrl + this.apiMethod + val)
      .toPromise()
      .then((response: Response) => response.json())
