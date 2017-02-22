@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-3">
         <div class="box">
-        <span class="box-span">Tier</span>
+        <span class="box-span">{{clientTierScore?.Tier}}</span>
         </div>
       </div>
     </div>
@@ -51,9 +51,7 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.BillingWeighted}}</span>
             </div>
-            <div class="score-box-grey">
-            <span class="box-span">0</span>
-            </div>
+            <input type="text" class="score-box-grey" id="billing-test-val">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
@@ -70,141 +68,172 @@
             </div>
           </div>
         </div>
-      </div>
-      <!--<div class="row">
-        <div class="col-md-12" style="margin-top: 20px">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Realization</h2>
-            </div>
+        <div class="row" style="margin-top: 35px">
+          <div class="col-md-2">
+            <p>Realization</p>
           </div>
-          <div class="row">
-            <div class="col-md-2">
-              <p>Score: {{clientTierScore?.RealizationScore.Score}}</p>
+          <div class="col-md-3">
+            <div class="score-box-yellow">
+            <span class="box-span">{{clientTierScore?.RealizationScore.Score}}</span>
             </div>
-            <div class="col-md-2">
-              <p>Min: {{clientTierScore?.RealizationScore.MinValue | percent}}</p>
+            <div class="score-box-grey">
+            <span class="box-span">N/A</span>
             </div>
-            <div class="col-md-2">
-              <p>Max: {{clientTierScore?.RealizationScore.MaxValue | percent}}</p>
-            </div>
-            <div class="col-md-6">
-              <p>Current Value: {{displayData?.Realization | percent}}</p>
-            </div>
+            <input type="text" class="score-box-grey" id="realization-test-val">
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12" style="margin-top: 20px">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Billing Realization Multiplier</h2>
-            </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.RealizationScore.MinValue | percent}}</p>
           </div>
-          <div class="row">
-            <div class="col-md-2">
-              <p>Score: {{clientTierScore?.MultiplierScore.Score}}</p>
-              <p>Weighted Score: {{clientTierScore?.MultiplierWeighted}}</p>
-            </div>
-            <div class="col-md-2">
-              <p>Min: {{clientTierScore?.MultiplierScore.MinValue }}</p>
-            </div>
-            <div class="col-md-2">
-              <p>Max: {{clientTierScore?.MultiplierScore.MaxValue }}</p>
-            </div>
-            <div class="col-md-6">
-              <p>Current Value: {{clientTierScore?.BillingScore.Score * clientTierScore?.RealizationScore.Score}}</p>
+          <div class="col-md-3">
+            <p>{{displayData?.Realization | percent}}</p>
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.RealizationScore.MaxValue | percent}}</p>
+          </div>
+          <div class="col-md-2">
+            <div class="score-box-blue">
+            <span class="box-span">{{clientTierScore?.RealizationScore.MaxValue - displayData?.Realization | percent}}</span>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12" style="margin-top: 20px">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Work Timing</h2>
-            </div>
+        <div class="row" style="margin-top: 35px">
+          <div class="col-md-2">
+            <p>Billing Realization Multiplier</p>
           </div>
-          <div class="row">
-            <div class="col-md-2">
-              <p>Score: {{clientTierScore?.TimelinessScore.Score}}</p>
-              <p>Weighted Score: {{clientTierScore?.TimelinessWeighted}}</p>
+          <div class="col-md-3">
+            <div class="score-box-yellow">
+            <span class="box-span">{{clientTierScore?.MultiplierScore.Score}}</span>
             </div>
-            <div class="col-md-2">
-              <p>Min: {{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
+            <div class="score-box-grey">
+            <span class="box-span">{{clientTierScore?.MultiplierWeighted}}</span>
             </div>
-            <div class="col-md-2">
-              <p>Max: {{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
-            </div>
-            <div class="col-md-6">
-              <p>Current Value: {{displayData?.PeakPercent | percent }}</p>
-            </div>
+            <input type="text" class="score-box-grey" id="realization-test-val">
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12" style="margin-top: 20px">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Service Touches</h2>
-            </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.MultiplierScore.MinValue}}</p>
           </div>
-          <div class="row">
-            <div class="col-md-2">
-              <p>Score: {{clientTierScore?.ServiceTouchesScore.Score}}</p>
-              <p>Weighted Score: {{clientTierScore?.ServiceTouchWeighted}}</p>
-            </div>
-            <div class="col-md-2">
-              <p>Min: {{clientTierScore?.ServiceTouchesScore.MinValue }}</p>
-            </div>
-            <div class="col-md-2">
-              <p>Max: {{clientTierScore?.ServiceTouchesScore.MaxValue }}</p>
-            </div>
-            <div class="col-md-6">
-              <p>Current Value: {{displayData?.ServiceTouchCount }}</p>
+          <div class="col-md-3">
+            <p>{{clientTierScore?.MultiplierWeighted}}</p>
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.MultiplierScore.MaxValue}}</p>
+          </div>
+          <div class="col-md-2">
+            <div class="score-box-blue">
+            <span class="box-span">{{clientTierScore?.MultiplierScore.MaxValue - clientTierScore?.MultiplierWeighted}}</span>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12" style="margin-top: 20px">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Payment Timeliness</h2>
-            </div>
+        <div class="row" style="margin-top: 35px">
+          <div class="col-md-2">
+            <p>Work Timing</p>
           </div>
-          <div class="row">
-            <div class="col-md-2">
-              <p>Score: {{clientTierScore?.PaymentScore.Score}}</p>
-              <p>Weighted Score: {{clientTierScore?.PaymentWeighted}}</p>
+          <div class="col-md-3">
+            <div class="score-box-yellow">
+            <span class="box-span">{{clientTierScore?.TimelinessScore.Score}}</span>
             </div>
-            <div class="col-md-2">
-              <p>Min: {{clientTierScore?.PaymentScore.MinValue }}</p>
+            <div class="score-box-grey">
+            <span class="box-span">{{clientTierScore?.TimelinessWeighted}}</span>
             </div>
-            <div class="col-md-2">
-              <p>Max: {{clientTierScore?.PaymentScore.MaxValue }}</p>
-            </div>
-            <div class="col-md-6">
-              <p>Current Value: {{displayData?.PaymentTimeliness }}</p>
-            </div>
+            <input type="text" class="score-box-grey" id="realization-test-val">
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12" style="margin-top: 20px">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Total Score</h2>
-            </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <p>Score: {{clientTierScore?.WeightedScore}}</p>
-            </div>
-            <div class="col-md-6">
+          <div class="col-md-3">
+            <p>{{displayData?.PeakPercent | percent}}</p>
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
+          </div>
+          <div class="col-md-2">
+            <div class="score-box-blue">
+            <span class="box-span">{{clientTierScore?.TimelinessScore.MaxValue - displayData?.PeakPercent | percent}}</span>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>-->
+        <div class="row" style="margin-top: 35px">
+          <div class="col-md-2">
+            <p>Service Touches</p>
+          </div>
+          <div class="col-md-3">
+            <div class="score-box-yellow">
+            <span class="box-span">{{clientTierScore?.ServiceTouchesScore.Score}}</span>
+            </div>
+            <div class="score-box-grey">
+            <span class="box-span">{{clientTierScore?.ServiceTouchWeighted}}</span>
+            </div>
+            <input type="text" class="score-box-grey" id="realization-test-val">
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.ServiceTouchesScore.MinValue}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>{{displayData?.ServiceTouchCount}}</p>
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.ServiceTouchesScore.MaxValue}}</p>
+          </div>
+          <div class="col-md-2">
+            <div class="score-box-blue">
+            <span class="box-span">{{clientTierScore?.ServiceTouchesScore.MaxValue - displayData?.ServiceTouchCount}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 35px">
+          <div class="col-md-2">
+            <p>Payment Timeliness</p>
+          </div>
+          <div class="col-md-3">
+            <div class="score-box-yellow">
+            <span class="box-span">{{clientTierScore?.PaymentScore.Score}}</span>
+            </div>
+            <div class="score-box-grey">
+            <span class="box-span">{{clientTierScore?.PaymentWeighted}}</span>
+            </div>
+            <input type="text" class="score-box-grey" id="realization-test-val">
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.PaymentScore.MinValue}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>{{displayData?.PaymentTimeliness}}</p>
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.PaymentScore.MaxValue}}</p>
+          </div>
+          <div class="col-md-2">
+            <div class="score-box-blue">
+            <span class="box-span">{{clientTierScore?.PaymentScore.MaxValue - displayData?.PaymentTimeliness}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 35px">
+          <div class="col-md-2">
+            <p>Total Score</p>
+          </div>
+          <div class="col-md-3">
+            <div class="score-box-yellow">
+            <span class="box-span">#</span>
+            </div>
+            <div class="score-box-grey">
+            <span class="box-span">{{clientTierScore?.WeightedScore}}</span>
+            </div>
+            <input type="text" class="score-box-grey" id="realization-test-val">
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.PaymentScore.MinValue}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>{{displayData?.PaymentTimeliness}}</p>
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.PaymentScore.MaxValue}}</p>
+          </div>
+          <div class="col-md-2">
+            <div class="score-box-blue">
+            <span class="box-span">{{clientTierScore?.PaymentScore.MaxValue - displayData?.PaymentTimeliness}}</span>
+            </div>
+          </div>
+        </div>
+      </div> <!--stay within this div -->
