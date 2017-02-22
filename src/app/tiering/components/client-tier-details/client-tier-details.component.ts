@@ -14,7 +14,7 @@ import { TierHelper } from '../../helpers';
 export class ClientTierDetailsComponent implements OnInit {
   menuItemId: number = 1;
 
-  private title: string = 'Client Tier Analysis';
+  private title: string = 'Tiering Calculator';
   private parentAnalysisData: IClientVal;
   private displayData: IClientVal;
   private clientTierScore: any;

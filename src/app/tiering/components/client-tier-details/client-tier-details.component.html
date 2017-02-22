@@ -5,167 +5,206 @@
   <div class="col-md-10">
     <div class="row">
       <div class="col-md-12">
-        <h1>{{ title }} {{displayData?.ClientName}}</h1>
+        <h1>{{ title }}</h1>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+      <div class="col-md-5">
+        <h2>Parent</h2>
+      </div>
+      <div class="col-md-3">
+        <h2>Tier</h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12" style="margin-top: 20px">
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Billing</h2>
-          </div>
+      <div class="col-md-5">
+        <div class="box">
+          <span class="box-span">{{displayData?.ClientName}}</span>
         </div>
-        <div class="row">
-          <div class="col-md-2">
-            <p>Score: {{clientTierScore?.BillingScore.Score}}</p>
-            <p>Weighted Score: {{clientTierScore?.BillingWeighted}}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Min: {{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Max: {{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true}}</p>
-          </div>
-          <div class="col-md-6">
-            <p>Current Value: {{displayData?.Billings | currency: 'USD': true}}</p>
-          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="box">
+        <span class="box-span">Tier</span>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12" style="margin-top: 20px">
+      <div class="col-md-12" style="margin-top: 43px">
         <div class="row">
-          <div class="col-md-12">
-            <h2>Realization</h2>
+          <div class="col-md-3 offset-md-2">
+            <span class="calc-headers-scores">Score</span>
+            <span class="calc-headers-scores">Weighted Score</span>
+            <span class="calc-headers-scores">Test Value</span>
+          </div>
+          <div class="col-md-2 offset-md-3 calc-headers">
+            <p>To Next Level</p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-2">
-            <p>Score: {{clientTierScore?.RealizationScore.Score}}</p>
+            <p>Billings</p>
+          </div>
+          <div class="col-md-3">
+            <div class="score-box-yellow">
+            <span class="box-span">{{clientTierScore?.BillingScore.Score}}</span>
+            </div>
+            <div class="score-box-grey">
+            <span class="box-span">{{clientTierScore?.BillingWeighted}}</span>
+            </div>
+            <div class="score-box-grey">
+            <span class="box-span">0</span>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>{{displayData?.Billings | currency: 'USD': true}}</p>
+          </div>
+          <div class="col-md-1">
+            <p>{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true}}</p>
           </div>
           <div class="col-md-2">
-            <p>Min: {{clientTierScore?.RealizationScore.MinValue | percent}}</p>
+            <div class="score-box-blue">
+            <span class="box-span">{{clientTierScore?.BillingScore.MaxValue - displayData?.Billings | currency: 'USD' : true}}</span>
+            </div>
           </div>
-          <div class="col-md-2">
-            <p>Max: {{clientTierScore?.RealizationScore.MaxValue | percent}}</p>
+        </div>
+      </div>
+      <!--<div class="row">
+        <div class="col-md-12" style="margin-top: 20px">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Realization</h2>
+            </div>
           </div>
-          <div class="col-md-6">
-            <p>Current Value: {{displayData?.Realization | percent}}</p>
+          <div class="row">
+            <div class="col-md-2">
+              <p>Score: {{clientTierScore?.RealizationScore.Score}}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Min: {{clientTierScore?.RealizationScore.MinValue | percent}}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Max: {{clientTierScore?.RealizationScore.MaxValue | percent}}</p>
+            </div>
+            <div class="col-md-6">
+              <p>Current Value: {{displayData?.Realization | percent}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="margin-top: 20px">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Billing Realization Multiplier</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <p>Score: {{clientTierScore?.MultiplierScore.Score}}</p>
+              <p>Weighted Score: {{clientTierScore?.MultiplierWeighted}}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Min: {{clientTierScore?.MultiplierScore.MinValue }}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Max: {{clientTierScore?.MultiplierScore.MaxValue }}</p>
+            </div>
+            <div class="col-md-6">
+              <p>Current Value: {{clientTierScore?.BillingScore.Score * clientTierScore?.RealizationScore.Score}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="margin-top: 20px">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Work Timing</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <p>Score: {{clientTierScore?.TimelinessScore.Score}}</p>
+              <p>Weighted Score: {{clientTierScore?.TimelinessWeighted}}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Min: {{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Max: {{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
+            </div>
+            <div class="col-md-6">
+              <p>Current Value: {{displayData?.PeakPercent | percent }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="margin-top: 20px">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Service Touches</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <p>Score: {{clientTierScore?.ServiceTouchesScore.Score}}</p>
+              <p>Weighted Score: {{clientTierScore?.ServiceTouchWeighted}}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Min: {{clientTierScore?.ServiceTouchesScore.MinValue }}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Max: {{clientTierScore?.ServiceTouchesScore.MaxValue }}</p>
+            </div>
+            <div class="col-md-6">
+              <p>Current Value: {{displayData?.ServiceTouchCount }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="margin-top: 20px">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Payment Timeliness</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <p>Score: {{clientTierScore?.PaymentScore.Score}}</p>
+              <p>Weighted Score: {{clientTierScore?.PaymentWeighted}}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Min: {{clientTierScore?.PaymentScore.MinValue }}</p>
+            </div>
+            <div class="col-md-2">
+              <p>Max: {{clientTierScore?.PaymentScore.MaxValue }}</p>
+            </div>
+            <div class="col-md-6">
+              <p>Current Value: {{displayData?.PaymentTimeliness }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="margin-top: 20px">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Total Score</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>Score: {{clientTierScore?.WeightedScore}}</p>
+            </div>
+            <div class="col-md-6">
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12" style="margin-top: 20px">
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Billing Realization Multiplier</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <p>Score: {{clientTierScore?.MultiplierScore.Score}}</p>
-            <p>Weighted Score: {{clientTierScore?.MultiplierWeighted}}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Min: {{clientTierScore?.MultiplierScore.MinValue }}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Max: {{clientTierScore?.MultiplierScore.MaxValue }}</p>
-          </div>
-          <div class="col-md-6">
-            <p>Current Value: {{clientTierScore?.BillingScore.Score * clientTierScore?.RealizationScore.Score}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12" style="margin-top: 20px">
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Work Timing</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <p>Score: {{clientTierScore?.TimelinessScore.Score}}</p>
-            <p>Weighted Score: {{clientTierScore?.TimelinessWeighted}}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Min: {{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Max: {{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
-          </div>
-          <div class="col-md-6">
-            <p>Current Value: {{displayData?.PeakPercent | percent }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12" style="margin-top: 20px">
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Service Touches</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <p>Score: {{clientTierScore?.ServiceTouchesScore.Score}}</p>
-            <p>Weighted Score: {{clientTierScore?.ServiceTouchWeighted}}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Min: {{clientTierScore?.ServiceTouchesScore.MinValue }}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Max: {{clientTierScore?.ServiceTouchesScore.MaxValue }}</p>
-          </div>
-          <div class="col-md-6">
-            <p>Current Value: {{displayData?.ServiceTouchCount }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12" style="margin-top: 20px">
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Payment Timeliness</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <p>Score: {{clientTierScore?.PaymentScore.Score}}</p>
-            <p>Weighted Score: {{clientTierScore?.PaymentWeighted}}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Min: {{clientTierScore?.PaymentScore.MinValue }}</p>
-          </div>
-          <div class="col-md-2">
-            <p>Max: {{clientTierScore?.PaymentScore.MaxValue }}</p>
-          </div>
-          <div class="col-md-6">
-            <p>Current Value: {{displayData?.PaymentTimeliness }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12" style="margin-top: 20px">
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Total Score</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <p>Score: {{clientTierScore?.WeightedScore}}</p>
-          </div>
-          <div class="col-md-6">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  </div>-->
