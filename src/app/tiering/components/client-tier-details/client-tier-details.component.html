@@ -15,11 +15,14 @@
       <div class="col-md-3">
         <h2>Tier</h2>
       </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary btn-block" (click)="reset()">Reset</button>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-5">
         <div class="box">
-          <span class="box-span">{{displayData?.ClientName}}</span>
+          <span class="box-span">{{parentAnalysisData?.ClientName}}</span>
         </div>
       </div>
       <div class="col-md-3">
@@ -51,7 +54,7 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.BillingWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="billing-test-val">
+            <input type="text" class="score-box-grey" [(ngModel)]="billingVal" id="billing-test-val" (blur)="updateBilling()">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
@@ -79,7 +82,7 @@
             <div class="score-box-grey">
             <span class="box-span">N/A</span>
             </div>
-            <input type="text" class="score-box-grey" id="realization-test-val">
+            <input type="text" class="score-box-grey" [(ngModel)]="realizationVal" id="realization-test-val" (blur)="updateRealization()">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.RealizationScore.MinValue | percent}}</p>
@@ -107,7 +110,6 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.MultiplierWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="multiplier-test-val">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.MultiplierScore.MinValue}}</p>
@@ -236,4 +238,4 @@
             </div>
           </div>
         </div>
-      </div> <!--stay within this div -->
+      </div>

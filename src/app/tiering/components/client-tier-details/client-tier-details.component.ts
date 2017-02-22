@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
-import { IClientVal, IScore, ScoreRanges, Scores } from '../../models/';
+import { IClientVal, ClientVal, IScore, ScoreRanges, Scores } from '../../models/';
 import { ClientTierAnalysisService } from '../../services/';
 import { TierHelper } from '../../helpers';
 
@@ -13,6 +13,13 @@ import { TierHelper } from '../../helpers';
 })
 export class ClientTierDetailsComponent implements OnInit {
   menuItemId: number = 1;
+  scoreRanges: Scores;
+
+  billingVal: number;
+  realizationVal: number;
+  workTimingVal: number;
+  serviceTouch: number;
+  timeliness: number;
 
   private title: string = 'Tiering Calculator';
   private parentAnalysisData: IClientVal;
@@ -26,26 +33,57 @@ export class ClientTierDetailsComponent implements OnInit {
   private tierhelper: TierHelper) { }
 
   ngOnInit() {
-    let scoreRanges: Scores = new Scores();
+    this.scoreRanges = new Scores();
+    this.displayData = new ClientVal();
 
     this.parentAnalysisData = this.route.snapshot.data['parentAnalysisData'];
-    scoreRanges.Billing = this.route.snapshot.data['billingScore'];
-    scoreRanges.Realization = this.route.snapshot.data['realizationScore'];
-    scoreRanges.Multiplier = this.route.snapshot.data['multiplierScore'];
-    scoreRanges.WorkTiming = this.route.snapshot.data['workTiming'];
-    scoreRanges.ServiceTouch = this.route.snapshot.data['serviceTouch'];
-    scoreRanges.Payment = this.route.snapshot.data['paymentScore'];
-    scoreRanges.Tier = this.route.snapshot.data['tierScore'];
-    console.log(scoreRanges);
-    this.displayData = this.parentAnalysisData;
-    this.getScores(this.displayData, scoreRanges);
+    this.scoreRanges.Billing = this.route.snapshot.data['billingScore'];
+    this.scoreRanges.Realization = this.route.snapshot.data['realizationScore'];
+    this.scoreRanges.Multiplier = this.route.snapshot.data['multiplierScore'];
+    this.scoreRanges.WorkTiming = this.route.snapshot.data['workTiming'];
+    this.scoreRanges.ServiceTouch = this.route.snapshot.data['serviceTouch'];
+    this.scoreRanges.Payment = this.route.snapshot.data['paymentScore'];
+    this.scoreRanges.Tier = this.route.snapshot.data['tierScore'];
+
+    this.displayData.Billings = this.parentAnalysisData.Billings;
+    this.displayData.PaymentTimeliness = this.parentAnalysisData.PaymentTimeliness;
+    this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
+    this.displayData.Realization = this.parentAnalysisData.Realization;
+    this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
+    this.getScores(this.displayData);
   }
-  getScores(displayData: IClientVal, scoreRanges: Scores) {
-   this.clientTierScore = this.tierhelper.getClientScore(displayData, scoreRanges);
+  getScores(displayData: IClientVal) {
+   this.clientTierScore = this.tierhelper.getClientScore(displayData, this.scoreRanges);
+  }
+
+  updateBilling() {
+    this.displayData.Billings = this.billingVal;
+    this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
+  }
+
+  updateRealization() {
+    this.displayData.Realization = this.realizationVal / 100;
+    this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
+  }
+
+  updateWorkTiming() {
+    this.displayData.PeakPercent = this.workTimingVal / 100;
+  }
+
+  updateService() {
+    this.displayData.ServiceTouchCount = this.serviceTouch;
+  }
+
+  updatePayment() {
+    this.displayData.PaymentTimeliness = this.timeliness;
   }
 
   reset() {
-    this.displayData = this.parentAnalysisData;
+    this.displayData.Billings = this.parentAnalysisData.Billings;
+    this.displayData.PaymentTimeliness = this.parentAnalysisData.PaymentTimeliness;
+    this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
+    this.displayData.Realization = this.parentAnalysisData.Realization;
+    this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
   }
 
 }
