@@ -9,7 +9,8 @@ import { ClientTierResolver,
         MultiplierScoreResolver,
         WorkTimingScoreResolver,
         ServiceTouchScoreResolver,
-        PaymentScoreResolver } from './tiering/resolver/';
+        PaymentScoreResolver,
+        TierScoreResolver } from './tiering/resolver/';
 
 export const routes: Routes = [
     { path: 'home', component: MainComponent },
@@ -24,7 +25,8 @@ export const routes: Routes = [
             multiplierScore: MultiplierScoreResolver,
             workTiming: WorkTimingScoreResolver,
             serviceTouch: ServiceTouchScoreResolver,
-            paymentScore: PaymentScoreResolver
+            paymentScore: PaymentScoreResolver,
+            tierScore: TierScoreResolver
                 }
     }
 ]

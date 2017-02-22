@@ -1,4 +1,4 @@
-import { IScore } from './score';
+import { IScore, ITierScore } from './';
 
 export interface ITiering {
     BillingScore: IScore;
@@ -13,7 +13,7 @@ export interface ITiering {
     PaymentScore: IScore;
     PaymentWeighted: number;
     WeightedScore: number;
-    Tier: string;
+    Tier: ITierScore;
 }
 
 export class Tiering implements ITiering {
@@ -29,5 +29,5 @@ export class Tiering implements ITiering {
     PaymentScore: IScore;
     PaymentWeighted: number;
     WeightedScore: number;
-    Tier: string;
+    Tier: ITierScore;
 }

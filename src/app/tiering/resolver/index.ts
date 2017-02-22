@@ -5,3 +5,4 @@ export * from './multiplier-score-resolver';
 export * from './work-timing-score-resolver';
 export * from './service-touch-score-resolver';
 export * from './payment-score-resolver';
+export * from './tier-score-resolver';

@@ -60,6 +60,13 @@ export class ClientTierScoreService {
     .catch(this.handleError);
   }
 
+   getTier(): Promise<IScore[]> {
+    return this.http.get(this.baseUrl + this.tierScoreApi)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
  private handleError(error: any) {
      let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';

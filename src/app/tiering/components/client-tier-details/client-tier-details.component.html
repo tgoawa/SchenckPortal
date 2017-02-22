@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-3">
         <div class="box">
-        <span class="box-span">{{clientTierScore?.Tier}}</span>
+        <span class="box-span">{{clientTierScore?.Tier.Score}}</span>
         </div>
       </div>
     </div>
@@ -107,7 +107,7 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.MultiplierWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="realization-test-val">
+            <input type="text" class="score-box-grey" id="multiplier-test-val">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.MultiplierScore.MinValue}}</p>
@@ -135,7 +135,7 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.TimelinessWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="realization-test-val">
+            <input type="text" class="score-box-grey" id="timing-test-val">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
@@ -163,7 +163,7 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.ServiceTouchWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="realization-test-val">
+            <input type="text" class="score-box-grey" id="service-test-val">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.ServiceTouchesScore.MinValue}}</p>
@@ -191,7 +191,7 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.PaymentWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="realization-test-val">
+            <input type="text" class="score-box-grey" id="payment-test-val">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.PaymentScore.MinValue}}</p>

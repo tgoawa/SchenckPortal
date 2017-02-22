@@ -25,7 +25,8 @@ import { ClientTierResolver,
         MultiplierScoreResolver,
         WorkTimingScoreResolver,
         ServiceTouchScoreResolver,
-        PaymentScoreResolver } from './tiering/resolver/';
+        PaymentScoreResolver,
+        TierScoreResolver } from './tiering/resolver/';
 
 
 
@@ -61,7 +62,8 @@ import { ClientTierResolver,
     MultiplierScoreResolver,
     WorkTimingScoreResolver,
     ServiceTouchScoreResolver,
-    PaymentScoreResolver],
+    PaymentScoreResolver,
+    TierScoreResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { IScore, IClientVal, Scores } from '../models/';
+import { IScore, IClientVal, Scores, ITierScore } from '../models/';
 import { Tiering } from '../models/tiering.model';
 import { BillingsHelper,
         RealizationHelper,
         MultiplierHelper,
         TimelinessHelper,
         PaymentHelper,
-        ServiceTouchHelper } from './';
+        ServiceTouchHelper,
+        TierScoreHelper } from './';
 import { ClientTierScoreService } from '../services';
 
 @Injectable()
@@ -19,6 +20,7 @@ export class TierHelper {
     getClientScore(displayScore: IClientVal, ranges: Scores) {
         this.getTierScore(displayScore, ranges);
         this.getWeightedScore();
+        this.tier.Tier = this.calculateScore(this.tier.WeightedScore, ranges.Tier);
         return this.tier;
     }
 
@@ -74,7 +76,8 @@ export class TierHelper {
         return pay.getPaymentScore(val, range);
     }
 
-    calculateScore() {
-        
+    calculateScore(val: number, range): ITierScore {
+        let tierScore = new TierScoreHelper(this.service);
+        return tierScore.getScore(val, range);
     }
 }

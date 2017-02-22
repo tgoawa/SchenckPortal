@@ -7,6 +7,7 @@ export interface ScoreRanges {
     WorkTiming: IScore[];
     ServiceTouch: IScore[];
     Payment: IScore[];
+    Tier: IScore[];
 }
 
 export class Scores implements ScoreRanges 
@@ -17,4 +18,5 @@ export class Scores implements ScoreRanges
     WorkTiming: IScore[];
     ServiceTouch: IScore[];
     Payment: IScore[];
+    Tier: IScore[];
 }
