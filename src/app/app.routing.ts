@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
+import { LoginComponent } from './login/components/login.component';
 import { ClientTierListComponent } from './tiering/components/client-tier-list/client-tier-list.component';
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/client-tier-details.component';
 import { ClientTierResolver,
@@ -12,9 +13,15 @@ import { ClientTierResolver,
         PaymentScoreResolver,
         TierScoreResolver } from './tiering/resolver/';
 
+import { TeamMemberResolver } from './teamMember/';
+
 export const routes: Routes = [
-    { path: 'home', component: MainComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'home', component: MainComponent,
+        resolve: {
+            teamMemberData: TeamMemberResolver
+    } },
     { path: 'client-tier-list', component: ClientTierListComponent },
     { path: 'client-tier-details/:id',
         component: ClientTierDetailsComponent,

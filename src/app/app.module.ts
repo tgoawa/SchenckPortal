@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -28,6 +28,10 @@ import { ClientTierResolver,
         PaymentScoreResolver,
         TierScoreResolver } from './tiering/resolver/';
 
+import { LoginComponent } from './login/components/login.component';
+import { LoginService } from './login/services/login.service';
+import { TeamMemberService, TeamMemberResolver } from './teamMember/';
+
 
 
 
@@ -45,14 +49,18 @@ import { ClientTierResolver,
     ClientSearchComponent,
     ClientListTableComponent,
     ClientTierDetailsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [ClientTierListService,
+  providers: [
+    LoginService,
+    ClientTierListService,
     ClientTierAnalysisService,
     ClientTierScoreService,
     TierHelper,
@@ -63,7 +71,9 @@ import { ClientTierResolver,
     WorkTimingScoreResolver,
     ServiceTouchScoreResolver,
     PaymentScoreResolver,
-    TierScoreResolver],
+    TierScoreResolver,
+    TeamMemberService,
+    TeamMemberResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

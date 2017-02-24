@@ -64,12 +64,12 @@ export class ClientTierDetailsComponent implements OnInit {
   }
 
   updateRealization() {
-    this.displayData.Realization = this.realizationVal / 100;
+    this.displayData.Realization = this.realizationVal;
     this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
   updateWorkTiming() {
-    this.displayData.PeakPercent = this.workTimingVal / 100;
+    this.displayData.PeakPercent = this.workTimingVal;
     this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
