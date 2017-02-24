@@ -54,7 +54,7 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.BillingWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" [(ngModel)]="billingVal" id="billing-test-val" (blur)="updateBilling()">
+            <input type="text" class="score-box-grey" [(ngModel)]="billingVal" id="billing-test-val" (change)="updateBilling()">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
@@ -67,7 +67,7 @@
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.BillingScore.MaxValue - displayData?.Billings | currency: 'USD' : true}}</span>
+            <span class="box-span">{{clientTierScore?.BillingScore.ToNextLevel | currency: 'USD' : true}}</span>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
             <div class="score-box-grey">
             <span class="box-span">N/A</span>
             </div>
-            <input type="text" class="score-box-grey" [(ngModel)]="realizationVal" id="realization-test-val" (blur)="updateRealization()">
+            <input type="text" class="score-box-grey" [(ngModel)]="realizationVal" id="realization-test-val" (change)="updateRealization()">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.RealizationScore.MinValue | percent}}</p>
@@ -95,7 +95,7 @@
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.RealizationScore.MaxValue - displayData?.Realization | percent}}</span>
+            <span class="box-span">{{clientTierScore?.RealizationScore.ToNextLevel | percent}}</span>
             </div>
           </div>
         </div>
@@ -122,7 +122,7 @@
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.MultiplierScore.MaxValue - clientTierScore?.MultiplierWeighted}}</span>
+            <span class="box-span">{{clientTierScore?.MultiplierScore.ToNextLevel}}</span>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.TimelinessWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="timing-test-val">
+            <input type="text" class="score-box-grey" [(ngModel)]="workTimingVal" id="work-timing-test-val" (change)="updateWorkTiming()">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
@@ -150,7 +150,7 @@
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.TimelinessScore.MaxValue - displayData?.PeakPercent | percent}}</span>
+            <span class="box-span">{{clientTierScore?.TimelinessScore.ToNextLevel | percent}}</span>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.ServiceTouchWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="service-test-val">
+            <input type="text" class="score-box-grey" [(ngModel)]="serviceTouch" id="service-touch-test-val" (change)="updateService()">
           </div>
           <div class="col-md-1">
             <p>{{clientTierScore?.ServiceTouchesScore.MinValue}}</p>
@@ -178,7 +178,7 @@
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.ServiceTouchesScore.MaxValue - displayData?.ServiceTouchCount}}</span>
+            <span class="box-span">{{clientTierScore?.ServiceTouchesScore.ToNextLevel }}</span>
             </div>
           </div>
         </div>
@@ -193,20 +193,20 @@
             <div class="score-box-grey">
             <span class="box-span">{{clientTierScore?.PaymentWeighted}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="payment-test-val">
+            <input type="text" class="score-box-grey" [(ngModel)]="payment" id="payment-test-val" (change)="updatePayment()">
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.PaymentScore.MinValue}}</p>
+            <p>{{clientTierScore?.PaymentScore.MaxValue}}</p>
           </div>
           <div class="col-md-3">
             <p>{{displayData?.PaymentTimeliness}}</p>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.PaymentScore.MaxValue}}</p>
+            <p>{{clientTierScore?.PaymentScore.MinValue}}</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.PaymentScore.MaxValue - displayData?.PaymentTimeliness}}</span>
+            <span class="box-span">{{clientTierScore?.PaymentScore.ToNextLevel }}</span>
             </div>
           </div>
         </div>
@@ -224,17 +224,17 @@
             <input type="text" class="score-box-grey" id="realization-test-val">
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.PaymentScore.MinValue}}</p>
+            <p>{{clientTierScore?.Tier.MinValue}}</p>
           </div>
           <div class="col-md-3">
-            <p>{{displayData?.PaymentTimeliness}}</p>
+            <p>{{clientTierScore?.WeightedScore}}</p>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.PaymentScore.MaxValue}}</p>
+            <p>{{clientTierScore?.Tier.MaxValue}}</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.PaymentScore.MaxValue - displayData?.PaymentTimeliness}}</span>
+            <span class="box-span">{{clientTierScore?.Tier.ToNextLevel }}</span>
             </div>
           </div>
         </div>

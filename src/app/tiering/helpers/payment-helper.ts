@@ -9,9 +9,14 @@ export class PaymentHelper {
     constructor(private clientTierService: ClientTierScoreService) { 
     }
 
-    getPaymentScore(val, scoreObject): IScore {
+    getPaymentScore(paymentVal, scoreObject): IScore {
         for (let x = 0; x < scoreObject.length; x++) {
-            if (val >= scoreObject[x].MinValue && val <= scoreObject[x].MaxValue) {
+            if (paymentVal >= scoreObject[x].MinValue && paymentVal <= scoreObject[x].MaxValue) {
+                if (x + 1 < scoreObject.length) {
+                    scoreObject[x].ToNextLevel = scoreObject[x + 1].MaxValue - paymentVal;
+                } else {
+                    scoreObject[x].ToNextLevel = 0;
+                }
                 return scoreObject[x];
             }
         }

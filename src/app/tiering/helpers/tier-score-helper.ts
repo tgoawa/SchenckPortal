@@ -9,9 +9,14 @@ export class TierScoreHelper {
     constructor(private clientTierService: ClientTierScoreService) { 
     }
 
-    getScore(val, scoreObject): ITierScore {
+    getScore(scoreVal, scoreObject): ITierScore {
         for (let x = 0; x < scoreObject.length; x++) {
-            if (val >= scoreObject[x].MinValue && val <= scoreObject[x].MaxValue) {
+            if (scoreVal >= scoreObject[x].MinValue && scoreVal <= scoreObject[x].MaxValue) {
+                if (x + 1 < scoreObject.length) {
+                    scoreObject[x].ToNextLevel = scoreObject[x + 1].MinValue - scoreVal;
+                } else {
+                    scoreObject[x].ToNextLevel = 0;
+                }
                 return scoreObject[x];
             }
         }

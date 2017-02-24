@@ -19,7 +19,7 @@ export class ClientTierDetailsComponent implements OnInit {
   realizationVal: number;
   workTimingVal: number;
   serviceTouch: number;
-  timeliness: number;
+  payment: number;
 
   private title: string = 'Tiering Calculator';
   private parentAnalysisData: IClientVal;
@@ -45,6 +45,8 @@ export class ClientTierDetailsComponent implements OnInit {
     this.scoreRanges.Payment = this.route.snapshot.data['paymentScore'];
     this.scoreRanges.Tier = this.route.snapshot.data['tierScore'];
 
+    console.log(this.scoreRanges.ServiceTouch);
+
     this.displayData.Billings = this.parentAnalysisData.Billings;
     this.displayData.PaymentTimeliness = this.parentAnalysisData.PaymentTimeliness;
     this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
@@ -68,14 +70,17 @@ export class ClientTierDetailsComponent implements OnInit {
 
   updateWorkTiming() {
     this.displayData.PeakPercent = this.workTimingVal / 100;
+    this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
   updateService() {
     this.displayData.ServiceTouchCount = this.serviceTouch;
+    this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
   updatePayment() {
-    this.displayData.PaymentTimeliness = this.timeliness;
+    this.displayData.PaymentTimeliness = this.payment;
+    this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
   reset() {
@@ -84,6 +89,7 @@ export class ClientTierDetailsComponent implements OnInit {
     this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
     this.displayData.Realization = this.parentAnalysisData.Realization;
     this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
+     this.getScores(this.displayData);
   }
 
 }

@@ -9,9 +9,14 @@ export class TimelinessHelper {
     constructor(private clientTierService: ClientTierScoreService) { 
     }
 
-    getTimelinessScore(val, scoreObject): IScore {
+    getTimelinessScore(workTimingVal, scoreObject): IScore {
         for (let x = 0; x < scoreObject.length; x++) {
-            if (val >= scoreObject[x].MinValue && val <= scoreObject[x].MaxValue) {
+            if (workTimingVal >= scoreObject[x].MinValue && workTimingVal <= scoreObject[x].MaxValue) {
+                if (x + 1 < scoreObject.length) {
+                    scoreObject[x].ToNextLevel = scoreObject[x + 1].MinValue - workTimingVal;
+                } else {
+                    scoreObject[x].ToNextLevel = 0;
+                }
                 return scoreObject[x];
             }
         }
