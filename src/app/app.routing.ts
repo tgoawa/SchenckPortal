@@ -15,16 +15,25 @@ import { ClientTierResolver,
 
 import { TeamMemberResolver } from './teamMember/';
 
+import { AuthGuard } from './auth/auth.guard';
+
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: MainComponent,
+        canActivate: [AuthGuard],
         resolve: {
             teamMemberData: TeamMemberResolver
     } },
-    { path: 'client-tier-list', component: ClientTierListComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'client-tier-list', component: ClientTierListComponent,
+        canActivate: [AuthGuard],
+        resolve: {
+            teamMemberData: TeamMemberResolver
+    }
+    },
     { path: 'client-tier-details/:id',
         component: ClientTierDetailsComponent,
+        canActivate: [AuthGuard],
         resolve: {
             parentAnalysisData: ClientTierResolver,
             billingScore: BillingScoreResolver,

@@ -32,6 +32,8 @@ import { LoginComponent } from './login/components/login.component';
 import { LoginService } from './login/services/login.service';
 import { TeamMemberService, TeamMemberResolver } from './teamMember/';
 
+import { AuthGuard } from './auth/auth.guard';
+
 
 
 
@@ -73,7 +75,8 @@ import { TeamMemberService, TeamMemberResolver } from './teamMember/';
     PaymentScoreResolver,
     TierScoreResolver,
     TeamMemberService,
-    TeamMemberResolver],
+    TeamMemberResolver,
+    AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
