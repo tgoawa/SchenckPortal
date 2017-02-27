@@ -23,7 +23,7 @@
                     <td>{{ item?.ParentId }}</td>
                     <td>{{ item?.ParentBusinessUnit }}</td>
                     <td>{{ item?.ParentAccountDirector }}</td>
-                    <td><a [routerLink]="['/client-tier-details', item?.ParentId]">{{ item?.ParentName }}</a>
+                    <td><a [routerLink]="['/home/client-tier-details', item?.ParentId]">{{ item?.ParentName }}</a>
                         <div class="row" *ngIf="item?.Children.length > 0">
                             <div class="col-xs-6">
                                 <button class="btn btn-primary" type="button" data-toggle="collapse" [attr.data-target]="'#' + item?.ParentId" aria-expanded="false"

@@ -4,45 +4,51 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/components/login.component';
 import { ClientTierListComponent } from './tiering/components/client-tier-list/client-tier-list.component';
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/client-tier-details.component';
-import { ClientTierResolver,
-        BillingScoreResolver,
-        RealizationScoreResolver,
-        MultiplierScoreResolver,
-        WorkTimingScoreResolver,
-        ServiceTouchScoreResolver,
-        PaymentScoreResolver,
-        TierScoreResolver } from './tiering/resolver/';
+import {
+    ClientTierResolver,
+    BillingScoreResolver,
+    RealizationScoreResolver,
+    MultiplierScoreResolver,
+    WorkTimingScoreResolver,
+    ServiceTouchScoreResolver,
+    PaymentScoreResolver,
+    TierScoreResolver
+} from './tiering/resolver/';
 
 import { TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: MainComponent,
-        canActivate: [AuthGuard],
-        resolve: {
-            teamMemberData: TeamMemberResolver
-    } },
     { path: 'login', component: LoginComponent },
-    { path: 'client-tier-list', component: ClientTierListComponent,
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    {
+        path: 'home', component: MainComponent,
         canActivate: [AuthGuard],
         resolve: {
             teamMemberData: TeamMemberResolver
-    }
-    },
-    { path: 'client-tier-details/:id',
-        component: ClientTierDetailsComponent,
-        canActivate: [AuthGuard],
-        resolve: {
-            parentAnalysisData: ClientTierResolver,
-            billingScore: BillingScoreResolver,
-            realizationScore: RealizationScoreResolver,
-            multiplierScore: MultiplierScoreResolver,
-            workTiming: WorkTimingScoreResolver,
-            serviceTouch: ServiceTouchScoreResolver,
-            paymentScore: PaymentScoreResolver,
-            tierScore: TierScoreResolver
+        },
+        children: [
+            {
+                path: 'client-tier-list', component: ClientTierListComponent,
+                resolve: {
+                    teamMemberData: TeamMemberResolver
                 }
-    }
+            },
+            {
+                path: 'client-tier-details/:id',
+                component: ClientTierDetailsComponent,
+                resolve: {
+                    parentAnalysisData: ClientTierResolver,
+                    billingScore: BillingScoreResolver,
+                    realizationScore: RealizationScoreResolver,
+                    multiplierScore: MultiplierScoreResolver,
+                    workTiming: WorkTimingScoreResolver,
+                    serviceTouch: ServiceTouchScoreResolver,
+                    paymentScore: PaymentScoreResolver,
+                    tierScore: TierScoreResolver
+                }
+            }
+        ]
+    },
 ]
