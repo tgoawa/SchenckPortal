@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { Cookie } from 'ng2-cookies';
+
 import { User } from '../models/user';
 import { LoginService } from '../services/login.service';
 import * as CryptoJS from '../../../../node_modules/crypto-js';
@@ -56,7 +58,7 @@ export class LoginComponent implements OnInit {
 
   setAuthStatus(data){
     if (data) {
-      localStorage.setItem('user', this.loginUser.username);
+      Cookie.set('user', this.loginUser.username, 90);
       this._router.navigate(['/home']);
     }
     else {
