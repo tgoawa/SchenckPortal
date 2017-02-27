@@ -17,6 +17,7 @@ export class TierScoreHelper {
                 } else {
                     scoreObject[x].ToNextLevel = 0;
                 }
+                scoreObject[x].ProgressPercent = (scoreVal / scoreObject[x].MaxValue);
                 return scoreObject[x];
             }
         }

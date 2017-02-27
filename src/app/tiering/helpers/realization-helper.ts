@@ -17,6 +17,7 @@ export class RealizationHelper {
                 } else {
                     scoreObject[x].ToNextLevel = 0;
                 }
+                scoreObject[x].ProgressPercent = (realizationVal / scoreObject[x].MaxValue);
                 return scoreObject[x];
             }
         }

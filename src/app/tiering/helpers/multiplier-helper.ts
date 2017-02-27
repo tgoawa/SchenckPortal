@@ -17,6 +17,7 @@ export class MultiplierHelper {
                 } else {
                     scoreObject[x].ToNextLevel = 0;
                 }
+                scoreObject[x].ProgressPercent = (val / scoreObject[x].MaxValue);
                 return scoreObject[x];
             }
         }

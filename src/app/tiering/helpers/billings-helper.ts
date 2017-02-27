@@ -17,6 +17,7 @@ export class BillingsHelper {
                 } else {
                     scoreObject[x].ToNextLevel = 0;
                 }
+                scoreObject[x].ProgressPercent = (billingVal / scoreObject[x].MaxValue);
                 return scoreObject[x];
             }
         }

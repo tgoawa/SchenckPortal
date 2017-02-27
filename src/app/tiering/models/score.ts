@@ -3,4 +3,5 @@ export interface IScore {
     MinValue: number;
     MaxValue: number;
     ToNextLevel: number;
+    ProgressPercent: number;
 }

@@ -17,6 +17,7 @@ export class TimelinessHelper {
                 } else {
                     scoreObject[x].ToNextLevel = 0;
                 }
+                scoreObject[x].ProgressPercent = (workTimingVal / scoreObject[x].MaxValue);
                 return scoreObject[x];
             }
         }

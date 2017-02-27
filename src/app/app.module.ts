@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { routes } from './app.routing';
 
+import { ProgressbarModule} from 'ng2-bootstrap';
+
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/component/nav.component';
 import { HeaderComponent } from './header/header.component';

@@ -27,7 +27,7 @@
       </div>
       <div class="col-md-3">
         <div class="box">
-        <span class="box-span">{{clientTierScore?.Tier.Score}}</span>
+          <span class="box-span">{{clientTierScore?.Tier.Score}}</span>
         </div>
       </div>
     </div>
@@ -49,25 +49,27 @@
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
-            <span class="box-span">{{clientTierScore?.BillingScore.Score}}</span>
+              <span class="box-span">{{clientTierScore?.BillingScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-            <span class="box-span">{{clientTierScore?.BillingWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.BillingWeighted}}</span>
             </div>
             <input type="text" class="score-box-grey" [(ngModel)]="billingVal" id="billing-test-val" (change)="updateBilling()">
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
+            <p class="range-text">{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
           </div>
           <div class="col-md-3">
-            <p>{{displayData?.Billings | currency: 'USD': true}}</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">{{displayData?.Billings | currency: 'USD': true}} </div>
+            </div>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true}}</p>
+            <p class="range-text">{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true}}</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.BillingScore.ToNextLevel | currency: 'USD' : true}}</span>
+              <span class="box-span">{{clientTierScore?.BillingScore.ToNextLevel | currency: 'USD' : true}}</span>
             </div>
           </div>
         </div>
@@ -77,25 +79,27 @@
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
-            <span class="box-span">{{clientTierScore?.RealizationScore.Score}}</span>
+              <span class="box-span">{{clientTierScore?.RealizationScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-            <span class="box-span">N/A</span>
+              <span class="box-span">N/A</span>
             </div>
             <input type="text" class="score-box-grey" [(ngModel)]="realizationVal" id="realization-test-val" (change)="updateRealization()">
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.RealizationScore.MinValue | percent}}</p>
+            <p class="range-text">{{clientTierScore?.RealizationScore.MinValue }}%</p>
           </div>
           <div class="col-md-3">
-            <p>{{displayData?.Realization | percent}}</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.RealizationScore.ProgressPercent | percent">{{displayData?.Realization}}%</div>
+            </div>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.RealizationScore.MaxValue | percent}}</p>
+            <p class="range-text">{{clientTierScore?.RealizationScore.MaxValue}}%</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.RealizationScore.ToNextLevel | percent}}</span>
+              <span class="box-span">{{clientTierScore?.RealizationScore.ToNextLevel}}%</span>
             </div>
           </div>
         </div>
@@ -105,24 +109,26 @@
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
-            <span class="box-span">{{clientTierScore?.MultiplierScore.Score}}</span>
+              <span class="box-span">{{clientTierScore?.MultiplierScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-            <span class="box-span">{{clientTierScore?.MultiplierWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.MultiplierWeighted}}</span>
             </div>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.MultiplierScore.MinValue}}</p>
+            <p class="range-text">{{clientTierScore?.MultiplierScore.MinValue}}</p>
           </div>
           <div class="col-md-3">
-            <p>{{clientTierScore?.MultiplierWeighted}}</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.MultiplierScore.ProgressPercent | percent">{{clientTierScore?.MultiplierWeighted}}</div>
+            </div>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.MultiplierScore.MaxValue}}</p>
+            <p class="range-text">{{clientTierScore?.MultiplierScore.MaxValue}}</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.MultiplierScore.ToNextLevel}}</span>
+              <span class="box-span">{{clientTierScore?.MultiplierScore.ToNextLevel}}</span>
             </div>
           </div>
         </div>
@@ -132,25 +138,27 @@
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
-            <span class="box-span">{{clientTierScore?.TimelinessScore.Score}}</span>
+              <span class="box-span">{{clientTierScore?.TimelinessScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-            <span class="box-span">{{clientTierScore?.TimelinessWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.TimelinessWeighted}}</span>
             </div>
             <input type="text" class="score-box-grey" [(ngModel)]="workTimingVal" id="work-timing-test-val" (change)="updateWorkTiming()">
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
+            <p class="range-text">{{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
           </div>
           <div class="col-md-3">
-            <p>{{displayData?.PeakPercent | percent}}</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.TimelinessScore.ProgressPercent | percent">{{displayData?.PeakPercent | percent}}</div>
+            </div>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
+            <p class="range-text">{{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.TimelinessScore.ToNextLevel | percent}}</span>
+              <span class="box-span">{{clientTierScore?.TimelinessScore.ToNextLevel | percent}}</span>
             </div>
           </div>
         </div>
@@ -160,25 +168,27 @@
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
-            <span class="box-span">{{clientTierScore?.ServiceTouchesScore.Score}}</span>
+              <span class="box-span">{{clientTierScore?.ServiceTouchesScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-            <span class="box-span">{{clientTierScore?.ServiceTouchWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.ServiceTouchWeighted}}</span>
             </div>
             <input type="text" class="score-box-grey" [(ngModel)]="serviceTouch" id="service-touch-test-val" (change)="updateService()">
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.ServiceTouchesScore.MinValue}}</p>
+            <p class="range-text">{{clientTierScore?.ServiceTouchesScore.MinValue}}</p>
           </div>
           <div class="col-md-3">
-            <p>{{displayData?.ServiceTouchCount}}</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.ServiceTouchesScore.ProgressPercent | percent">{{displayData?.ServiceTouchCount}}</div>
+            </div>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.ServiceTouchesScore.MaxValue}}</p>
+            <p class="range-text">{{clientTierScore?.ServiceTouchesScore.MaxValue}}</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.ServiceTouchesScore.ToNextLevel }}</span>
+              <span class="box-span">{{clientTierScore?.ServiceTouchesScore.ToNextLevel }}</span>
             </div>
           </div>
         </div>
@@ -188,25 +198,27 @@
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
-            <span class="box-span">{{clientTierScore?.PaymentScore.Score}}</span>
+              <span class="box-span">{{clientTierScore?.PaymentScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-            <span class="box-span">{{clientTierScore?.PaymentWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.PaymentWeighted}}</span>
             </div>
             <input type="text" class="score-box-grey" [(ngModel)]="payment" id="payment-test-val" (change)="updatePayment()">
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.PaymentScore.MaxValue}}</p>
+            <p class="range-text">{{clientTierScore?.PaymentScore.MaxValue}}</p>
           </div>
           <div class="col-md-3">
-            <p>{{displayData?.PaymentTimeliness}}</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.PaymentScore.ProgressPercent | percent">{{displayData?.PaymentTimeliness}}</div>
+            </div>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.PaymentScore.MinValue}}</p>
+            <p class="range-text">{{clientTierScore?.PaymentScore.MinValue}}</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.PaymentScore.ToNextLevel }}</span>
+              <span class="box-span">{{clientTierScore?.PaymentScore.ToNextLevel }}</span>
             </div>
           </div>
         </div>
@@ -216,25 +228,27 @@
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
-            <span class="box-span">#</span>
+              <span class="box-span">#</span>
             </div>
             <div class="score-box-grey">
-            <span class="box-span">{{clientTierScore?.WeightedScore}}</span>
+              <span class="box-span">{{clientTierScore?.WeightedScore}}</span>
             </div>
             <input type="text" class="score-box-grey" id="realization-test-val">
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.Tier.MinValue}}</p>
+            <p class="range-text">{{clientTierScore?.Tier.MinValue}}</p>
           </div>
           <div class="col-md-3">
-            <p>{{clientTierScore?.WeightedScore}}</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.Tier.ProgressPercent | percent">{{clientTierScore?.WeightedScore}}</div>
+            </div>
           </div>
           <div class="col-md-1">
-            <p>{{clientTierScore?.Tier.MaxValue}}</p>
+            <p class="range-text">{{clientTierScore?.Tier.MaxValue}}</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">
-            <span class="box-span">{{clientTierScore?.Tier.ToNextLevel }}</span>
+              <span class="box-span">{{clientTierScore?.Tier.ToNextLevel }}</span>
             </div>
           </div>
         </div>

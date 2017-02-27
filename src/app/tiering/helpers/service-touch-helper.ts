@@ -17,6 +17,7 @@ export class ServiceTouchHelper {
                 } else {
                     scoreObject[x].ToNextLevel = 0;
                 }
+                scoreObject[x].ProgressPercent = (serviceTouchVal / scoreObject[x].MaxValue);
                 return scoreObject[x];
             }
         }

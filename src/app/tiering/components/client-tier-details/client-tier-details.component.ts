@@ -45,12 +45,10 @@ export class ClientTierDetailsComponent implements OnInit {
     this.scoreRanges.Payment = this.route.snapshot.data['paymentScore'];
     this.scoreRanges.Tier = this.route.snapshot.data['tierScore'];
 
-    console.log(this.scoreRanges.ServiceTouch);
-
     this.displayData.Billings = this.parentAnalysisData.Billings;
     this.displayData.PaymentTimeliness = this.parentAnalysisData.PaymentTimeliness;
     this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
-    this.displayData.Realization = this.parentAnalysisData.Realization;
+    this.displayData.Realization = this.parentAnalysisData.Realization * 100;
     this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
     this.getScores(this.displayData);
   }
