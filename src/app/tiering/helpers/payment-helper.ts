@@ -17,6 +17,10 @@ export class PaymentHelper {
                 } else {
                     scoreObject[x].ToNextLevel = 0;
                 }
+                let divisor = scoreObject[x].MaxValue - scoreObject[x].MinValue;
+                let numerator = scoreObject[x].MaxValue - paymentVal;
+                scoreObject[x].ProgressPercent = numerator / divisor;
+                console.log(scoreObject[x].ProgressPercent);
                 return scoreObject[x];
             }
         }

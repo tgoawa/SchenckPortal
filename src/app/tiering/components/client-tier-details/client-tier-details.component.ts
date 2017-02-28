@@ -85,7 +85,7 @@ export class ClientTierDetailsComponent implements OnInit {
     this.displayData.Billings = this.parentAnalysisData.Billings;
     this.displayData.PaymentTimeliness = this.parentAnalysisData.PaymentTimeliness;
     this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
-    this.displayData.Realization = this.parentAnalysisData.Realization;
+    this.displayData.Realization = this.parentAnalysisData.Realization * 100;
     this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
      this.getScores(this.displayData);
   }
