@@ -50,6 +50,10 @@
     text-align: center;
 }
 
+.progress-bar {
+    /*height: 38px;*/
+}
+
 .range-text {
     font-size: 11px;
 }
