@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 
 import { ProgressbarModule} from 'ng2-bootstrap';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/component/nav.component';
@@ -59,6 +60,7 @@ import { AuthGuard } from './auth/auth.guard';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    CustomFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
   ],

@@ -61,7 +61,7 @@
           </div>
           <div class="col-md-3">
             <div class="progress">
-              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">{{displayData?.Billings | currency: 'USD': true}} </div>
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">${{displayData?.Billings}} </div>
             </div>
           </div>
           <div class="col-md-1">
@@ -146,7 +146,7 @@
             <input type="text" class="score-box-grey" [(ngModel)]="workTimingVal" id="work-timing-test-val" (change)="updateWorkTiming()">
           </div>
           <div class="col-md-1">
-            <p class="range-text">{{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
+            <p class="range-text">{{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
           </div>
           <div class="col-md-3">
             <div class="progress">
@@ -154,7 +154,7 @@
             </div>
           </div>
           <div class="col-md-1">
-            <p class="range-text">{{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
+            <p class="range-text">{{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
           </div>
           <div class="col-md-2">
             <div class="score-box-blue">

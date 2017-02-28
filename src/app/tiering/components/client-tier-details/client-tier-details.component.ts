@@ -15,11 +15,11 @@ export class ClientTierDetailsComponent implements OnInit {
   menuItemId: number = 1;
   scoreRanges: Scores;
 
-  billingVal: number;
-  realizationVal: number;
-  workTimingVal: number;
-  serviceTouch: number;
-  payment: number;
+  billingVal: any;
+  realizationVal: any;
+  workTimingVal: any;
+  serviceTouch: any;
+  payment: any;
 
   private title: string = 'Tiering Calculator';
   private parentAnalysisData: IClientVal;
@@ -44,40 +44,56 @@ export class ClientTierDetailsComponent implements OnInit {
     this.scoreRanges.ServiceTouch = this.route.snapshot.data['serviceTouch'];
     this.scoreRanges.Payment = this.route.snapshot.data['paymentScore'];
     this.scoreRanges.Tier = this.route.snapshot.data['tierScore'];
-
+    console.log(this.scoreRanges.WorkTiming);
     this.displayData.Billings = this.parentAnalysisData.Billings;
     this.displayData.PaymentTimeliness = this.parentAnalysisData.PaymentTimeliness;
     this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
     this.displayData.Realization = this.parentAnalysisData.Realization * 100;
     this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
     this.getScores(this.displayData);
+
   }
   getScores(displayData: IClientVal) {
    this.clientTierScore = this.tierhelper.getClientScore(displayData, this.scoreRanges);
   }
 
   updateBilling() {
-    this.displayData.Billings = this.billingVal;
+    if (!isNaN(this.billingVal)) {
+        this.displayData.Billings = this.billingVal;
+        this.billingVal = '';
+    }
     this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
   updateRealization() {
-    this.displayData.Realization = this.realizationVal;
+    if (!isNaN(this.realizationVal)) {
+      this.displayData.Realization = this.realizationVal;
+      this.realizationVal = '';
+    }
     this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
   updateWorkTiming() {
-    this.displayData.PeakPercent = this.workTimingVal;
+    if (!isNaN(this.workTimingVal)) {
+      this.displayData.PeakPercent = this.workTimingVal / 100;
+      this.workTimingVal = '';
+    }
     this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
   updateService() {
-    this.displayData.ServiceTouchCount = this.serviceTouch;
+    if (!isNaN(this.serviceTouch)) {
+      this.displayData.ServiceTouchCount = this.serviceTouch;
+      this.serviceTouch = '';
+    }
     this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
   updatePayment() {
-    this.displayData.PaymentTimeliness = this.payment;
+    if (!isNaN(this.payment)) {
+      this.displayData.PaymentTimeliness = this.payment;
+      this.payment = '';
+    }
     this.clientTierScore = this.tierhelper.getClientScore(this.displayData, this.scoreRanges);
   }
 
