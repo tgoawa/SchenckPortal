@@ -15,9 +15,6 @@
       <div class="col-md-3">
         <h2>Tier</h2>
       </div>
-      <div class="col-md-2">
-        <button class="btn btn-primary btn-block" (click)="reset()">Reset</button>
-      </div>
     </div>
     <div class="row">
       <div class="col-md-5">
@@ -30,6 +27,9 @@
           <span class="box-span">{{clientTierScore?.Tier.Score}}</span>
         </div>
       </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary btn-block" (click)="reset()">Reset Values</button>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-12" style="margin-top: 43px">
@@ -39,13 +39,13 @@
             <span class="calc-headers-scores">Weighted Score</span>
             <span class="calc-headers-scores">Test Value</span>
           </div>
-          <div class="col-md-2 offset-md-3 calc-headers">
+          <div class="col-md-2 offset-md-5 calc-headers">
             <p>To Next Level</p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-2">
-            <p>Billings</p>
+            <span class="data-point">Billings</span>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -75,7 +75,7 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <p>Realization</p>
+            <span class="data-point">Realization</span>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -105,7 +105,7 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <p>Billing Realization Multiplier</p>
+            <span class="data-point">Billing Realization Multiplier</span>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -134,7 +134,7 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <p>Work Timing</p>
+            <span class="data-point">Work Timing</span>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -164,7 +164,7 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <p>Service Touches</p>
+            <span class="data-point">Service Touches</span>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -194,7 +194,7 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <p>Payment Timeliness</p>
+            <span class="data-point">Payment Timeliness</span>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -224,16 +224,15 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <p>Total Score</p>
+            <span class="data-point">Total Score</span>
           </div>
           <div class="col-md-3">
-            <div class="score-box-yellow">
+            <div class="score-box-spacer">
               <span class="box-span">#</span>
             </div>
             <div class="score-box-grey">
               <span class="box-span">{{clientTierScore?.WeightedScore}}</span>
             </div>
-            <input type="text" class="score-box-grey" id="realization-test-val">
           </div>
           <div class="col-md-1">
             <p class="range-text">{{clientTierScore?.Tier.MinValue}}</p>

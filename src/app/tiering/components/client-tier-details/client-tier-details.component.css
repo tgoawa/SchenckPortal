@@ -33,6 +33,15 @@
     margin-left:2px;
 }
 
+.score-box-spacer {
+    height: 38px;
+    text-align: center;
+    display: inline-block;
+    width: 28%;
+    margin-left:2px;
+    color: #fff; 
+}
+
 .score-box-grey {
     border: 2px solid rgba(112, 112, 112, 0.15);
     background-color: rgba(112, 112, 112, 0.15);
@@ -56,4 +65,12 @@
 
 .range-text {
     font-size: 11px;
+}
+
+.data-point {
+    text-transform: uppercase;
+    line-height: 14px;
+    font-weight: 400;
+    font-size: 12.5px;
+    margin-top: 10px;
 }
