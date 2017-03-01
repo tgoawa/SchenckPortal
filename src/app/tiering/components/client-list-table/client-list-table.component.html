@@ -26,10 +26,10 @@
                     <td><a [routerLink]="['/home/client-tier-details', item?.ParentId]">{{ item?.ParentName }}</a>
                         <div class="row" *ngIf="item?.Children.length > 0">
                             <div class="col-xs-6">
-                                <button class="btn btn-primary" type="button" data-toggle="collapse" [attr.data-target]="'#' + item?.ParentId" aria-expanded="false"
+                                <a class="childExpand" data-toggle="collapse" [attr.data-target]="'#' + item?.ParentId" aria-expanded="false"
                                     [attr.aria-controls]="item?.ParentId">
-                                    Button with data-target
-                                    </button>
+                                    View Children +
+                                    </a>
                                     <ol class="collapse" id="{{item?.ParentId}}">
                                         <li *ngFor="let child of item?.Children">
                                             {{child.ChildName}}

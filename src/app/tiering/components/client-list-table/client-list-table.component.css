@@ -17,3 +17,7 @@ tbody {
 .table-striped tbody tr:nth-of-type(even) {
     background-color: rgba(247, 148, 30, 0.2);
 }
+
+.childExpand:hover {
+    cursor: pointer;
+}
