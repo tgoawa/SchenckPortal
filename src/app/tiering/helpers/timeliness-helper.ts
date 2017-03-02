@@ -13,7 +13,7 @@ export class TimelinessHelper {
         for (let x = 0; x < scoreObject.length; x++) {
             if (workTimingVal >= scoreObject[x].MinValue && workTimingVal <= scoreObject[x].MaxValue) {
                 if (x + 1 < scoreObject.length) {
-                    scoreObject[x].ToNextLevel = scoreObject[x + 1].MinValue - workTimingVal;
+                    scoreObject[x].ToNextLevel = scoreObject[x + 1].MaxValue - workTimingVal;
                 } else {
                     scoreObject[x].ToNextLevel = 0;
                 }
