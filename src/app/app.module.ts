@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 
 import { ProgressbarModule} from 'ng2-bootstrap';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/component/nav.component';
@@ -53,6 +54,7 @@ import { AuthGuard } from './auth/auth.guard';
   ],
   imports: [
     BrowserModule,
+    Angular2FontawesomeModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,

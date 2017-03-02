@@ -13,6 +13,7 @@ export class ClientTierListComponent implements OnInit {
   private title: string = 'Client Tier List';
   private clientTierList: ClientTierList[];
   private currentPeriod: any[];
+  private isLoading: Boolean;
   menuItemId: number = 1;
 
   constructor(private listService: ClientTierListService) { }
@@ -22,7 +23,12 @@ export class ClientTierListComponent implements OnInit {
   }
 
   search(val) {
-    this.listService.searchClientTierList(val.clientSearch).then(data => this.clientTierList = data);
+    this.isLoading = true;
+    this.listService.searchClientTierList(val.clientSearch)
+    .then(data => {
+      this.clientTierList = data;
+      this.isLoading = false;
+    });
   }
 
 }
