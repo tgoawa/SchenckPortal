@@ -20,14 +20,8 @@ export class DataHelperBase {
         return this.scoreRange[this.indexVal].MaxValue;
     }
 
-    getWeighted() {}
-
-    getDifference(displayVal: number): number {
-        if (this.indexVal + 1 < this.scoreRange.length) {
-            return this.scoreRange[this.indexVal + 1].MinValue - displayVal;
-        } else {
-            return 0;
-        }
+    getWeighted(multiplier: number, score: number) {
+        return score * multiplier;
     }
 
     getPercentage(): number {

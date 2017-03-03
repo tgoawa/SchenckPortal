@@ -21,8 +21,6 @@ export class TimelinessHelper {
                 let numerator = scoreObject[x].MaxValue - workTimingVal;
                 scoreObject[x].ProgressPercent = numerator / divisor;
                 return scoreObject[x];
-                // scoreObject[x].ProgressPercent = (workTimingVal / scoreObject[x].MaxValue);
-                // return scoreObject[x];
             }
         }
     }

@@ -39,9 +39,6 @@
             <div class="calc-headers-scores">Weighted Score</div>
             <div class="calc-headers-scores">Test Value</div>
           </div>
-          <div class="col-md-2 offset-md-5 calc-headers">
-            <p>To Next Level</p>
-          </div>
         </div>
         <div class="row">
           <div class="col-md-2">
@@ -66,11 +63,6 @@
           </div>
           <div class="col-md-1">
             <p class="range-text">{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true}}</p>
-          </div>
-          <div class="col-md-2">
-            <div class="score-box-blue">
-              <span class="box-span">{{clientTierScore?.BillingScore.ToNextLevel | currency: 'USD' : true}}</span>
-            </div>
           </div>
         </div>
         <div class="row" style="margin-top: 35px">
@@ -97,11 +89,6 @@
           <div class="col-md-1">
             <p class="range-text">{{clientTierScore?.RealizationScore.MaxValue}}%</p>
           </div>
-          <div class="col-md-2">
-            <div class="score-box-blue">
-              <span class="box-span">{{clientTierScore?.RealizationScore.ToNextLevel}}%</span>
-            </div>
-          </div>
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
@@ -126,11 +113,6 @@
           <div class="col-md-1">
             <p class="range-text">{{clientTierScore?.MultiplierScore.MaxValue}}</p>
           </div>
-          <div class="col-md-2">
-            <div class="score-box-blue">
-              <span class="box-span">{{clientTierScore?.MultiplierScore.ToNextLevel}}</span>
-            </div>
-          </div>
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
@@ -146,20 +128,15 @@
             <input type="text" class="score-box-grey" [(ngModel)]="workTimingVal" id="work-timing-test-val" (change)="updateWorkTiming()">
           </div>
           <div class="col-md-1">
-            <p class="range-text">{{clientTierScore?.TimelinessScore.MaxValue | percent}}</p>
+            <p class="range-text">{{clientTierScore?.TimelinessScore.MaxValue}}%</p>
           </div>
           <div class="col-md-3">
             <div class="progress">
-              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.TimelinessScore.ProgressPercent | percent">{{displayData?.PeakPercent | percent}}</div>
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.TimelinessScore.ProgressPercent | percent">{{displayData?.PeakPercent }}%</div>
             </div>
           </div>
           <div class="col-md-1">
-            <p class="range-text">{{clientTierScore?.TimelinessScore.MinValue | percent}}</p>
-          </div>
-          <div class="col-md-2">
-            <div class="score-box-blue">
-              <span class="box-span">{{clientTierScore?.TimelinessScore.ToNextLevel | percent}}</span>
-            </div>
+            <p class="range-text">{{clientTierScore?.TimelinessScore.MinValue }}%</p>
           </div>
         </div>
         <div class="row" style="margin-top: 35px">
@@ -186,11 +163,6 @@
           <div class="col-md-1">
             <p class="range-text">{{clientTierScore?.ServiceTouchesScore.MaxValue}}</p>
           </div>
-          <div class="col-md-2">
-            <div class="score-box-blue">
-              <span class="box-span">{{clientTierScore?.ServiceTouchesScore.ToNextLevel }}</span>
-            </div>
-          </div>
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
@@ -216,11 +188,6 @@
           <div class="col-md-1">
             <p class="range-text">{{clientTierScore?.PaymentScore.MinValue}}</p>
           </div>
-          <div class="col-md-2">
-            <div class="score-box-blue">
-              <span class="box-span">{{clientTierScore?.PaymentScore.ToNextLevel }}</span>
-            </div>
-          </div>
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
@@ -244,11 +211,6 @@
           </div>
           <div class="col-md-1">
             <p class="range-text">{{clientTierScore?.Tier.MaxValue}}</p>
-          </div>
-          <div class="col-md-2">
-            <div class="score-box-blue">
-              <span class="box-span">{{clientTierScore?.Tier.ToNextLevel }}</span>
-            </div>
           </div>
         </div>
       </div>
