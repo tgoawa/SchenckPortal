@@ -12,7 +12,7 @@ export class TierScoreHelper {
     getScore(scoreVal, scoreObject): ITierScore {
         for (let x = 0; x < scoreObject.length; x++) {
             if (scoreVal >= scoreObject[x].MinValue && scoreVal <= scoreObject[x].MaxValue) {
-                if (x + 1 < scoreObject.length) {
+                if (x + 1 < scoreObject.length && x !== 0) {
                     scoreObject[x].ToNextLevel = scoreObject[x - 1].MinValue - scoreVal;
                 } else {
                     scoreObject[x].ToNextLevel = 0;
