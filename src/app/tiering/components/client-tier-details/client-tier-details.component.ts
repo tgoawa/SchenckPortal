@@ -4,14 +4,16 @@ import { Observable } from 'rxjs/Rx';
 
 import { IClientVal, ClientVal, IScore, ScoreRanges, Scores, ITiering } from '../../models/';
 import { ClientTierAnalysisService } from '../../services/';
-import { ClientTierMetricHelper,
-        BillingMetric,
-        RealizationMetric,
-        MultiplierMetric,
-        TimingMetric,
-        ServiceTouchMetric,
-        PaymentMetric,
-        TierScoreMetric } from '../../helpers';
+import {
+  ClientTierMetricHelper,
+  BillingMetric,
+  RealizationMetric,
+  MultiplierMetric,
+  TimingMetric,
+  ServiceTouchMetric,
+  PaymentMetric,
+  TierScoreMetric
+} from '../../helpers';
 
 @Component({
   selector: 'app-client-tier-details',
@@ -20,7 +22,7 @@ import { ClientTierMetricHelper,
 })
 export class ClientTierDetailsComponent implements OnInit {
   menuItemId: number = 1;
-  
+
   billingVal: any;
   realizationVal: any;
   workTimingVal: any;
@@ -34,17 +36,17 @@ export class ClientTierDetailsComponent implements OnInit {
   private clientTierScore: ITiering;
   private clientTierHelper;
   private errorMessage: any = '';
-  
+
 
   constructor(private clientTierAnalysisService: ClientTierAnalysisService,
-  private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.scoreRanges = new Scores();
     this.displayData = new ClientVal();
 
     this.parentAnalysisData = this.route.snapshot.data['parentAnalysisData'];
-    
+
     this.scoreRanges.Billing = this.route.snapshot.data['billingScore'];
     this.scoreRanges.Realization = this.route.snapshot.data['realizationScore'];
     this.scoreRanges.Multiplier = this.route.snapshot.data['multiplierScore'];
@@ -71,8 +73,45 @@ export class ClientTierDetailsComponent implements OnInit {
 
     this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
-  getScores() {
-    this.clientTierHelper.getT
+
+  updateBilling() {
+    if (!isNaN(this.billingVal)) {
+      this.displayData.Billings = this.billingVal;
+      this.billingVal = '';
+    }
+    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
+  }
+
+  updateRealization() {
+    if (!isNaN(this.realizationVal)) {
+      this.displayData.Realization = this.realizationVal;
+      this.realizationVal = '';
+    }
+    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
+  }
+
+  updateWorkTiming() {
+    if (!isNaN(this.workTimingVal)) {
+      this.displayData.PeakPercent = this.workTimingVal;
+      this.workTimingVal = '';
+    }
+    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
+  }
+
+  updateService() {
+    if (!isNaN(this.serviceTouch)) {
+      this.displayData.ServiceTouchCount = this.serviceTouch;
+      this.serviceTouch = '';
+    }
+    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
+  }
+
+  updatePayment() {
+    if (!isNaN(this.payment)) {
+      this.displayData.PaymentTimeliness = this.payment;
+      this.payment = '';
+    }
+    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 
   reset() {

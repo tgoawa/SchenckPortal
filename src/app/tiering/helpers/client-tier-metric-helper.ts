@@ -47,4 +47,5 @@ export class ClientTierMetricHelper {
                 this.clientTier.ServiceTouchesScore.Weighted +
                 this.clientTier.PaymentScore.Weighted;
     }
+
 }
