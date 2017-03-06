@@ -3,6 +3,7 @@ import { IScore } from '../models/';
 
 import { TierMetricBase } from './';
 
+@Injectable()
 export class TimingMetric extends TierMetricBase {
 
     getTimingScore(displayVal: number, multiplier: number): IScore {

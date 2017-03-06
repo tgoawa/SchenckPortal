@@ -3,6 +3,7 @@ import { IScore } from '../models/';
 
 import { TierMetricBase } from './';
 
+@Injectable()
 export class ServiceTouchMetric extends TierMetricBase {
 
     getServiceTouchScore(displayVal: number, multiplier: number): IScore {

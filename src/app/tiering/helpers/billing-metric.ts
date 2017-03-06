@@ -3,6 +3,7 @@ import { IScore } from '../models/';
 
 import { TierMetricBase } from './';
 
+@Injectable()
 export class BillingMetric extends TierMetricBase {
 
     getBillingScore(displayVal: number): IScore {

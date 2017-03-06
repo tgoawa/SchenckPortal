@@ -3,6 +3,7 @@ import { IScore } from '../models/';
 
 import { TierMetricBase } from './';
 
+@Injectable()
 export class PaymentMetric extends TierMetricBase {
 
     getPaymentScore(displayVal: number, multiplier: number): IScore {
