@@ -5,7 +5,8 @@ import { TierMetricBase } from './';
 
 export class BillingMetric extends TierMetricBase {
 
-    getBillingScore(): IScore {
+    getBillingScore(displayVal: number): IScore {
+        this.getCurrentBandIndex(displayVal);
         this.score.MaxValue = this.getMaxValue();
         this.score.MinValue = this.getMinValue();
         this.score.Score = this.getScoreValue();
