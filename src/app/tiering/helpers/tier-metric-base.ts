@@ -25,8 +25,8 @@ export class TierMetricBase {
         return score * multiplier;
     }
 
-    protected getPercentage(): number {
-        return this.indexVal / this.scoreRange[this.indexVal].MaxValue;
+    protected getPercentage(displayVal: number): number {
+        return displayVal / this.scoreRange[this.indexVal].MaxValue;
     }
 
     protected getCurrentBandIndex(displayVal: number) {

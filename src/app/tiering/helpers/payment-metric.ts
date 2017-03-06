@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { IScore } from '../models/';
+import { Score } from '../models/';
 
 import { TierMetricBase } from './';
 
 @Injectable()
 export class PaymentMetric extends TierMetricBase {
 
-    getPaymentScore(displayVal: number, multiplier: number): IScore {
+    getPaymentScore(displayVal: number, multiplier: number): Score {
+        this.score = new Score();
         this.getCurrentBandIndex(displayVal);
         this.score.MaxValue = this.getMaxValue();
         this.score.MinValue = this.getMinValue();

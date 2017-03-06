@@ -14,7 +14,7 @@ import { BillingMetric,
 export class ClientTierMetricHelper {
 
     private multiplierValue: number;
-    private clientTier = new Tiering();
+    private clientTier;
 
     constructor(private billings: BillingMetric,
                 private realization: RealizationMetric,
@@ -22,10 +22,11 @@ export class ClientTierMetricHelper {
                 private timing: TimingMetric,
                 private serviceTouch: ServiceTouchMetric,
                 private payment: PaymentMetric,
-                private tierScore: TierScoreMetric ) {}
+                private tierScore: TierScoreMetric ) {
+                    this.clientTier = new Tiering();
+                }
 
     getTier(displayValues: IClientVal): Tiering {
-
         this.clientTier.BillingScore = this.billings.getBillingScore(displayValues.Billings);
         this.clientTier.RealizationScore = this.realization.getRealizationScore(displayValues.Realization);
         this.clientTier.MultiplierScore = this.multiplier.getMultiplierScore(this.clientTier.BillingScore.Score, this.clientTier.RealizationScore.Score);

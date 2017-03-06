@@ -49,7 +49,7 @@
               <span class="box-span">{{clientTierScore?.BillingScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-              <span class="box-span">{{clientTierScore?.BillingWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.BillingScore.Weighted}}</span>
             </div>
             <input type="text" class="score-box-grey" [(ngModel)]="billingVal" id="billing-test-val" (change)="updateBilling()">
           </div>
@@ -99,7 +99,7 @@
               <span class="box-span">{{clientTierScore?.MultiplierScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-              <span class="box-span">{{clientTierScore?.MultiplierWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.MultiplierScore.Weighted}}</span>
             </div>
           </div>
           <div class="col-md-1">
@@ -107,7 +107,7 @@
           </div>
           <div class="col-md-3">
             <div class="progress">
-              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.MultiplierScore.ProgressPercent | percent">{{clientTierScore?.MultiplierWeighted}}</div>
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.MultiplierScore.ProgressPercent | percent">{{clientTierScore?.MultiplierScore.Weighted}}</div>
             </div>
           </div>
           <div class="col-md-1">
@@ -123,7 +123,7 @@
               <span class="box-span">{{clientTierScore?.TimelinessScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-              <span class="box-span">{{clientTierScore?.TimelinessWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.TimelinessScore.Weighted}}</span>
             </div>
             <input type="text" class="score-box-grey" [(ngModel)]="workTimingVal" id="work-timing-test-val" (change)="updateWorkTiming()">
           </div>
@@ -148,7 +148,7 @@
               <span class="box-span">{{clientTierScore?.ServiceTouchesScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-              <span class="box-span">{{clientTierScore?.ServiceTouchWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.ServiceTouchesScore.Weighted}}</span>
             </div>
             <input type="text" class="score-box-grey" [(ngModel)]="serviceTouch" id="service-touch-test-val" (change)="updateService()">
           </div>
@@ -173,7 +173,7 @@
               <span class="box-span">{{clientTierScore?.PaymentScore.Score}}</span>
             </div>
             <div class="score-box-grey">
-              <span class="box-span">{{clientTierScore?.PaymentWeighted}}</span>
+              <span class="box-span">{{clientTierScore?.PaymentScore.Weighted}}</span>
             </div>
             <input type="text" class="score-box-grey" [(ngModel)]="payment" id="payment-test-val" (change)="updatePayment()">
           </div>
@@ -198,7 +198,7 @@
               <span class="box-span">#</span>
             </div>
             <div class="score-box-grey">
-              <span class="box-span">{{clientTierScore?.WeightedScore}}</span>
+              <span class="box-span">{{clientTierScore?.Tier.Weighted}}</span>
             </div>
           </div>
           <div class="col-md-1">
@@ -206,7 +206,7 @@
           </div>
           <div class="col-md-3">
             <div class="progress">
-              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.Tier.ProgressPercent | percent">{{clientTierScore?.WeightedScore}}</div>
+              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.Tier.ProgressPercent | percent">{{clientTierScore?.Tier.Weighted}}</div>
             </div>
           </div>
           <div class="col-md-1">

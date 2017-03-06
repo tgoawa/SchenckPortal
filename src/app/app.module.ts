@@ -19,7 +19,7 @@ import { TieringComponent } from './tiering/tiering.component';
 import { ClientTierListComponent } from './tiering/components/client-tier-list/client-tier-list.component';
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/client-tier-details.component';
 import { ClientTierListService, ClientTierAnalysisService, ClientTierScoreService } from './tiering/services/';
-import { TierHelper } from './tiering/helpers/';
+import { ClientTierMetricHelper } from './tiering/helpers/';
 import { ClientTierResolver,
         BillingScoreResolver,
         RealizationScoreResolver,
@@ -65,7 +65,7 @@ import { AuthGuard } from './auth/auth.guard';
     ClientTierListService,
     ClientTierAnalysisService,
     ClientTierScoreService,
-    TierHelper,
+    ClientTierMetricHelper,
     ClientTierResolver,
     BillingScoreResolver,
     RealizationScoreResolver,
