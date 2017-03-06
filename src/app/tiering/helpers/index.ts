@@ -10,3 +10,9 @@ export * from './tier-score-helper';
 
 export * from './tier-metric-base';
 export * from './billing-metric';
+export * from './realization-metric';
+export * from './multiplier-metric';
+export * from './timing-metric';
+export * from './service-touch-metric';
+export * from './payment-metric';
+export * from './tier-score-metric';

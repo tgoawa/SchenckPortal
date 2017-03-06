@@ -3,14 +3,14 @@ import { IScore } from '../models/';
 
 import { TierMetricBase } from './';
 
-export class BillingMetric extends TierMetricBase {
+export class MultiplierMetric extends TierMetricBase {
 
-    getBillingScore(displayVal: number): IScore {
-        this.getCurrentBandIndex(displayVal);
+    getMultiplierScore(multiplier: number): IScore {
+        this.score.Weighted = multiplier;
+        this.getCurrentBandIndex(this.score.Weighted);
         this.score.MaxValue = this.getMaxValue();
         this.score.MinValue = this.getMinValue();
         this.score.Score = this.getScoreValue();
-        this.score.Weighted = this.score.Score;
         this.score.ProgressPercent = this.getPercentage();
 
         return this.score;
