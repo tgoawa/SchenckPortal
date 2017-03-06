@@ -1,7 +1,7 @@
 export interface IScore {
     Score: number;
+    Weighted: number;
     MinValue: number;
     MaxValue: number;
-    ToNextLevel: number;
     ProgressPercent: number;
 }

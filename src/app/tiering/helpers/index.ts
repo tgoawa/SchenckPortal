@@ -6,3 +6,7 @@ export * from './timeliness-helper';
 export * from './payment-helper';
 export * from './service-touch-helper';
 export * from './tier-score-helper';
+// New code
+
+export * from './tier-metric-base';
+export * from './billing-metric';

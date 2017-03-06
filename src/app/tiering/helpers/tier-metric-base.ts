@@ -1,34 +1,35 @@
 import { IScore, ScoreRanges } from '../models/';
 
-export class DataHelperBase {
-    private scoreRange: IScore[];
-    private indexVal: number;
+export class TierMetricBase {
+    protected scoreRange: IScore[];
+    protected indexVal: number;
+    protected score: IScore;
 
     constructor(scoreRange: IScore[]) {
         this.scoreRange = scoreRange;
     }
 
-    getScore(): number {
+    protected getScoreValue(): number {
         return this.scoreRange[this.indexVal].Score;
     }
 
-    getMin(): number {
+    protected getMinValue(): number {
         return this.scoreRange[this.indexVal].MinValue;
     }
 
-    getMax(): number {
+    protected getMaxValue(): number {
         return this.scoreRange[this.indexVal].MaxValue;
     }
 
-    getWeighted(multiplier: number, score: number) {
+    protected getWeightedValue(multiplier: number, score: number): number {
         return score * multiplier;
     }
 
-    getPercentage(): number {
+    protected getPercentage(): number {
         return this.indexVal / this.scoreRange[this.indexVal].MaxValue;
     }
 
-    getCurrentBandIndex(displayVal: number) {
+    protected getCurrentBandIndex(displayVal: number) {
         for (let x = 0; x < this.scoreRange.length; x++) {
             if (displayVal >= this.scoreRange[x].MinValue && displayVal <= this.scoreRange[x].MaxValue) {
                 this.indexVal = x;
