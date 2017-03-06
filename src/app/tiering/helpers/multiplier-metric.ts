@@ -6,8 +6,8 @@ import { TierMetricBase } from './';
 @Injectable()
 export class MultiplierMetric extends TierMetricBase {
 
-    getMultiplierScore(multiplier: number): IScore {
-        this.score.Weighted = multiplier;
+    getMultiplierScore(billingScore: number, realizationScore: number): IScore {
+        this.score.Weighted = billingScore * realizationScore;
         this.getCurrentBandIndex(this.score.Weighted);
         this.score.MaxValue = this.getMaxValue();
         this.score.MinValue = this.getMinValue();
