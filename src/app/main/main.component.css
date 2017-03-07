@@ -2,8 +2,6 @@
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5); 
 }
 .footer-wrapper {
-    position: fixed;
-    bottom: 0px;
     background: #58595b;
     height:60px;
     width:100%;
