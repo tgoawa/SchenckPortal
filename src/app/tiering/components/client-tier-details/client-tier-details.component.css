@@ -14,11 +14,8 @@
 .calc-headers-scores {
     color: #7F3F98;
     text-transform: uppercase;
-    line-height: 14px;
     font-size: 14px;
-    display: inline-block;
-    min-height: 30px;
-    margin-left:2px;
+    height:20px;
 }
 
 .score-box-yellow {
