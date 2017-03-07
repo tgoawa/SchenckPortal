@@ -120,6 +120,8 @@ export class ClientTierDetailsComponent implements OnInit {
     this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
     this.displayData.Realization = this.parentAnalysisData.Realization;
     this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
+
+    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 
 }
