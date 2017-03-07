@@ -14,11 +14,9 @@
 .calc-headers-scores {
     color: #7F3F98;
     text-transform: uppercase;
-    text-align: center;
     line-height: 14px;
     font-size: 14px;
     display: inline-block;
-    width: 28%;
     min-height: 30px;
     margin-left:2px;
 }
@@ -26,45 +24,35 @@
 .score-box-yellow {
     border: 2px solid rgba(112, 112, 112, 0.15);
     background-color: rgba(255, 198, 11, 0.15);
-    height: 38px;
+    height: 26px;
     text-align: center;
-    display: inline-block;
-    width: 28%;
-    margin-left:2px;
 }
 
 .score-box-spacer {
-    height: 38px;
-    text-align: center;
-    display: inline-block;
-    width: 28%;
-    margin-left:2px;
+    height: 26px;
     color: #fff; 
 }
 
 .score-box-grey {
     border: 2px solid rgba(112, 112, 112, 0.15);
     background-color: rgba(112, 112, 112, 0.15);
-    height: 38px;
+    height: 26px;
     text-align: center;
-    display: inline-block;
-    width: 28%;
-    margin-left:2px;
 }
 
 .score-box-blue {
     border: 2px solid rgba(0, 175, 237, 0.15);
-    background-color: rgba(0, 175, 237, 0.15);
-    height: 38px;
+    background-color: #fff;
+    height: 26px;
     text-align: center;
 }
 
 .progress-bar {
-    /*height: 38px;*/
+    height: 26px;
 }
 
 .range-text {
-    font-size: 11px;
+    font-size: 1rem;
 }
 
 .data-point {
@@ -73,4 +61,13 @@
     font-weight: 400;
     font-size: 12.5px;
     margin-top: 10px;
+}
+
+.progress {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.form-control {
+    font-size: 1rem;
 }

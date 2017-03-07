@@ -31,68 +31,345 @@
         <button class="btn btn-primary btn-block" (click)="reset()">Reset Values</button>
       </div>
     </div>
+    <div class="row" style="margin-top: 43px">
+      <div class="col-md-2">
+        <h2>Billings</h2>
+      </div>
+    </div>
     <div class="row">
-      <div class="col-md-12" style="margin-top: 43px">
-        <div class="row">
-          <div class="col-md-3 offset-md-2">
-            <div class="calc-headers-scores">Score</div>
-            <div class="calc-headers-scores">Weighted Score</div>
-            <div class="calc-headers-scores">Test Value</div>
-          </div>
+      <div class="col-md-1 calc-headers-scores">
+        <span>Score</span>
+      </div>
+      <div class="col-md-1 calc-headers-scores">
+        <span>Weighted Score</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Current Value</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Test Value</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="score-box-yellow">
+          <span>{{clientTierScore?.BillingScore.Score}}</span>
         </div>
-        <div class="row">
-          <div class="col-md-2">
-            <span class="data-point">Billings</span>
-          </div>
-          <div class="col-md-3">
-            <div class="score-box-yellow">
-              <span class="box-span">{{clientTierScore?.BillingScore.Score}}</span>
-            </div>
-            <div class="score-box-grey">
-              <span class="box-span">{{clientTierScore?.BillingScore.Weighted}}</span>
-            </div>
-            <input type="text" class="score-box-grey" [(ngModel)]="billingVal" id="billing-test-val" (change)="updateBilling()">
-          </div>
-          <div class="col-md-1">
-            <p class="range-text">{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</p>
-          </div>
-          <div class="col-md-3">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">${{displayData?.Billings}} </div>
-            </div>
-          </div>
-          <div class="col-md-1">
-            <p class="range-text">{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true}}</p>
-          </div>
+      </div>
+      <div class="col-md-1">
+        <div class="score-box-grey">
+          <span>{{clientTierScore?.BillingScore.Weighted}}</span>
         </div>
+      </div>
+      <div class="col-md-2">
+        <div class="score-box-grey">
+          <span>{{parentAnalysisData?.Billings | currency: 'USD': true}}</span>
+        </div>
+      </div>
+      <input type="text" class="form-control col-md-2 score-box-blue" [(ngModel)]="billingVal" id="billing-test-val" (change)="updateBilling()">
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true}}</span>
+      </div>
+      <div class="col-md-4">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">{{displayData?.Billings | currency: 'USD': true}} </div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true}}</span>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 43px">
+      <div class="col-md-2">
+        <h2>Realization</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 calc-headers-scores">
+        <span>Score</span>
+      </div>
+      <div class="col-md-1 calc-headers-scores">
+        <span>Weighted Score</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Current Value</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Test Value</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="score-box-yellow">
+          <span>{{clientTierScore?.RealizationScore.Score}}</span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="score-box-spacer">
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="score-box-grey">
+          <span>{{parentAnalysisData?.Realization}}%</span>
+        </div>
+      </div>
+      <input type="text" class="form-control col-md-2 score-box-blue" [(ngModel)]="realizationVal" id="realization-test-val" (change)="updateRealization()">
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.RealizationScore.MinValue}}%</span>
+      </div>
+      <div class="col-md-4">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.RealizationScore.ProgressPercent | percent">{{displayData?.Realization}}% </div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.RealizationScore.MaxValue}}%</span>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 43px">
+      <div class="col-md-4">
+        <h2>Billing Realization Multiplier</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 calc-headers-scores">
+        <span>Score</span>
+      </div>
+      <div class="col-md-1 calc-headers-scores">
+        <span>Weighted Score</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Current Value</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Test Value</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="score-box-yellow">
+          <span>{{clientTierScore?.MultiplierScore.Score}}</span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="score-box-grey">
+          <span>{{clientTierScore?.MultiplierScore.Weighted}}</span>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="score-box-spacer">
+        </div>
+      </div>
+      <div class="col-md-2">
+
+      </div>
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.MultiplierScore.MinValue}}%</span>
+      </div>
+      <div class="col-md-4">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.MultiplierScore.ProgressPercent | percent">{{clientTierScore?.MultiplierScore.Weighted}}</div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.RealizationScore.MaxValue}}%</span>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 43px">
+      <div class="col-md-2">
+        <h2>Work Timing</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 calc-headers-scores">
+        <span>Score</span>
+      </div>
+      <div class="col-md-1 calc-headers-scores">
+        <span>Weighted Score</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Current Value</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Test Value</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="score-box-yellow">
+          <span>{{clientTierScore?.TimelinessScore.Score}}</span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="score-box-grey">
+          <span>{{clientTierScore?.TimelinessScore.Weighted}}</span>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="score-box-grey">
+          <span>{{parentAnalysisData?.PeakPercent}}%</span>
+        </div>
+      </div>
+      <input type="text" class="form-control col-md-2 score-box-blue" [(ngModel)]="workTimingVal" id="work-timing-test-val" (change)="updateWorkTiming()">
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.TimelinessScore.MaxValue}}%</span>
+      </div>
+      <div class="col-md-4">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.TimelinessScore.ProgressPercent | percent">{{displayData?.PeakPercent }}% </div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.TimelinessScore.MinValue}}%</span>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 43px">
+      <div class="col-md-3">
+        <h2>Service Touches</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 calc-headers-scores">
+        <span>Score</span>
+      </div>
+      <div class="col-md-1 calc-headers-scores">
+        <span>Weighted Score</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Current Value</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Test Value</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="score-box-yellow">
+          <span>{{clientTierScore?.ServiceTouchesScore.Score}}</span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="score-box-grey">
+          <span>{{clientTierScore?.ServiceTouchesScore.Weighted}}</span>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="score-box-grey">
+          <span>{{parentAnalysisData?.ServiceTouchCount}}</span>
+        </div>
+      </div>
+      <input type="text" class="form-control col-md-2 score-box-blue" [(ngModel)]="serviceTouch" id="service-test-val" (change)="updateService()">
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.ServiceTouchesScore.MinValue}}</span>
+      </div>
+      <div class="col-md-4">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.ServiceTouchesScore.ProgressPercent | percent">{{displayData?.ServiceTouchCount }} </div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.ServiceTouchesScore.MaxValue}}</span>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 43px">
+      <div class="col-md-3">
+        <h2>Payment Timeliness</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 calc-headers-scores">
+        <span>Score</span>
+      </div>
+      <div class="col-md-1 calc-headers-scores">
+        <span>Weighted Score</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Current Value</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Test Value</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="score-box-yellow">
+          <span>{{clientTierScore?.PaymentScore.Score}}</span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="score-box-grey">
+          <span>{{clientTierScore?.PaymentScore.Weighted}}</span>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="score-box-grey">
+          <span>{{parentAnalysisData?.PaymentTimeliness}}</span>
+        </div>
+      </div>
+      <input type="text" class="form-control col-md-2 score-box-blue" [(ngModel)]="payment" id="payment-test-val" (change)="updatePayment()">
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.PaymentScore.MaxValue}}</span>
+      </div>
+      <div class="col-md-4">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.PaymentScore.ProgressPercent | percent">{{displayData?.PaymentTimeliness}}</div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.PaymentScore.MinValue}}</span>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 43px">
+      <div class="col-md-2">
+        <h2>Total Score</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 calc-headers-scores">
+        <span>Score</span>
+      </div>
+      <div class="col-md-1 calc-headers-scores">
+        <span>Weighted Score</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Current Value</span>
+      </div>
+      <div class="col-md-2 calc-headers-scores">
+        <span>Test Value</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="score-box-yellow">
+          <span></span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="score-box-grey">
+          <span>{{clientTierScore?.Tier.Weighted}}</span>
+        </div>
+      </div>
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-1">
+      <span class="range-text">{{clientTierScore?.Tier.MinValue}}</span>
+    </div>
+    <div class="col-md-4">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.Tier.ProgressPercent | percent">{{clientTierScore?.Tier.Weighted}}</div>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <span class="range-text">{{clientTierScore?.Tier.MaxValue}}</span>
+    </div>
+  </div>
+</div>
+<!--<div class="row">
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <span class="data-point">Realization</span>
-          </div>
-          <div class="col-md-3">
-            <div class="score-box-yellow">
-              <span class="box-span">{{clientTierScore?.RealizationScore.Score}}</span>
-            </div>
-            <div class="score-box-grey">
-              <span class="box-span">N/A</span>
-            </div>
-            <input type="text" class="score-box-grey" [(ngModel)]="realizationVal" id="realization-test-val" (change)="updateRealization()">
-          </div>
-          <div class="col-md-1">
-            <p class="range-text">{{clientTierScore?.RealizationScore.MinValue }}%</p>
-          </div>
-          <div class="col-md-3">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.RealizationScore.ProgressPercent | percent">{{displayData?.Realization}}%</div>
-            </div>
-          </div>
-          <div class="col-md-1">
-            <p class="range-text">{{clientTierScore?.RealizationScore.MaxValue}}%</p>
-          </div>
-        </div>
-        <div class="row" style="margin-top: 35px">
-          <div class="col-md-2">
-            <span class="data-point">Billing Realization Multiplier</span>
+            <h2>Billing Realization Multiplier</h2>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -116,7 +393,7 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <span class="data-point">Work Timing</span>
+            <h2>Work Timing</h2>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -141,7 +418,7 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <span class="data-point">Service Touches</span>
+            <h2>Service Touches</h2>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -166,7 +443,7 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <span class="data-point">Payment Timeliness</span>
+            <h2>Payment Timeliness</h2>
           </div>
           <div class="col-md-3">
             <div class="score-box-yellow">
@@ -191,7 +468,7 @@
         </div>
         <div class="row" style="margin-top: 35px">
           <div class="col-md-2">
-            <span class="data-point">Total Score</span>
+            <h2>Total Score</h2>
           </div>
           <div class="col-md-3">
             <div class="score-box-spacer">
@@ -213,4 +490,4 @@
             <p class="range-text">{{clientTierScore?.Tier.MaxValue}}</p>
           </div>
         </div>
-      </div>
+      </div>-->
