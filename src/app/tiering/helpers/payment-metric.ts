@@ -12,7 +12,7 @@ export class PaymentMetric extends TierMetricBase {
         this.score.MaxValue = this.getMaxValue();
         this.score.MinValue = this.getMinValue();
         this.score.Score = this.getScoreValue();
-        this.score.Weighted = this.getWeightedValue(multiplier, this.score.Score);
+        this.score.Weighted = this.score.Score;
         this.score.ProgressPercent = this.getPaymentPercentage(displayVal);
 
         return this.score;
