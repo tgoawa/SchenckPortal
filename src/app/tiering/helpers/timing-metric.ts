@@ -12,7 +12,7 @@ export class TimingMetric extends TierMetricBase {
         this.score.MaxValue = this.getMaxValue();
         this.score.MinValue = this.getMinValue();
         this.score.Score = this.getScoreValue();
-        this.score.Weighted = this.getWeightedValue(multiplier, this.score.Score);
+        this.score.Weighted = displayVal;
         this.score.ProgressPercent = this.getWorkTimingPercentage(displayVal);
 
         return this.score;
