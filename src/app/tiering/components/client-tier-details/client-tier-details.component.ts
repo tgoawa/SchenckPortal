@@ -75,43 +75,53 @@ export class ClientTierDetailsComponent implements OnInit {
   }
 
   updateBilling() {
-    if (!isNaN(this.billingVal)) {
+    if (isNaN(this.billingVal) || (this.billingVal < 0)) {
+      alert('Invalid value used for test');
+    } else {
       this.displayData.Billings = this.billingVal;
       this.billingVal = '';
+      this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
-    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 
   updateRealization() {
-    if (!isNaN(this.realizationVal)) {
+    if (isNaN(this.realizationVal) || (this.realizationVal < 0)) {
+      alert('Invalid value used for test');
+    } else {
       this.displayData.Realization = this.realizationVal;
       this.realizationVal = '';
+      this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
-    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 
   updateWorkTiming() {
-    if (!isNaN(this.workTimingVal)) {
+    if (isNaN(this.workTimingVal) || (this.workTimingVal < 0)) {
+      alert('Invalid value used for test');
+    } else {
       this.displayData.PeakPercent = this.workTimingVal;
       this.workTimingVal = '';
+      this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
-    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 
   updateService() {
-    if (!isNaN(this.serviceTouch)) {
+    if (isNaN(this.serviceTouch) || (this.serviceTouch < 0)) {
+      alert('Invalid value used for test');
+    } else {
       this.displayData.ServiceTouchCount = this.serviceTouch;
       this.serviceTouch = '';
+      this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
-    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 
   updatePayment() {
-    if (!isNaN(this.payment)) {
+    if (isNaN(this.payment) || (this.payment < 0)) {
+      alert('Invalid value used for test');
+    } else {
       this.displayData.PaymentTimeliness = this.payment;
       this.payment = '';
+      this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
-    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 
   reset() {
