@@ -12,6 +12,15 @@ body, button {
     font-size: 14px;
     font-weight: 700 !important;
 }
+
+.btn-schenck {
+    background-color: #00AFED;
+    color: #fff;
+}
+.btn-schenck:hover {
+    background-color: #007EBA
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Ruda', sans-serif;
 }
