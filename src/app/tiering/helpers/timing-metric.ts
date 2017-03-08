@@ -26,7 +26,7 @@ export class TimingMetric extends TierMetricBase {
 
     protected getCurrentBandIndex(displayVal: number) {
         for (let x = 0; x < this.scoreRange.length; x++) {
-            if (displayVal > this.scoreRange[0].MaxValue) {
+            if (displayVal > this.scoreRange[0].MinValue) {
                 this.indexVal = 0;
                 return;
             }
