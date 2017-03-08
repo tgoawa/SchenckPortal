@@ -30,11 +30,15 @@ export class TierMetricBase {
     }
 
     protected getCurrentBandIndex(displayVal: number) {
-        if (displayVal < 0) {
-            this.indexVal = 0;
-            return;
-        }
         for (let x = 0; x < this.scoreRange.length; x++) {
+            if (displayVal < this.scoreRange[0].MinValue) {
+                this.indexVal = 0;
+                return;
+            }
+            if (displayVal > this.scoreRange[this.scoreRange.length - 1].MaxValue) {
+                this.indexVal = this.scoreRange.length - 1;
+                return;
+            }
             if (displayVal >= this.scoreRange[x].MinValue && displayVal <= this.scoreRange[x].MaxValue) {
                 this.indexVal = x;
             }
