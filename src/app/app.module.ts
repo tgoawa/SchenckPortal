@@ -58,7 +58,7 @@ import { AuthGuard } from './auth/auth.guard';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true}),
   ],
   providers: [
     LoginService,
