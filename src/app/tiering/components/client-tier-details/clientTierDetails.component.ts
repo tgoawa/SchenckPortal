@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
+
+import { APP_CONFIG, SchenckAppConfig } from '../../../app.config';
 
 import { IClientVal, ClientVal, IScore, ScoreRanges, Scores, ITiering } from '../../models/';
 import { ClientTierAnalysisService } from '../../services/';
@@ -29,7 +31,6 @@ export class ClientTierDetailsComponent implements OnInit {
   serviceTouch: any;
   payment: any;
 
-  private title: string = 'Tiering Calculator';
   private parentAnalysisData: IClientVal;
   private displayData: IClientVal;
   private scoreRanges: Scores;
@@ -39,7 +40,7 @@ export class ClientTierDetailsComponent implements OnInit {
 
 
   constructor(private clientTierAnalysisService: ClientTierAnalysisService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, @Inject(APP_CONFIG) private config) { }
 
   ngOnInit() {
     this.scoreRanges = new Scores();
@@ -76,7 +77,7 @@ export class ClientTierDetailsComponent implements OnInit {
 
   updateBilling() {
     if (isNaN(this.billingVal) || (this.billingVal < 0)) {
-      alert('Invalid value used for test');
+      alert(this.config.calcErrorMessage);
     } else {
       this.displayData.Billings = this.billingVal;
       this.billingVal = '';
@@ -86,7 +87,7 @@ export class ClientTierDetailsComponent implements OnInit {
 
   updateRealization() {
     if (isNaN(this.realizationVal) || (this.realizationVal < 0)) {
-      alert('Invalid value used for test');
+      alert(this.config.calcErrorMessage);
     } else {
       this.displayData.Realization = this.realizationVal;
       this.realizationVal = '';
@@ -96,7 +97,7 @@ export class ClientTierDetailsComponent implements OnInit {
 
   updateWorkTiming() {
     if (isNaN(this.workTimingVal) || (this.workTimingVal < 0)) {
-      alert('Invalid value used for test');
+      alert(this.config.calcErrorMessage);
     } else {
       this.displayData.PeakPercent = this.workTimingVal;
       this.workTimingVal = '';
@@ -106,7 +107,7 @@ export class ClientTierDetailsComponent implements OnInit {
 
   updateService() {
     if (isNaN(this.serviceTouch) || (this.serviceTouch < 0)) {
-      alert('Invalid value used for test');
+      alert(this.config.calcErrorMessage);
     } else {
       this.displayData.ServiceTouchCount = this.serviceTouch;
       this.serviceTouch = '';
@@ -116,7 +117,7 @@ export class ClientTierDetailsComponent implements OnInit {
 
   updatePayment() {
     if (isNaN(this.payment) || (this.payment < 0)) {
-      alert('Invalid value used for test');
+      alert(this.config.calcErrorMessage);
     } else {
       this.displayData.PaymentTimeliness = this.payment;
       this.payment = '';

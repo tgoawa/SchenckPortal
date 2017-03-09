@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, OpaqueToken } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -35,6 +35,9 @@ import { TeamMemberService, TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
 
+import { APP_CONFIG, AppConfig } from './app.config';
+
+
 
 
 
@@ -61,6 +64,7 @@ import { AuthGuard } from './auth/auth.guard';
     RouterModule.forRoot(routes, { useHash: true}),
   ],
   providers: [
+    { provide: APP_CONFIG, useValue: AppConfig },
     LoginService,
     ClientTierListService,
     ClientTierAnalysisService,

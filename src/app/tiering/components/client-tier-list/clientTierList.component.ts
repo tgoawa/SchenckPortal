@@ -10,7 +10,6 @@ import { ClientTierListService } from '../../services/clientTierList.service';
 })
 export class ClientTierListComponent implements OnInit {
 
-  private title: string = 'Client Tier List';
   private clientTierList: ClientTierList[];
   private currentPeriod: any[];
   private isLoading: Boolean;
