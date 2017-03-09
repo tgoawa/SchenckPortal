@@ -25,9 +25,9 @@ import {
 export class ClientTierDetailsComponent implements OnInit {
   sideMenuItemId: number = 1; //Tell side menu the active menu item
 
-  billingVal: any;
-  realizationVal: any;
-  workTimingVal: any;
+  billingValue: any;
+  realizationValue: any;
+  workTimingValue: any;
   serviceTouch: any;
   payment: any;
 
@@ -65,42 +65,36 @@ export class ClientTierDetailsComponent implements OnInit {
       new PaymentMetric(this.scoreRanges.Payment),
       new TierScoreMetric(this.scoreRanges.Tier));
 
+      this.setClientData();
 
-    this.displayData.Billings = this.parentAnalysisData.Billings;
-    this.displayData.PaymentTimeliness = this.parentAnalysisData.PaymentTimeliness;
-    this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
-    this.displayData.Realization = this.parentAnalysisData.Realization;
-    this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
-
-    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 
   updateBilling() {
-    if (isNaN(this.billingVal) || (this.billingVal < 0)) {
+    if (isNaN(this.billingValue) || (this.billingValue < 0)) {
       alert(this.config.calcErrorMessage);
     } else {
-      this.displayData.Billings = this.billingVal;
-      this.billingVal = '';
+      this.displayData.Billings = this.billingValue;
+      this.billingValue = '';
       this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
   }
 
   updateRealization() {
-    if (isNaN(this.realizationVal) || (this.realizationVal < 0)) {
+    if (isNaN(this.realizationValue) || (this.realizationValue < 0)) {
       alert(this.config.calcErrorMessage);
     } else {
-      this.displayData.Realization = this.realizationVal;
-      this.realizationVal = '';
+      this.displayData.Realization = this.realizationValue;
+      this.realizationValue = '';
       this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
   }
 
   updateWorkTiming() {
-    if (isNaN(this.workTimingVal) || (this.workTimingVal < 0)) {
+    if (isNaN(this.workTimingValue) || (this.workTimingValue < 0)) {
       alert(this.config.calcErrorMessage);
     } else {
-      this.displayData.PeakPercent = this.workTimingVal;
-      this.workTimingVal = '';
+      this.displayData.PeakPercent = this.workTimingValue;
+      this.workTimingValue = '';
       this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
   }
@@ -125,7 +119,7 @@ export class ClientTierDetailsComponent implements OnInit {
     }
   }
 
-  reset() {
+  setClientData() {
     this.displayData.Billings = this.parentAnalysisData.Billings;
     this.displayData.PaymentTimeliness = this.parentAnalysisData.PaymentTimeliness;
     this.displayData.PeakPercent = this.parentAnalysisData.PeakPercent;
@@ -133,6 +127,10 @@ export class ClientTierDetailsComponent implements OnInit {
     this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
 
     this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
+  }
+
+  reset() {
+    this.setClientData();
   }
 
 }
