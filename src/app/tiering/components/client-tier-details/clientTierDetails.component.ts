@@ -17,8 +17,8 @@ import {
 
 @Component({
   selector: 'app-client-tier-details',
-  templateUrl: './client-tier-details.component.html',
-  styleUrls: ['./client-tier-details.component.css'],
+  templateUrl: './clientTierDetails.component.html',
+  styleUrls: ['./clientTierDetails.component.css'],
 })
 export class ClientTierDetailsComponent implements OnInit {
   menuItemId: number = 1;

@@ -1,3 +1,3 @@
-export * from './client-tier-analysis.service';
-export * from './client-tier-list.service';
-export * from './client-tier-score.service';
+export * from './clientTierAnalysis.service';
+export * from './clientTierList.service';
+export * from './clientTierScore.service';

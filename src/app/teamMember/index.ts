@@ -1,3 +1,3 @@
-export * from './team-member';
-export * from './team-member.service';
-export * from './teamMember-resolver';
+export * from './teamMember';
+export * from './teamMember.service';
+export * from './teamMember.resolver';

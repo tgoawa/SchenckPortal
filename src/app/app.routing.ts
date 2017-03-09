@@ -2,8 +2,8 @@ import { Routes } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/components/login.component';
-import { ClientTierListComponent } from './tiering/components/client-tier-list/client-tier-list.component';
-import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/client-tier-details.component';
+import { ClientTierListComponent } from './tiering/components/client-tier-list/clientTierList.component';
+import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/clientTierDetails.component';
 import {
     ClientTierResolver,
     BillingScoreResolver,

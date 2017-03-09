@@ -16,8 +16,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { TieringComponent } from './tiering/tiering.component';
-import { ClientTierListComponent } from './tiering/components/client-tier-list/client-tier-list.component';
-import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/client-tier-details.component';
+import { ClientTierListComponent } from './tiering/components/client-tier-list/clientTierList.component';
+import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/clientTierDetails.component';
 import { ClientTierListService, ClientTierAnalysisService, ClientTierScoreService } from './tiering/services/';
 import { ClientTierMetricHelper } from './tiering/helpers/';
 import { ClientTierResolver,

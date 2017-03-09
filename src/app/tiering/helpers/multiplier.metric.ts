@@ -8,7 +8,7 @@ export class MultiplierMetric extends TierMetricBase {
 
     getMultiplierScore(billingScore: number, realizationScore: number): Score {
         this.score = new Score();
-        this.score.Weighted = billingScore * realizationScore;
+        this.score.Weighted = this.getWeightedValue(billingScore, realizationScore);
         this.getCurrentBandIndex(this.score.Weighted);
         this.score.MaxValue = this.getMaxValue();
         this.score.MinValue = this.getMinValue();
@@ -16,5 +16,9 @@ export class MultiplierMetric extends TierMetricBase {
         this.score.ProgressPercent = this.getPercentage(this.score.Weighted);
 
         return this.score;
+    }
+
+    protected getWeightedValue(billingScore: number, realizationScore: number): number {
+        return billingScore * realizationScore;
     }
 }
