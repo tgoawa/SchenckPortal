@@ -13,7 +13,7 @@ export class ClientTierListComponent implements OnInit {
   private clientTierList: ClientTierList[];
   private currentPeriod: any[];
   private isLoading: Boolean;
-  menuItemId: number = 1;
+  sideMenuItemId: number = 1; //Tell side menu the active menu item
 
   constructor(private listService: ClientTierListService) { }
 

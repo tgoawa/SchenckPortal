@@ -23,7 +23,7 @@ import {
   styleUrls: ['./clientTierDetails.component.css'],
 })
 export class ClientTierDetailsComponent implements OnInit {
-  menuItemId: number = 1;
+  sideMenuItemId: number = 1; //Tell side menu the active menu item
 
   billingVal: any;
   realizationVal: any;
