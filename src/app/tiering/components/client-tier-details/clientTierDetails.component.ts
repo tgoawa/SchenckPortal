@@ -74,7 +74,6 @@ export class ClientTierDetailsComponent implements OnInit {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.Billings = this.billingValue;
-      this.billingValue = '';
       this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
   }
@@ -84,7 +83,6 @@ export class ClientTierDetailsComponent implements OnInit {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.Realization = this.realizationValue;
-      this.realizationValue = '';
       this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
   }
@@ -94,7 +92,6 @@ export class ClientTierDetailsComponent implements OnInit {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.PeakPercent = this.workTimingValue;
-      this.workTimingValue = '';
       this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
   }
@@ -104,7 +101,6 @@ export class ClientTierDetailsComponent implements OnInit {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.ServiceTouchCount = this.serviceTouch;
-      this.serviceTouch = '';
       this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
   }
@@ -114,7 +110,6 @@ export class ClientTierDetailsComponent implements OnInit {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.PaymentTimeliness = this.payment;
-      this.payment = '';
       this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
     }
   }

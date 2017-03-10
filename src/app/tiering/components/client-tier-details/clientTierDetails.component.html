@@ -31,7 +31,7 @@
         <button class="btn btn-schenck btn-block" (click)="reset()">Reset Values</button>
       </div>
     </div>
-    <div class="row" style="margin-top: 43px">
+    <div class="row" style="margin-top: 25px">
       <div class="col-md-2">
         <h2>Billings</h2>
       </div>
@@ -41,7 +41,7 @@
         <div class="calc-headers-scores">
           <span>Score</span>
         </div>
-        <div class="score-box-yellow">
+        <div class="score-box-grey">
           <span>{{clientTierScore?.BillingScore.Score}}</span>
         </div>
       </div>
@@ -49,7 +49,7 @@
         <div class="calc-headers-scores">
           <span>Wgtd</span>
         </div>
-        <div class="score-box-grey">
+        <div class="score-box-weighted">
           <span>{{clientTierScore?.BillingScore.Weighted}}</span>
         </div>
       </div>
@@ -78,7 +78,7 @@
           <span>Progress</span>
         </div>
         <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">${{displayData?.Billings}} </div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.BillingScore.Score == 0 || 1, 'orange': clientTierScore?.BillingScore.Score == 2, 'yellow': clientTierScore?.BillingScore.Score == 3, 'yellow-green': clientTierScore?.BillingScore.Score == 4, 'green': clientTierScore?.BillingScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">${{displayData?.Billings}} </div>
         </div>
       </div>
       <div class="col-md-1">
@@ -113,14 +113,14 @@
         </table>
       </div>
     </div>
-    <div class="row" style="margin-top: 43px">
+    <div class="row" style="margin-top: 25px">
       <div class="col-md-2">
         <h2>Realization</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-md-1">
-        <div class="score-box-yellow">
+        <div class="score-box-grey">
           <span>{{clientTierScore?.RealizationScore.Score}}</span>
         </div>
       </div>
@@ -137,7 +137,7 @@
       </div>
       <div class="col-md-4">
         <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.RealizationScore.ProgressPercent | percent">{{displayData?.Realization}}% </div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.RealizationScore.Score == 0 || 1, 'orange': clientTierScore?.RealizationScore.Score == 2, 'yellow': clientTierScore?.RealizationScore.Score == 3, 'yellow-green': clientTierScore?.RealizationScore.Score == 4, 'green': clientTierScore?.RealizationScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.RealizationScore.ProgressPercent | percent">{{displayData?.Realization}}% </div>
         </div>
       </div>
       <div class="col-md-1">
@@ -167,19 +167,19 @@
         </table>
       </div>
     </div>
-    <div class="row" style="margin-top: 43px">
+    <div class="row" style="margin-top: 25px">
       <div class="col-md-4">
         <h2>Billing Realization Multiplier</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-md-1">
-        <div class="score-box-yellow">
+        <div class="score-box-grey">
           <span>{{clientTierScore?.MultiplierScore.Score}}</span>
         </div>
       </div>
       <div class="col-md-1">
-        <div class="score-box-grey">
+        <div class="score-box-weighted">
           <span>{{clientTierScore?.MultiplierScore.Weighted}}</span>
         </div>
       </div>
@@ -188,26 +188,26 @@
       </div>
       <div class="col-md-4">
         <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.MultiplierScore.ProgressPercent | percent">{{clientTierScore?.MultiplierScore.Weighted}}</div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.MultiplierScore.Score == 0 || 1, 'orange': clientTierScore?.MultiplierScore.Score == 2, 'yellow': clientTierScore?.MultiplierScore.Score == 3, 'yellow-green': clientTierScore?.MultiplierScore.Score == 4, 'green': clientTierScore?.MultiplierScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.MultiplierScore.ProgressPercent | percent">{{clientTierScore?.MultiplierScore.Weighted}}</div>
         </div>
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.MultiplierScore.MaxValue}}</span>
       </div>
     </div>
-    <div class="row" style="margin-top: 43px">
+    <div class="row" style="margin-top: 25px">
       <div class="col-md-2">
         <h2>Work Timing</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-md-1">
-        <div class="score-box-yellow">
+        <div class="score-box-grey">
           <span>{{clientTierScore?.TimelinessScore.Score}}</span>
         </div>
       </div>
       <div class="col-md-1">
-        <div class="score-box-grey">
+        <div class="score-box-weighted">
           <span>{{clientTierScore?.TimelinessScore.Weighted}}</span>
         </div>
       </div>
@@ -224,7 +224,7 @@
       </div>
       <div class="col-md-4">
         <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.TimelinessScore.ProgressPercent | percent">{{displayData?.PeakPercent }}% </div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.TimelinessScore.Score == 0 || 1, 'orange': clientTierScore?.TimelinessScore.Score == 2, 'yellow': clientTierScore?.TimelinessScore.Score == 3, 'yellow-green': clientTierScore?.TimelinessScore.Score == 4, 'green': clientTierScore?.TimelinessScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.TimelinessScore.ProgressPercent | percent">{{displayData?.PeakPercent }}% </div>
         </div>
       </div>
       <div class="col-md-1">
@@ -256,19 +256,19 @@
         </table>
       </div>
     </div>
-    <div class="row" style="margin-top: 43px">
+    <div class="row" style="margin-top: 25px">
       <div class="col-md-3">
         <h2>Service Touches</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-md-1">
-        <div class="score-box-yellow">
+        <div class="score-box-grey">
           <span>{{clientTierScore?.ServiceTouchesScore.Score}}</span>
         </div>
       </div>
       <div class="col-md-1">
-        <div class="score-box-grey">
+        <div class="score-box-weighted">
           <span>{{clientTierScore?.ServiceTouchesScore.Weighted}}</span>
         </div>
       </div>
@@ -285,7 +285,7 @@
       </div>
       <div class="col-md-4">
         <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.ServiceTouchesScore.ProgressPercent | percent">{{displayData?.ServiceTouchCount }} </div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.ServiceTouchesScore.Score == 0 || 1, 'orange': clientTierScore?.ServiceTouchesScore.Score == 2, 'yellow': clientTierScore?.ServiceTouchesScore.Score == 3, 'yellow-green': clientTierScore?.ServiceTouchesScore.Score == 4, 'green': clientTierScore?.ServiceTouchesScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.ServiceTouchesScore.ProgressPercent | percent">{{displayData?.ServiceTouchCount }} </div>
         </div>
       </div>
       <div class="col-md-1">
@@ -313,19 +313,19 @@
         </table>
       </div>
     </div>
-    <div class="row" style="margin-top: 43px">
+    <div class="row" style="margin-top: 25px">
       <div class="col-md-3">
         <h2>Payment Timeliness</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-md-1">
-        <div class="score-box-yellow">
+        <div class="score-box-grey">
           <span>{{clientTierScore?.PaymentScore.Score}}</span>
         </div>
       </div>
       <div class="col-md-1">
-        <div class="score-box-grey">
+        <div class="score-box-weighted">
           <span>{{clientTierScore?.PaymentScore.Weighted}}</span>
         </div>
       </div>
@@ -342,7 +342,7 @@
       </div>
       <div class="col-md-4">
         <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.PaymentScore.ProgressPercent | percent">{{displayData?.PaymentTimeliness}}</div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.PaymentScore.Score == 0 || 1, 'orange': clientTierScore?.PaymentScore.Score == 2, 'yellow': clientTierScore?.PaymentScore.Score == 3, 'yellow-green': clientTierScore?.PaymentScore.Score == 4, 'green': clientTierScore?.PaymentScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.PaymentScore.ProgressPercent | percent">{{displayData?.PaymentTimeliness}}</div>
         </div>
       </div>
       <div class="col-md-1">
@@ -372,14 +372,14 @@
         </table>
       </div>
     </div>
-    <div class="row" style="margin-top: 43px">
+    <div class="row" style="margin-top: 25px">
       <div class="col-md-2">
         <h2>Total Score</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-md-1 offset-md-1">
-        <div class="score-box-grey">
+        <div class="score-box-weighted">
           <span>{{clientTierScore?.Tier.Weighted}}</span>
         </div>
       </div>
@@ -388,11 +388,34 @@
       </div>
       <div class="col-md-4">
         <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.Tier.ProgressPercent | percent">{{clientTierScore?.Tier.Weighted}}</div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.Tier.Score == 5, 'orange': clientTierScore?.Tier.Score == 5, 'yellow': clientTierScore?.Tier.Score == 3, 'yellow-green': clientTierScore?.Tier.Score == 2, 'green': clientTierScore?.Tier.Score == 1 }" role="progressbar" [style.width]="clientTierScore?.Tier.ProgressPercent | percent">{{clientTierScore?.Tier.Weighted}}</div>
         </div>
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.Tier.MaxValue}}</span>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+      <div class="col-md-5">
+        <h2>Parent</h2>
+      </div>
+      <div class="col-md-3">
+        <h2>Tier</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="box">
+          <span class="box-span">{{parentAnalysisData?.ClientName}}</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="box">
+          <span class="box-span">{{clientTierScore?.Tier.Score}}</span>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-schenck btn-block" (click)="reset()">Reset Values</button>
       </div>
     </div>
   </div>
