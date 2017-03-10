@@ -55,7 +55,7 @@
       </div>
       <div class="col-md-2">
         <div class="calc-headers-scores">
-        <span>Original Value</span>
+          <span>Original Value</span>
         </div>
         <div class="score-box-grey">
           <span>${{parentAnalysisData?.Billings}}</span>
@@ -63,7 +63,7 @@
       </div>
       <div class="col-md-2">
         <div class="calc-headers-scores">
-        <span>Test Value</span>
+          <span>Test Value</span>
         </div>
         <input type="text" class="form-control score-box-blue" [(ngModel)]="billingVal" id="billing-test-val" (change)="updateBilling()">
       </div>
@@ -86,6 +86,31 @@
           <span>upper</span>
         </div>
         <span class="range-text">${{clientTierScore?.BillingScore.MaxValue}}</span>
+      </div>
+    </div>
+    <div *ngIf="parentAnalysisData?.Children.length > 0">
+      <div class="row">
+        <div class="col-md-4">
+          <a class="childExpand" data-toggle="collapse" href="#child-billing" aria-expanded="false">View Child Billing Data</a>
+        </div>
+      </div>
+      <div class="collapse" id="child-billing">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Client Name</th>
+              <th>Billings</th>
+              <th>Adjustments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let child of parentAnalysisData?.Children">
+              <td>{{child.ClientName}}</td>
+              <td>${{child.Billings}}</td>
+              <td>${{child.Adjustments}}</td>
+            </tr> 
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="row" style="margin-top: 43px">
@@ -117,6 +142,29 @@
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.RealizationScore.MaxValue}}%</span>
+      </div>
+    </div>
+    <div *ngIf="parentAnalysisData?.Children.length > 0">
+      <div class="row">
+        <div class="col-md-4">
+          <a class="childExpand" data-toggle="collapse" href="#child-realization" aria-expanded="false">View Child Realization Data</a>
+        </div>
+      </div>
+      <div class="collapse" id="child-realization">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Client Name</th>
+              <th>Realization</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let child of parentAnalysisData?.Children">
+              <td>{{child.ClientName}}</td>
+              <td>{{child.Realization}}%</td>
+            </tr> 
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="row" style="margin-top: 43px">
@@ -183,6 +231,31 @@
         <span class="range-text">{{clientTierScore?.TimelinessScore.MinValue}}%</span>
       </div>
     </div>
+    <div *ngIf="parentAnalysisData?.Children.length > 0">
+      <div class="row">
+        <div class="col-md-4">
+          <a class="childExpand" data-toggle="collapse" href="#child-work-timing" aria-expanded="false">View Child Work Timing Data</a>
+        </div>
+      </div>
+      <div class="collapse" id="child-work-timing">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Client Name</th>
+              <th>Busy Season Hours</th>
+              <th>Normal Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let child of parentAnalysisData?.Children">
+              <td>{{child.ClientName}}</td>
+              <td>{{child.BusySeasonHours}}</td>
+              <td>{{child.NormalHours}}</td>
+            </tr> 
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="row" style="margin-top: 43px">
       <div class="col-md-3">
         <h2>Service Touches</h2>
@@ -217,6 +290,27 @@
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.ServiceTouchesScore.MaxValue}}</span>
+      </div>
+    </div>
+    <div *ngIf="parentAnalysisData?.ServiceTouches.length > 0">
+      <div class="row">
+        <div class="col-md-4">
+          <a class="childExpand" data-toggle="collapse" href="#service-touches" aria-expanded="false">View Associated Services</a>
+        </div>
+      </div>
+      <div class="collapse" id="service-touches">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Service Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let serviceTouch of parentAnalysisData?.ServiceTouches">
+              <td>{{serviceTouch.Service}}</td>
+            </tr> 
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="row" style="margin-top: 43px">
@@ -255,6 +349,29 @@
         <span class="range-text">{{clientTierScore?.PaymentScore.MinValue}}</span>
       </div>
     </div>
+    <div *ngIf="parentAnalysisData?.Children.length > 0">
+      <div class="row">
+        <div class="col-md-4">
+          <a class="childExpand" data-toggle="collapse" href="#child-payment" aria-expanded="false">View Child Payment Timeliness Data</a>
+        </div>
+      </div>
+      <div class="collapse" id="child-payment">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Client Name</th>
+              <th>Timeliness</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let child of parentAnalysisData?.Children">
+              <td>{{child.ClientName}}</td>
+              <td>{{child.Timeliness}}</td>
+            </tr> 
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="row" style="margin-top: 43px">
       <div class="col-md-2">
         <h2>Total Score</h2>
@@ -267,15 +384,15 @@
         </div>
       </div>
       <div class="col-md-1 offset-md-4">
-      <span class="range-text">{{clientTierScore?.Tier.MinValue}}</span>
-    </div>
-    <div class="col-md-4">
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.Tier.ProgressPercent | percent">{{clientTierScore?.Tier.Weighted}}</div>
+        <span class="range-text">{{clientTierScore?.Tier.MinValue}}</span>
+      </div>
+      <div class="col-md-4">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width]="clientTierScore?.Tier.ProgressPercent | percent">{{clientTierScore?.Tier.Weighted}}</div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <span class="range-text">{{clientTierScore?.Tier.MaxValue}}</span>
       </div>
     </div>
-    <div class="col-md-1">
-      <span class="range-text">{{clientTierScore?.Tier.MaxValue}}</span>
-    </div>
   </div>
-</div>
