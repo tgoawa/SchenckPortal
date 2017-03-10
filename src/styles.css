@@ -44,7 +44,7 @@ h2 {
 }
 
 thead {
-    background: #F7941E;
+    background: #00AFED;
     color: #fff;
     text-transform: uppercase;
     font-size: 14px;
@@ -56,9 +56,9 @@ tbody {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(247, 148, 30, 0.1);
+    background-color:rgba(0, 175, 237, 0.1);
 }
 
 .table-striped tbody tr:nth-of-type(even) {
-    background-color: rgba(247, 148, 30, 0.2);
+    background-color: rgba(0, 175, 237, 0.2);
 }
