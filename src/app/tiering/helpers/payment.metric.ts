@@ -24,19 +24,15 @@ export class PaymentMetric extends TierMetricBase {
         return numerator / denominator;
     }
 
-    protected getCurrentBandIndex(displayVal: number) {
-        for (let x = 0; x < this.scoreRange.length; x++) {
-            if (displayVal > this.scoreRange[0].MaxValue) {
-                this.indexVal = 0;
-                return;
-            }
-            if (displayVal < this.scoreRange[this.scoreRange.length - 1].MinValue) {
-                this.indexVal = this.scoreRange.length - 1;
-                return;
-            }
-            if (displayVal >= this.scoreRange[x].MinValue && displayVal <= this.scoreRange[x].MaxValue) {
-                this.indexVal = x;
-            }
-        }
+    protected islowerThanBand(displayVal: number): boolean {
+        return displayVal > this.scoreRange[0].MinValue;
+    }
+
+    protected isHigherThanBand(displayVal: number): boolean {
+        return displayVal < this.scoreRange[this.scoreRange.length - 1].MaxValue;
+    }
+
+    protected isInBand(displayVal: number, index: number): boolean {
+        return displayVal >= this.scoreRange[index].MinValue && displayVal <= this.scoreRange[index].MaxValue;
     }
 }
