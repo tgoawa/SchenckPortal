@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { APP_CONFIG, AppConfig } from './app.config';
+
 import { routes } from './app.routing';
 
 import { ProgressbarModule} from 'ng2-bootstrap';
@@ -35,7 +37,7 @@ import { TeamMemberService, TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
 
-import { APP_CONFIG, AppConfig } from './app.config';
+
 
 
 

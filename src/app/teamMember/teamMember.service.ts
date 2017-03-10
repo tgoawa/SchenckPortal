@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { environment } from '../../environments/environment';
+
 import { TeamMember } from './';
 
 @Injectable()
 export class TeamMemberService {
   public teamMember: TeamMember;
 
-  private url_teamMember = 'http://webdev.schencksolutions.com:1016/EmployeeService/GetEmployee/';
+  private environmentName = environment.envApi;
+  private url_teamMember = this.environmentName + 'schencksolutions.com:1016/EmployeeService/GetEmployee/';
 
   constructor(private http: Http) { }
 

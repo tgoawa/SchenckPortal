@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { environment } from '../../../environments/environment';
+
 import { IScore } from '../models/';
 
 @Injectable()
 export class ClientTierScoreService {
 
-  private baseUrl = 'http://webdev.schencksolutions.com:1016/ClientTierService/';
+  private environmentName = environment.envApi;
+  private baseUrl = this.environmentName + 'schencksolutions.com:1016/ClientTierService/';
   private billingsApi = 'getBillingsLookups';
   private realizationApi = 'getRealizationLookups';
   private multiplierApi = 'getMultiplyLookups';

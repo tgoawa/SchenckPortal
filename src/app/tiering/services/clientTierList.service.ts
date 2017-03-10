@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { environment } from '../../../environments/environment';
+
 import { ClientTierList } from '../models/clientTierList.model';
 
 
 @Injectable()
 export class ClientTierListService {
 
-    private baseUrl = 'http://webdev.schencksolutions.com:1016/ClientTierService/';
+    private environmentName = environment.envApi;
+    private baseUrl = this.environmentName + 'schencksolutions.com:1016/ClientTierService/';
 
     constructor(private http: Http) {}
 
