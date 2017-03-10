@@ -65,7 +65,7 @@
         <div class="calc-headers-scores">
           <span>Test Value</span>
         </div>
-        <input type="text" class="form-control score-box-blue" [(ngModel)]="billingVal" id="billing-test-val" (change)="updateBilling()">
+        <input type="text" class="form-control score-box-blue" [(ngModel)]="billingValue" id="billing-test-val" (change)="updateBilling()">
       </div>
       <div class="col-md-1">
         <div class="calc-headers-scores">
@@ -130,7 +130,7 @@
         </div>
       </div>
       <div class="col-md-2">
-        <input type="text" class="form-control score-box-blue" [(ngModel)]="realizationVal" id="realization-test-val" (change)="updateRealization()">
+        <input type="text" class="form-control score-box-blue" [(ngModel)]="realizationValue" id="realization-test-val" (change)="updateRealization()">
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.RealizationScore.MinValue}}%</span>
@@ -217,7 +217,7 @@
         </div>
       </div>
       <div class="col-md-2">
-        <input type="text" class="form-control score-box-blue" [(ngModel)]="workTimingVal" id="work-timing-test-val" (change)="updateWorkTiming()">
+        <input type="text" class="form-control score-box-blue" [(ngModel)]="workTimingValue" id="work-timing-test-val" (change)="updateWorkTiming()">
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.TimelinessScore.MaxValue}}%</span>
