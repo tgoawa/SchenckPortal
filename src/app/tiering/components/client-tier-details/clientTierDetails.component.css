@@ -67,3 +67,24 @@
 .form-control {
     font-size: 1rem;
 }
+
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.yellow {
+    background-color: yellow;
+    color: black;
+}
+
+.yellow-green {
+    background-color: yellowgreen;
+}
+
+.green {
+    background-color: green;
+}
