@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-strategy-plan',
@@ -10,10 +11,18 @@ export class StrategyPlanComponent implements OnInit {
   sideMenuItemId: number = 2; //Tell side menu the active menu item
 
   private addPlan = false;
+  private strategyPlan: FormGroup;
 
-  constructor() { }
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.strategyPlan = this.fb.group({
+      StrategyPlanId: [0],
+      strategyPlanTitle: ['', [Validators.required, Validators.maxLength(75)]],
+      knownAs: [''],
+      famous: ['']
+    });
   }
 
   addPlanButton() {

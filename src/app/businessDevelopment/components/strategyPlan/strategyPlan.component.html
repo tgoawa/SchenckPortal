@@ -18,14 +18,14 @@
         <span>Last updated: 3/13/2017</span>
       </div>
       <div class="col-md-12">
-      <form novalidate>
+      <form novalidate [formGroup]="strategyPlanForm">
         <div class="form-group">
           <label for="strategyPlanTitle">Title</label>
-          <input type="text" class="form-control" id="strategyPlanTitle" placeholder="Title of new strategy plan">
+          <input type="text" class="form-control" formControlName="strategyPlanTitle" id="strategyPlanTitle" placeholder="Title of new strategy plan">
         </div>
         <div class="form-group">
           <label for="knownAs">Known As</label>
-          <select class="form-control" id="knownAs">
+          <select class="form-control" id="knownAs" formControlName="knownAs">
             <option>Finder</option>
             <option>Minder</option>
             <option>Grinder</option>
@@ -33,8 +33,9 @@
         </div>
         <div class="form-group">
           <label for="famous">Famous</label>
-          <textarea class="form-control" id="famous"></textarea>
+          <textarea class="form-control" id="famous" formControlName="famous"></textarea>
         </div>
+        <button type="submit" class="btn btn-schenck">Submit</button>
       </form>
       </div>
     </div>
