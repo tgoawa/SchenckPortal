@@ -1,0 +1,1 @@
+export * from './strategyPlan.service';

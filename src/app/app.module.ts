@@ -20,7 +20,10 @@ import { MainComponent } from './main/main.component';
 import { TieringComponent } from './tiering/tiering.component';
 import { ClientTierListComponent } from './tiering/components/client-tier-list/clientTierList.component';
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/clientTierDetails.component';
+
 import { ClientTierListService, ClientTierAnalysisService, ClientTierScoreService } from './tiering/services/';
+import { StrategyPlanService } from './businessDevelopment/services';
+
 import { ClientTierMetricHelper } from './tiering/helpers/';
 import { ClientTierResolver,
         BillingScoreResolver,
@@ -73,6 +76,7 @@ import { StrategyPlanComponent } from './businessDevelopment/components/strategy
     ClientTierListService,
     ClientTierAnalysisService,
     ClientTierScoreService,
+    StrategyPlanService,
     ClientTierMetricHelper,
     ClientTierResolver,
     BillingScoreResolver,
