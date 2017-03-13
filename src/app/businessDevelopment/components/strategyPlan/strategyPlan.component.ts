@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StrategyPlanComponent implements OnInit {
 
+  sideMenuItemId: number = 2; //Tell side menu the active menu item
+
   constructor() { }
 
   ngOnInit() {
