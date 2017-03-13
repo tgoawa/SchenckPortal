@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
 
   setAuthStatus(data){
     if (data) {
-      Cookie.set('user', this.loginUser.username, 90);
+      Cookie.set('user', this.loginUser.username, 45);
       this._router.navigate(['/home']);
     }
     else {

@@ -12,8 +12,13 @@ export const MENU = [
   },
   {
     id: 2,
-    path: 'goals',
-    title: 'Goals',
-    children: []
+    path: 'business-development',
+    title: 'Business Development',
+    children: [
+      {
+        path: 'strategy-plan',
+        title: 'Stratey Plan'
+      },
+    ]
   }
 ];

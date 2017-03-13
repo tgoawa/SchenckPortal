@@ -36,6 +36,7 @@ import { LoginService } from './login/services/login.service';
 import { TeamMemberService, TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
+import { StrategyPlanComponent } from './businessDevelopment/components/strategyPlan/strategyPlan.component';
 
 
 
@@ -56,6 +57,7 @@ import { AuthGuard } from './auth/auth.guard';
     ClientTierListComponent,
     ClientTierDetailsComponent,
     LoginComponent,
+    StrategyPlanComponent,
   ],
   imports: [
     BrowserModule,

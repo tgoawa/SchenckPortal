@@ -15,6 +15,8 @@ import {
     TierScoreResolver
 } from './tiering/resolver/';
 
+import { StrategyPlanComponent } from './businessDevelopment/components/strategyPlan/strategyPlan.component';
+
 import { TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
@@ -48,6 +50,10 @@ export const routes: Routes = [
                     paymentScore: PaymentScoreResolver,
                     tierScore: TierScoreResolver
                 }
+            },
+            {
+                path: 'strategy-plan',
+                component: StrategyPlanComponent,
             }
         ]
     },
