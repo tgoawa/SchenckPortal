@@ -10,14 +10,14 @@ export class StrategyPlanComponent implements OnInit {
 
   sideMenuItemId: number = 2; //Tell side menu the active menu item
 
-  private addPlan = false;
-  private strategyPlan: FormGroup;
+  private addPlanMode = false;
+  private strategyPlanForm: FormGroup;
 
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.strategyPlan = this.fb.group({
+    this.strategyPlanForm = this.fb.group({
       StrategyPlanId: [0],
       strategyPlanTitle: ['', [Validators.required, Validators.maxLength(75)]],
       knownAs: [''],
@@ -26,6 +26,6 @@ export class StrategyPlanComponent implements OnInit {
   }
 
   addPlanButton() {
-    this.addPlan = true;
+    this.addPlanMode = true;
   }
 }

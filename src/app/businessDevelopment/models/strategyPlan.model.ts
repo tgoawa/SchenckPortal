@@ -1,7 +1,7 @@
 export interface IStrategyPlan {
     StrategyPlanId: number;
     Title: string;
-    KnownAs: string;
+    KnownAs: number;
     Famous: string;
     DateUpdated: string;
 }

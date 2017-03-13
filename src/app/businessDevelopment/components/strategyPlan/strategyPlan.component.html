@@ -13,10 +13,7 @@
         <button class="btn btn-schenck" (click)=addPlanButton()>Add New Plan</button>
       </div>
     </div>
-    <div class="row" style="margin-top: 20px" *ngIf="addPlan">
-      <div class="col-md-6 offset-md-5">
-        <span>Last updated: 3/13/2017</span>
-      </div>
+    <div class="row" style="margin-top: 20px" *ngIf="addPlanMode">
       <div class="col-md-12">
       <form novalidate [formGroup]="strategyPlanForm">
         <div class="form-group">
