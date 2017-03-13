@@ -2,4 +2,41 @@
   <div class="col-md-2">
     <app-side-bar [menuItemId]="sideMenuItemId"></app-side-bar>
   </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Strategy Plan</h1>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+      <div class="col-md-12">
+        <button class="btn btn-schenck">Add New Plan</button>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px" *ngIf="addPlan">
+      <div class="col-md-6 offset-md-5">
+        <span>Last updated: 3/13/2017</span>
+      </div>
+      <div class="col-md-12">
+      <form novalidate>
+        <div class="form-group">
+          <label for="strategyPlanTitle">Title</label>
+          <input type="text" class="form-control" id="strategyPlanTitle" placeholder="Title of new strategy plan">
+        </div>
+        <div class="form-group">
+          <label for="knownAs">Known As</label>
+          <select class="form-control" id="knownAs">
+            <option>Finder</option>
+            <option>Minder</option>
+            <option>Grinder</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="famous">Famous</label>
+          <textarea class="form-control" id="famous"></textarea>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
 </div>
