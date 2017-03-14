@@ -2,22 +2,22 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { environment } from '../../../environments/environment';
-import { IStrategyPlan } from '../models/';
 
+import { KnownAsModel } from '../models/';
 
 @Injectable()
-export class StrategyPlanService {
+export class DropDownDataService {
 
   private environmentName = environment.envApi;
   private baseUrl = this.environmentName + 'schencksolutions.com:1016/StrategyPlanService/';
 
   constructor(private http: Http) { }
 
-  createPlan(teamMemberId: number, strategyPlan: IStrategyPlan) {
-    return this.http.post(this.baseUrl + '', strategyPlan)
-      .toPromise()
-      .then((response: Response) => response.json())
-      .catch(this.handleError);
+  getKnownAs(): Promise<KnownAsModel[]> {
+    return this.http.get(this.baseUrl + 'getKnownAsLookups/')
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
   }
 
   private handleError(error: any) {
@@ -26,4 +26,5 @@ export class StrategyPlanService {
         console.error(errMsg);
         return Promise.reject(errMsg);
    }
+
 }

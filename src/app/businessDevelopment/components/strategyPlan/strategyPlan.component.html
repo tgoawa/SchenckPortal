@@ -15,7 +15,7 @@
     </div>
     <div class="row" style="margin-top: 20px" *ngIf="startPlanMode">
       <div class="col-md-12">
-      <form novalidate (ngSubmit)="newStrategyPlan(strategyPlanForm)" [formGroup]="strategyPlanForm">
+      <form novalidate (ngSubmit)="startNewPlan(strategyPlanForm)" [formGroup]="strategyPlanForm">
         <div class="form-group">
           <label for="strategyPlanTitle">Title</label>
           <input type="text" class="form-control" formControlName="strategyPlanTitle" id="strategyPlanTitle" placeholder="Title of new strategy plan">

@@ -1,7 +1,8 @@
 export interface IStrategyPlan {
-    StrategyPlanId: number;
+    PlanId: number;
+    TeamMemberId: number;
+    MarketingMemberId: number;
     Title: string;
-    KnownAs: number;
+    KnownAsId: number;
     Famous: string;
-    DateUpdated: string;
 }

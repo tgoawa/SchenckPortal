@@ -22,7 +22,8 @@ import { ClientTierListComponent } from './tiering/components/client-tier-list/c
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/clientTierDetails.component';
 
 import { ClientTierListService, ClientTierAnalysisService, ClientTierScoreService } from './tiering/services/';
-import { StrategyPlanService } from './businessDevelopment/services';
+import { StrategyPlanService,
+        DropDownDataService } from './businessDevelopment/services';
 
 import { ClientTierMetricHelper } from './tiering/helpers/';
 import { ClientTierResolver,
@@ -77,6 +78,7 @@ import { StrategyPlanComponent } from './businessDevelopment/components/strategy
     ClientTierAnalysisService,
     ClientTierScoreService,
     StrategyPlanService,
+    DropDownDataService,
     ClientTierMetricHelper,
     ClientTierResolver,
     BillingScoreResolver,

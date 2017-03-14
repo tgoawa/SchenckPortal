@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { StrategyPlanService } from '../../services';
+import { StrategyPlanService, DropDownDataService } from '../../services';
 import { KnownAsModel, IStrategyPlan } from '../../models';
 
 @Component({
@@ -18,13 +18,13 @@ export class StrategyPlanComponent implements OnInit {
   private knownAsLookup: KnownAsModel[];
 
 
-  constructor(private fb: FormBuilder, private strategyPlanService: StrategyPlanService) { }
+  constructor(private fb: FormBuilder, private dropDownData: DropDownDataService) { }
 
   ngOnInit() {
   }
 
   startPlanButton() {
-    this.strategyPlanService.getKnownAs().then(data => this.knownAsLookup = data).catch(this.handleError)
+    this.dropDownData.getKnownAs().then(data => this.knownAsLookup = data).catch(this.handleError)
     this.startPlanMode = true;
      this.strategyPlanForm = this.fb.group({
       StrategyPlanId: [0],
@@ -34,8 +34,8 @@ export class StrategyPlanComponent implements OnInit {
     });
   }
 
-  newStrategyPlan({value, valid}: { value: IStrategyPlan, valid: boolean}) {
-    console.log(value, valid);
+  startNewPlan({strategyPlan, valid}: { strategyPlan: IStrategyPlan, valid: boolean}) {
+    console.log(strategyPlan, valid);
   }
 
   private handleError(error: any) {
