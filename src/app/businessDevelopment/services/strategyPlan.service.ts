@@ -14,7 +14,7 @@ export class StrategyPlanService {
   constructor(private http: Http) { }
 
   createPlan(strategyPlan: IStrategyPlan) {
-    return this.http.post(this.baseUrl + 'saveStrategyPlanHeader', strategyPlan)
+    return this.http.post(this.baseUrl + 'saveStrategyPlanHeader/', strategyPlan)
       .toPromise()
       .then((response: Response) => response.json())
       .catch(this.handleError);
