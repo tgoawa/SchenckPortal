@@ -48,21 +48,22 @@ export class StrategyPlanComponent implements OnInit {
 
   startNewPlan({value, valid}: {value: IStrategyPlan, valid: boolean}) {
     console.log(value);
-    this.strategyPlanService.createPlan(value);
+    // this.strategyPlanService.createPlan(value);
     this.startPlanMode = false;
+    this.startEditPlan();
   }
 
   startEditPlan() {
     this.getKnownAsData();
     this.currentPlanMode = true;
-    // this.currentPlanForm = this.fb.group({
-    //   PlanId: [this.currentStrategyPlan.PlanId],
-    //   TeamMemberId: [this.currentStrategyPlan.TeamMemberId],
-    //   MarketingMemberId: [this.currentStrategyPlan.MarketingMemberId],
-    //   Title: [this.currentStrategyPlan.Title, [Validators.required, Validators.maxLength(75)]],
-    //   KnownAsId: [this.currentStrategyPlan.KnownAsId],
-    //   Famous: [this.currentStrategyPlan.Famous, Validators.maxLength(200)]
-    // });
+    this.currentPlanForm = this.fb.group({
+      PlanId: [1],
+      TeamMemberId: [this.teamMemberId],
+      MarketingMemberId: [0],
+      Title: ['Test title of plan', [Validators.required, Validators.maxLength(75)]],
+      KnownAsId: [2],
+      Famous: ['Winning!', Validators.maxLength(200)]
+    });
   }
 
   getKnownAsData(): KnownAsModel[] {

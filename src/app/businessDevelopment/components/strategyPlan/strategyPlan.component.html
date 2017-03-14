@@ -15,44 +15,51 @@
     </div>
     <div class="row" style="margin-top: 20px" *ngIf="startPlanMode">
       <div class="col-md-12">
-      <form novalidate (ngSubmit)="startNewPlan(strategyPlanForm)" [formGroup]="strategyPlanForm">
-        <div class="form-group">
-          <label for="strategyPlanTitle">Title</label>
-          <input type="text" class="form-control" formControlName="Title" id="strategyPlanTitle" placeholder="Title of new strategy plan">
-        </div>
-        <div class="form-group">
-          <label for="knownAs">Known As</label>
-          <select class="form-control" id="knownAs" formControlName="KnownAsId">
+        <form novalidate (ngSubmit)="startNewPlan(strategyPlanForm)" [formGroup]="strategyPlanForm">
+          <div class="form-group">
+            <label for="strategyPlanTitle">Title</label>
+            <input type="text" class="form-control" formControlName="Title" id="strategyPlanTitle" placeholder="Title of new strategy plan">
+          </div>
+          <div class="form-group">
+            <label for="knownAs">Known As</label>
+            <select class="form-control" id="knownAs" formControlName="KnownAsId">
             <option *ngFor="let item of knownAsLookup" [selected]="item.KnownAsId == knownAsKnownAsId" [value]="item.KnownAsId">{{item.KnownValue}}</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="famous">Famous</label>
-          <textarea class="form-control" id="famous" formControlName="Famous"></textarea>
-        </div>
-        <button type="submit" [disabled]="strategyPlanForm.invalid" class="btn btn-schenck">Submit</button>
-      </form>
+          </div>
+          <div class="form-group">
+            <label for="famous">Famous</label>
+            <textarea class="form-control" id="famous" formControlName="Famous"></textarea>
+          </div>
+          <button type="submit" [disabled]="strategyPlanForm.invalid" class="btn btn-schenck">Submit</button>
+        </form>
       </div>
     </div>
-    <div class="row" style="margin-top: 20px" *ngIf="currentPlanMode">
-      <div class="col-md-12">
-      <form novalidate (ngSubmit)="editCurrentPlan(currentPlanForm)" [formGroup]="currentPlanForm">
-        <div class="form-group">
-          <label for="strategyPlanTitle">Title</label>
-          <input type="text" class="form-control" formControlName="Title" id="strategyPlanTitle" placeholder="Title of new strategy plan">
+    <div style="margin-top: 20px" *ngIf="currentPlanMode">
+      <div class="row">
+        <div class="col-md-6 offset-md-4">
+          <span>Created on: {{currentStrategyPlan?.DateCreated}}</span>
         </div>
-        <div class="form-group">
-          <label for="knownAs">Known As</label>
-          <select class="form-control" id="knownAs" formControlName="KnownAsId">
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form novalidate (ngSubmit)="editCurrentPlan(currentPlanForm)" [formGroup]="currentPlanForm">
+            <div class="form-group">
+              <label for="strategyPlanTitle">Title</label>
+              <input type="text" class="form-control" formControlName="Title" id="strategyPlanTitle" placeholder="Title of new strategy plan">
+            </div>
+            <div class="form-group">
+              <label for="knownAs">Known As</label>
+              <select class="form-control" id="knownAs" formControlName="KnownAsId">
             <option *ngFor="let item of knownAsLookup" [selected]="item.KnownAsId == KnownAsId" [value]="item.KnownAsId">{{item.KnownValue}}</option>
           </select>
+            </div>
+            <div class="form-group">
+              <label for="famous">Famous</label>
+              <textarea class="form-control" id="famous" formControlName="Famous"></textarea>
+            </div>
+            <button type="submit" [disabled]="currentPlanForm.invalid" class="btn btn-schenck">Update</button>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="famous">Famous</label>
-          <textarea class="form-control" id="famous" formControlName="Famous"></textarea>
-        </div>
-        <button type="submit" [disabled]="currentPlanForm.invalid" class="btn btn-schenck">Update</button>
-      </form>
       </div>
     </div>
   </div>
