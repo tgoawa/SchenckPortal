@@ -15,10 +15,14 @@ export class StrategyPlanComponent implements OnInit {
 
   private startPlanMode = false;
   private strategyPlanForm: FormGroup;
+  private teamMemberId: number;
+  private marketingMemberId: number;
   private knownAsLookup: KnownAsModel[];
 
 
-  constructor(private fb: FormBuilder, private dropDownData: DropDownDataService) { }
+  constructor(private fb: FormBuilder,
+              private dropDownData: DropDownDataService,
+              private strategyPlanService: StrategyPlanService) { }
 
   ngOnInit() {
   }
@@ -28,14 +32,16 @@ export class StrategyPlanComponent implements OnInit {
     this.startPlanMode = true;
      this.strategyPlanForm = this.fb.group({
       PlanId: [0],
+      TeamMemberId: [this.teamMemberId],
+      MarketingMemberId: [this.marketingMemberId],
       Title: ['', [Validators.required, Validators.maxLength(75)]],
       KnownAsId: [''],
       Famous: ['', Validators.maxLength(200)]
     });
   }
 
-  startNewPlan({value, valid}: { value: IStrategyPlan, valid: boolean}) {
-    console.log(value, valid);
+  startNewPlan(strategyPlan: IStrategyPlan) {
+    this.strategyPlanService.createPlan(strategyPlan);
   }
 
   private handleError(error: any) {

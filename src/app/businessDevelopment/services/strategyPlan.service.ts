@@ -13,8 +13,8 @@ export class StrategyPlanService {
 
   constructor(private http: Http) { }
 
-  createPlan(teamMemberId: number, strategyPlan: IStrategyPlan) {
-    return this.http.post(this.baseUrl + '', strategyPlan)
+  createPlan(strategyPlan: IStrategyPlan) {
+    return this.http.post(this.baseUrl + 'saveStrategyPlanHeader', strategyPlan)
       .toPromise()
       .then((response: Response) => response.json())
       .catch(this.handleError);
