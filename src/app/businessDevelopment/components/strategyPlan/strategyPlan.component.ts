@@ -34,8 +34,8 @@ export class StrategyPlanComponent implements OnInit {
     });
   }
 
-  startNewPlan({strategyPlan, valid}: { strategyPlan: IStrategyPlan, valid: boolean}) {
-    console.log(strategyPlan, valid);
+  startNewPlan({value, valid}: { value: IStrategyPlan, valid: boolean}) {
+    console.log(value, valid);
   }
 
   private handleError(error: any) {
