@@ -46,7 +46,7 @@ export class StrategyPlanComponent implements OnInit {
     });
   }
 
-  startNewPlan({value, valid}: {value: IStrategyPlan, valid: boolean}) {
+  createNewPlan({value, valid}: {value: IStrategyPlan, valid: boolean}) {
     console.log(value);
     // this.strategyPlanService.createPlan(value);
     this.startPlanMode = false;
