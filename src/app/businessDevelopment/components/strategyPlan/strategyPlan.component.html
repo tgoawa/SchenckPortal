@@ -18,17 +18,17 @@
       <form novalidate (ngSubmit)="startNewPlan(strategyPlanForm)" [formGroup]="strategyPlanForm">
         <div class="form-group">
           <label for="strategyPlanTitle">Title</label>
-          <input type="text" class="form-control" formControlName="strategyPlanTitle" id="strategyPlanTitle" placeholder="Title of new strategy plan">
+          <input type="text" class="form-control" formControlName="Title" id="strategyPlanTitle" placeholder="Title of new strategy plan">
         </div>
         <div class="form-group">
           <label for="knownAs">Known As</label>
-          <select class="form-control" id="knownAs" formControlName="knownAs">
+          <select class="form-control" id="knownAs" formControlName="KnownAsId">
             <option *ngFor="let item of knownAsLookup" [selected]="item.KnownAsId == knownAs" [value]="item.KnownAsId">{{item.KnownValue}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="famous">Famous</label>
-          <textarea class="form-control" id="famous" formControlName="famous"></textarea>
+          <textarea class="form-control" id="famous" formControlName="Famous"></textarea>
         </div>
         <button type="submit" [disabled]="strategyPlanForm.invalid" class="btn btn-schenck">Submit</button>
       </form>

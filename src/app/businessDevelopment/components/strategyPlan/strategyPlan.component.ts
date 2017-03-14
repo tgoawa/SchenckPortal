@@ -27,10 +27,10 @@ export class StrategyPlanComponent implements OnInit {
     this.dropDownData.getKnownAs().then(data => this.knownAsLookup = data).catch(this.handleError)
     this.startPlanMode = true;
      this.strategyPlanForm = this.fb.group({
-      StrategyPlanId: [0],
-      strategyPlanTitle: ['', [Validators.required, Validators.maxLength(75)]],
-      knownAs: [''],
-      famous: ['', Validators.maxLength(200)]
+      PlanId: [0],
+      Title: ['', [Validators.required, Validators.maxLength(75)]],
+      KnownAsId: [''],
+      Famous: ['', Validators.maxLength(200)]
     });
   }
 
