@@ -40,8 +40,10 @@ export class StrategyPlanComponent implements OnInit {
     });
   }
 
-  startNewPlan(strategyPlan: IStrategyPlan) {
-    this.strategyPlanService.createPlan(strategyPlan);
+  startNewPlan({value, valid}: {value: IStrategyPlan, valid: boolean}) {
+    console.log(value);
+    // this.strategyPlanService.createPlan(strategyPlan);
+    this.startPlanMode = false;
   }
 
   private handleError(error: any) {

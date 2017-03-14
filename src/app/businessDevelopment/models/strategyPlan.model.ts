@@ -5,4 +5,6 @@ export interface IStrategyPlan {
     Title: string;
     KnownAsId: number;
     Famous: string;
+    DateCreated: string;
+    DateModified: string;
 }
