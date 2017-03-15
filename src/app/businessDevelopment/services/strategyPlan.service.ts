@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions } from '@angular/http';
 
 import { environment } from '../../../environments/environment';
 import { IStrategyPlan } from '../models/';
@@ -14,7 +14,16 @@ export class StrategyPlanService {
   constructor(private http: Http) { }
 
   createPlan(strategyPlan: IStrategyPlan) {
-    return this.http.post(this.baseUrl + 'saveStrategyPlanHeader/', strategyPlan)
+
+    return this.http.post(this.baseUrl + 'SaveStrategyPlanHeader/', strategyPlan)
+      .toPromise()
+      .then((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
+  getPlan(teamMemberId: number): Promise<IStrategyPlan> {
+
+    return this.http.get(this.baseUrl + 'GetCurrentPlanHeader/' + teamMemberId)
       .toPromise()
       .then((response: Response) => response.json())
       .catch(this.handleError);

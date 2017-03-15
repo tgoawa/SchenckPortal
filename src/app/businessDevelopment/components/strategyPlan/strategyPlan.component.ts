@@ -12,7 +12,7 @@ import { KnownAsModel, IStrategyPlan } from '../../models';
 })
 export class StrategyPlanComponent implements OnInit {
 
-  sideMenuItemId = 2; //Tell side menu the active menu item
+  sideMenuItemId = 2; //Tell side menu the active menu index
 
   private startPlanMode = false;
   private currentPlanMode = false;
@@ -31,6 +31,7 @@ export class StrategyPlanComponent implements OnInit {
 
   ngOnInit() {
     this.teamMemberId = this.teamMemberService.teamMember.TeamMemberId;
+    this.getCurrentPlan();
   }
 
   startPlanButton() {
@@ -39,7 +40,7 @@ export class StrategyPlanComponent implements OnInit {
      this.strategyPlanForm = this.fb.group({
       PlanId: [0],
       TeamMemberId: [this.teamMemberId],
-      MarketingMemberId: [0],
+      MarketingMemberId: [1001],
       Title: ['', [Validators.required, Validators.maxLength(75)]],
       KnownAsId: [''],
       Famous: ['', Validators.maxLength(200)]
@@ -48,21 +49,23 @@ export class StrategyPlanComponent implements OnInit {
 
   createNewPlan({value, valid}: {value: IStrategyPlan, valid: boolean}) {
     console.log(value);
-    // this.strategyPlanService.createPlan(value);
+    this.strategyPlanService.createPlan(value)
+      .then(data => this.currentStrategyPlan = data)
+      .catch(this.handleError);
     this.startPlanMode = false;
-    this.startEditPlan();
+    // this.startEditPlan();
   }
 
   startEditPlan() {
     this.getKnownAsData();
     this.currentPlanMode = true;
     this.currentPlanForm = this.fb.group({
-      PlanId: [1],
-      TeamMemberId: [this.teamMemberId],
-      MarketingMemberId: [0],
-      Title: ['Test title of plan', [Validators.required, Validators.maxLength(75)]],
-      KnownAsId: [2],
-      Famous: ['Winning!', Validators.maxLength(200)]
+      PlanId: [this.currentStrategyPlan.PlanId],
+      TeamMemberId: [this.currentStrategyPlan.TeamMemberId],
+      MarketingMemberId: [this.currentStrategyPlan.MarketingMemberId],
+      Title: [this.currentStrategyPlan.Title, [Validators.required, Validators.maxLength(75)]],
+      KnownAsId: [this.currentStrategyPlan.KnownAsId],
+      Famous: [this.currentStrategyPlan.Famous, Validators.maxLength(200)]
     });
   }
 
@@ -74,7 +77,26 @@ export class StrategyPlanComponent implements OnInit {
     }
     return this.knownAsLookup;
   }
-  
+
+  getCurrentPlan() {
+    this.strategyPlanService.getPlan(this.teamMemberId)
+    .then(data => {
+      console.log(data);
+      this.currentStrategyPlan = data;
+      this.displayCurrentPlan();})
+    .catch(this.handleError);
+  }
+
+  displayCurrentPlan() {
+    if (this.isCurrentPlanAvailable()) {
+      this.startEditPlan();
+    }
+  }
+
+  isCurrentPlanAvailable(): boolean {
+    return this.currentStrategyPlan !== undefined;
+  }
+
   private handleError(error: any) {
      let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
