@@ -19,8 +19,10 @@ export class StrategyPlanComponent implements OnInit {
 
   private startPlanMode = false;
   private currentPlanMode = false;
+  private newActionItemMode = false;
   private strategyPlanForm: FormGroup;
   private currentPlanForm: FormGroup;
+  private newActionItem: FormGroup;
   private teamMemberId: number;
   private marketingMemberId: number;
   private currentStrategyPlan: IStrategyPlan;
