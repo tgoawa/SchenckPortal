@@ -8,7 +8,8 @@ import { APP_CONFIG, AppConfig } from './app.config';
 
 import { routes } from './app.routing';
 
-import { ProgressbarModule} from 'ng2-bootstrap';
+import { ProgressbarModule,
+        ModalModule } from 'ng2-bootstrap';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome';
 
 import { AppComponent } from './app.component';
@@ -70,6 +71,7 @@ import { StrategyPlanComponent } from './businessDevelopment/components/strategy
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes, { useHash: true}),
+    ModalModule.forRoot()
   ],
   providers: [
     { provide: APP_CONFIG, useValue: AppConfig },
