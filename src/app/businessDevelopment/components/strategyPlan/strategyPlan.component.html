@@ -1,3 +1,24 @@
+<div bsModal #savePlanModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmNewPlanStart"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Save Current Plan</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideConfirmModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This will save the current plan and create a new plan.</p>
+        <p>Are you sure you want to continue?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-schenck">Yes</button>
+        <button type="button" class="btn btn-secondary" (click)="hideConfirmModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-2">
     <app-side-bar [menuItemId]="sideMenuItemId"></app-side-bar>
@@ -34,56 +55,33 @@
         </form>
       </div>
     </div>
-  <div style="margin-top: 20px" *ngIf="currentPlanMode">
-    <div class="row">
-      <div class="col-md-6 offset-md-4">
-        <span>Last modified: {{currentStrategyPlan?.DisplayDateModified}}</span>
+    <div style="margin-top: 20px" *ngIf="currentPlanMode">
+      <div class="row">
+        <div class="col-md-6 offset-md-4">
+          <span>Last modified: {{currentStrategyPlan?.DisplayDateModified}}</span>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <form novalidate (ngSubmit)="editCurrentPlan(currentPlanForm)" [formGroup]="currentPlanForm">
-          <div class="form-group">
-            <label for="strategyPlanTitle">Title</label>
-            <input type="text" class="form-control" formControlName="Title" id="strategyPlanTitle" placeholder="Title of new strategy plan">
-          </div>
-          <div class="form-group">
-            <label for="knownAs">Known As</label>
-            <select class="form-control" id="knownAs" formControlName="KnownAsId">
+      <div class="row">
+        <div class="col-md-12">
+          <form novalidate (ngSubmit)="editCurrentPlan(currentPlanForm)" [formGroup]="currentPlanForm">
+            <div class="form-group">
+              <label for="strategyPlanTitle">Title</label>
+              <input type="text" class="form-control" formControlName="Title" id="strategyPlanTitle" placeholder="Title of new strategy plan">
+            </div>
+            <div class="form-group">
+              <label for="knownAs">Known As</label>
+              <select class="form-control" id="knownAs" formControlName="KnownAsId">
             <option *ngFor="let item of knownAsLookup" [selected]="item.KnownAsId == KnownAsId" [value]="item.KnownAsId">{{item.KnownValue}}</option>
           </select>
-          </div>
-          <div class="form-group">
-            <label for="famous">Famous</label>
-            <textarea class="form-control" id="famous" formControlName="Famous"></textarea>
-          </div>
-          <button type="submit" [disabled]="currentPlanForm.invalid" class="btn btn-schenck">Update</button>
-        </form>
+            </div>
+            <div class="form-group">
+              <label for="famous">Famous</label>
+              <textarea class="form-control" id="famous" formControlName="Famous"></textarea>
+            </div>
+            <button type="submit" [disabled]="currentPlanForm.invalid" class="btn btn-schenck">Update</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-
-<!--outside of main content -->
-<div bsModal #savePlanModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmNewPlanStart"
-        aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title pull-left">Save Current Plan</h4>
-              <button type="button" class="close pull-right" aria-label="Close" (click)="hideConfirmModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            </div>
-            <div class="modal-body">
-              <p>This will save the current plan and create a new plan.</p>
-              <p>Are you sure you want to continue?</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-schenck">Yes</button>
-              <button type="button" class="btn btn-secondary" (click)="hideConfirmModal()">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
