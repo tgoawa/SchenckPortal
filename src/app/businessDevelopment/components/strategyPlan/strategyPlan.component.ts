@@ -14,6 +14,7 @@ import { KnownAsModel, IStrategyPlan } from '../../models';
 })
 export class StrategyPlanComponent implements OnInit {
   @ViewChild('savePlanModal') public savePlanModal: ModalDirective;
+  @ViewChild('createStrategyActionItem') public createStrategyActionItem: ModalDirective;
 
   sideMenuItemId = 2; //Tell side menu the active menu index
 
@@ -112,6 +113,14 @@ export class StrategyPlanComponent implements OnInit {
 
   hideConfirmModal() {
     this.savePlanModal.hide();
+  }
+
+  createActionItem() {
+    this.createStrategyActionItem.show();
+  }
+
+  hideActionItem() {
+    this.createStrategyActionItem.hide();
   }
 
   private handleError(error: any) {

@@ -58,7 +58,7 @@
           <span>Original Value</span>
         </div>
         <div class="score-box-grey">
-          <span>${{parentAnalysisData?.Billings}}</span>
+          <span>{{parentAnalysisData?.Billings | currency: 'USD': true: '1.2-2'}}</span>
         </div>
       </div>
       <div class="col-md-2">
@@ -71,21 +71,21 @@
         <div class="calc-headers-scores">
           <span>lower</span>
         </div>
-        <span class="range-text">${{clientTierScore?.BillingScore.MinValue}}</span>
+        <span class="range-text">{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true: '1.2-2'}}</span>
       </div>
       <div class="col-md-4">
         <div class="calc-headers-scores">
           <span>Progress</span>
         </div>
         <div class="progress">
-          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.BillingScore.Score == 0 || 1, 'orange': clientTierScore?.BillingScore.Score == 2, 'yellow': clientTierScore?.BillingScore.Score == 3, 'yellow-green': clientTierScore?.BillingScore.Score == 4, 'green': clientTierScore?.BillingScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">${{displayData?.Billings}} </div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.BillingScore.Score == 0 || 1, 'orange': clientTierScore?.BillingScore.Score == 2, 'yellow': clientTierScore?.BillingScore.Score == 3, 'yellow-green': clientTierScore?.BillingScore.Score == 4, 'green': clientTierScore?.BillingScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">{{displayData?.Billings | currency: 'USD': true: '1.2-2'}} </div>
         </div>
       </div>
       <div class="col-md-1">
         <div class="calc-headers-scores">
           <span>upper</span>
         </div>
-        <span class="range-text">${{clientTierScore?.BillingScore.MaxValue}}</span>
+        <span class="range-text">{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true: '1.2-2'}}</span>
       </div>
     </div>
     <div *ngIf="parentAnalysisData?.Children.length > 0">
