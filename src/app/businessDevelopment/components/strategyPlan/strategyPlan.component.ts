@@ -41,7 +41,7 @@ export class StrategyPlanComponent implements OnInit {
   }
 
   startPlanButton() {
-    if (this.isCurrentPlanAvailable) {
+    if (this.isCurrentPlanAvailable()) {
       this.showConfirmModal();
     } else {
       this.startPlanMode = true;
