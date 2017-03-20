@@ -14,7 +14,7 @@ import { KnownAsModel, IStrategyPlan } from '../../models';
 })
 export class StrategyPlanComponent implements OnInit {
   @ViewChild('savePlanModal') public savePlanModal: ModalDirective;
-  
+
   sideMenuItemId = 2; //Tell side menu the active menu index
 
   private startPlanMode = false;
