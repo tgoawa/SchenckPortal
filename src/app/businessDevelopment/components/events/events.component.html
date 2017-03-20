@@ -1,0 +1,52 @@
+<div class="row" style="margin-top: 20px">
+  <div class="col-md-4">
+    <h2>Strategy Event</h2>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-success" (click)="createNewEventItem()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!--create new Event Item modal -->
+<div bsModal #createEventItem="bs-modal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Strategy Event Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideNewEventItem()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form novalidate (ngSubmit)="addEventItem()" [formGroup]="newEventItem">
+          <div class="modal-body">
+          <div class="form-group">
+            <label for="eventName">Event Name</label>
+            <input type="text" class="form-control" id="eventName" formControlName="EventItemName">
+          </div>
+          <div class="form-group">
+            <label for="eventDate">Date of</label>
+            <input type="date" class="form-control" formControlName="EventDate" id="eventDate">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" formControlName="EventDescription"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" formControlName="Status">
+            <option *ngFor="let item of status" [selected]="item.id == status" [value]="item.id">{{item.IndustryValue}}</option>
+          </select>
+          </div>
+          <div class="form-group">
+            <label for="feedback">Event Feedback</label>
+            <textarea class="form-control" formControlName="EventFeedback" id="feedback"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="newEventItem.invalid" class="btn btn-schenck">Create</button>
+        <button type="button" class="btn btn-danger" (click)="hideNewEventItem()">Cancel</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
