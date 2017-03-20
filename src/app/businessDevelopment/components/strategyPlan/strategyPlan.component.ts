@@ -14,8 +14,7 @@ import { KnownAsModel, IStrategyPlan } from '../../models';
 })
 export class StrategyPlanComponent implements OnInit {
   @ViewChild('savePlanModal') public savePlanModal: ModalDirective;
-  @ViewChild('createStrategyActionItem') public createStrategyActionItem: ModalDirective;
-
+  
   sideMenuItemId = 2; //Tell side menu the active menu index
 
   private startPlanMode = false;
@@ -23,7 +22,6 @@ export class StrategyPlanComponent implements OnInit {
   private newActionItemMode = false;
   private strategyPlanForm: FormGroup;
   private currentPlanForm: FormGroup;
-  private newActionItem: FormGroup;
   private teamMemberId: number;
   private marketingMemberId: number;
   private currentStrategyPlan: IStrategyPlan;
@@ -113,14 +111,6 @@ export class StrategyPlanComponent implements OnInit {
 
   hideConfirmModal() {
     this.savePlanModal.hide();
-  }
-
-  createActionItem() {
-    this.createStrategyActionItem.show();
-  }
-
-  hideActionItem() {
-    this.createStrategyActionItem.hide();
   }
 
   private handleError(error: any) {

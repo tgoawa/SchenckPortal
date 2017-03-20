@@ -44,6 +44,7 @@ import { TeamMemberService, TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
 import { StrategyPlanComponent } from './businessDevelopment/components/strategyPlan/strategyPlan.component';
+import { ActionItemsComponent } from './businessDevelopment/components/actionItems/actionItems.component';
 
 
 
@@ -65,7 +66,8 @@ import { StrategyPlanComponent } from './businessDevelopment/components/strategy
     ClientTierDetailsComponent,
     LoginComponent,
     StrategyPlanComponent,
-    NegativeToParenthesis
+    NegativeToParenthesis,
+    ActionItemsComponent
   ],
   imports: [
     BrowserModule,
