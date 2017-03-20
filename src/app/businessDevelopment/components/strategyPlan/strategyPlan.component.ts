@@ -61,7 +61,7 @@ export class StrategyPlanComponent implements OnInit {
       .then(data => this.currentStrategyPlan = data)
       .catch(this.handleError);
     this.startPlanMode = false;
-    // this.startEditPlan();
+    this.startEditPlan();
   }
 
   startEditPlan() {

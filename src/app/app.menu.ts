@@ -17,7 +17,7 @@ export const MENU = [
     children: [
       {
         path: 'strategy-plan',
-        title: 'Strategy Plan'
+        title: 'Individual Business Development Plan'
       },
     ]
   }
