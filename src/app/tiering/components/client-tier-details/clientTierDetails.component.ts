@@ -121,6 +121,12 @@ export class ClientTierDetailsComponent implements OnInit {
     this.displayData.Realization = this.parentAnalysisData.Realization;
     this.displayData.ServiceTouchCount = this.parentAnalysisData.ServiceTouchCount;
 
+    this.billingValue = '';
+    this.realizationValue = '';
+    this.workTimingValue = '';
+    this.serviceTouch = '';
+    this.payment = '';
+    
     this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 

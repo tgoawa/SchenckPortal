@@ -8,6 +8,8 @@ import { APP_CONFIG, AppConfig } from './app.config';
 
 import { routes } from './app.routing';
 
+import { NegativeToParenthesis } from './customPipes';
+
 import { ProgressbarModule,
         ModalModule } from 'ng2-bootstrap';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome';
@@ -63,6 +65,7 @@ import { StrategyPlanComponent } from './businessDevelopment/components/strategy
     ClientTierDetailsComponent,
     LoginComponent,
     StrategyPlanComponent,
+    NegativeToParenthesis
   ],
   imports: [
     BrowserModule,

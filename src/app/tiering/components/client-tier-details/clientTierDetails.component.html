@@ -91,7 +91,7 @@
     <div *ngIf="parentAnalysisData?.Children.length > 0">
       <div class="row">
         <div class="col-md-4">
-          <a class="childExpand" data-toggle="collapse" href="#child-billing" aria-expanded="false">View Child Billing Data</a>
+          <a class="childExpand" data-toggle="collapse" href="#child-billing" aria-expanded="false" tabindex="-1">View Child Billing Data</a>
         </div>
       </div>
       <div class="collapse" id="child-billing">
@@ -106,8 +106,8 @@
           <tbody>
             <tr *ngFor="let child of parentAnalysisData?.Children">
               <td>{{child.ClientName}}</td>
-              <td>${{child.Billings}}</td>
-              <td>${{child.Adjustments}}</td>
+              <td>${{child.Billings | number:'1.2-2' | negativeToParenthesis }}</td>
+              <td>${{child.Adjustments | number:'1.2-2' | negativeToParenthesis}}</td>
             </tr> 
           </tbody>
         </table>
@@ -147,7 +147,7 @@
     <div *ngIf="parentAnalysisData?.Children.length > 0">
       <div class="row">
         <div class="col-md-4">
-          <a class="childExpand" data-toggle="collapse" href="#child-realization" aria-expanded="false">View Child Realization Data</a>
+          <a class="childExpand" data-toggle="collapse" href="#child-realization" aria-expanded="false" tabindex="-1">View Child Realization Data</a>
         </div>
       </div>
       <div class="collapse" id="child-realization">
@@ -234,7 +234,7 @@
     <div *ngIf="parentAnalysisData?.Children.length > 0">
       <div class="row">
         <div class="col-md-4">
-          <a class="childExpand" data-toggle="collapse" href="#child-work-timing" aria-expanded="false">View Child Work Timing Data</a>
+          <a class="childExpand" data-toggle="collapse" href="#child-work-timing" aria-expanded="false" tabindex="-1">View Child Work Timing Data</a>
         </div>
       </div>
       <div class="collapse" id="child-work-timing">
@@ -243,14 +243,14 @@
             <tr>
               <th>Client Name</th>
               <th>Busy Season Hours</th>
-              <th>Normal Hours</th>
+              <th>Non-Peak Season Hours</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let child of parentAnalysisData?.Children">
               <td>{{child.ClientName}}</td>
-              <td>{{child.BusySeasonHours}}</td>
-              <td>{{child.NormalHours}}</td>
+              <td>{{child.BusySeasonHours | number: '1.2-2'}}</td>
+              <td>{{child.NormalHours | number: '1.2-2'}}</td>
             </tr> 
           </tbody>
         </table>
@@ -295,7 +295,7 @@
     <div *ngIf="parentAnalysisData?.ServiceTouches.length > 0">
       <div class="row">
         <div class="col-md-4">
-          <a class="childExpand" data-toggle="collapse" href="#service-touches" aria-expanded="false">View Associated Services</a>
+          <a class="childExpand" data-toggle="collapse" href="#service-touches" aria-expanded="false" tabindex="-1">View Associated Services</a>
         </div>
       </div>
       <div class="collapse" id="service-touches">
@@ -352,7 +352,7 @@
     <div *ngIf="parentAnalysisData?.Children.length > 0">
       <div class="row">
         <div class="col-md-4">
-          <a class="childExpand" data-toggle="collapse" href="#child-payment" aria-expanded="false">View Child Payment Timeliness Data</a>
+          <a class="childExpand" data-toggle="collapse" href="#child-payment" aria-expanded="false" tabindex="-1">View Child Payment Timeliness Data</a>
         </div>
       </div>
       <div class="collapse" id="child-payment">
