@@ -13,26 +13,25 @@ import { MENU } from '../../app.menu';
 export class NavComponent implements OnInit {
 
   private menuItems: any[];
-
   constructor() { }
 
   ngOnInit() {
     this.createMenu();
   }
 
-  isDevEnvironment(): boolean {
-    return environment.envName === 'dev';
-  }
 
   createMenu() {
-    if (!this.isDevEnvironment()) {
-      for (let index = 0; index < MENU.length; index++) {
+    if (environment.envName === 'dev')
+    {
+       this.menuItems = MENU;
+    } 
+    else 
+    {
+       for (let index = 0; index < MENU.length; index++) {
         if (MENU[index].inDev === false) {
           this.menuItems[index] = MENU[index];
         }
       }
-    } else {
-      this.menuItems = MENU;
     }
   }
 }
