@@ -25,7 +25,7 @@ export class NavComponent implements OnInit {
   }
 
   createMenu() {
-    if (!this.isDevEnvironment()) {
+    if (this.isDevEnvironment() === false) {
       for (let index = 0; index < MENU.length; index ++) {
         if (MENU[index].isDev === true) {
           this.menuItems[index] = MENU[index];
