@@ -12,7 +12,7 @@ import { MENU } from '../../app.menu';
 })
 export class NavComponent implements OnInit {
 
-  private menuItems: any[];
+  private menuItems: any[] = [];
   constructor() { }
 
   ngOnInit() {
@@ -28,8 +28,8 @@ export class NavComponent implements OnInit {
     else 
     {
        for (let index = 0; index < MENU.length; index++) {
-        if (MENU[index].inDev === 0) {
-          this.menuItems[index] = MENU[index];
+        if (MENU[index].inDev === false) {
+          this.menuItems.push(MENU[index]);
         }
       }
     }
