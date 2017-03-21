@@ -1,7 +1,7 @@
 export const MENU = [
   {
     id: 1,
-    isDev: true,
+    inDev: false,
     path: 'tiering',
     title: 'Tiering',
     children: [
@@ -13,7 +13,7 @@ export const MENU = [
   },
   {
     id: 2,
-    isDev: false,
+    inDev: true,
     path: 'business-development',
     title: 'Business Development',
     children: [

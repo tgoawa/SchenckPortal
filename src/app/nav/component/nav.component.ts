@@ -17,7 +17,7 @@ export class NavComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.menuItems = MENU;
+    this.createMenu();
   }
 
   isDevEnvironment(): boolean {
@@ -25,14 +25,14 @@ export class NavComponent implements OnInit {
   }
 
   createMenu() {
-    if (this.isDevEnvironment() === false) {
-      for (let index = 0; index < MENU.length; index ++) {
-        if (MENU[index].isDev === true) {
+    if (!this.isDevEnvironment()) {
+      for (let index = 0; index < MENU.length; index++) {
+        if (MENU[index].inDev === false) {
           this.menuItems[index] = MENU[index];
-        } else {
-          this.menuItems = MENU;
         }
       }
+    } else {
+      this.menuItems = MENU;
     }
   }
 }
