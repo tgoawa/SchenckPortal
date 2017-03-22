@@ -59,7 +59,7 @@
           <div class="form-group">
             <label>Status</label>
             <select class="form-control" formControlName="StatusId">
-            <option *ngFor="let item of eventStatus" [selected]="item.id == StatusId" [value]="item.id">{{item.Value}}</option>
+            <option *ngFor="let item of eventStatus" [selected]="item.Id == StatusId" [value]="item.Id">{{item.Value}}</option>
           </select>
           </div>
           <div class="form-group" *ngIf="isCompleted">
