@@ -10,7 +10,7 @@ import { ModalDirective } from 'ng2-bootstrap/modal';
 })
 export class ClientContactsComponent implements OnInit {
   @ViewChild('clientRelationshipModal') public clientRelationshipModal: ModalDirective;
-  @Input() private currentPlandId: number;
+  @Input() private currentPlanId: number;
 
   private clientRelationshipForm: FormGroup;
 

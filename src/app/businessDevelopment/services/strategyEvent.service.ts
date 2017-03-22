@@ -2,35 +2,25 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { environment } from '../../../environments/environment';
-import { IStrategyPlan } from '../models/';
-
+import { IStrategyEvent } from '../models/';
 
 @Injectable()
-export class StrategyPlanService {
+export class StrategyEventService {
 
   private environmentName = environment.envApi;
   private baseUrl = this.environmentName + 'schencksolutions.com:1016/StrategyPlanService/';
 
   constructor(private http: Http) { }
 
-  createPlan(strategyPlan: IStrategyPlan) {
-
-    return this.http.post(this.baseUrl + 'SaveStrategyPlanHeader/', strategyPlan)
-      .toPromise()
-      .then((response: Response) => response.json())
-      .catch(this.handleError);
+  createEvent(strategyEvent: IStrategyEvent) {
+    return this.http.post(this.baseUrl + 'SaveStrategyEvent/', strategyEvent)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
   }
 
-  updatePlan(strategyPlan: IStrategyPlan) {
-    return this.http.put(this.baseUrl + 'UpdateStrategyPlanHeader/', strategyPlan)
-      .toPromise()
-      .then((response: Response) => response.json())
-      .catch(this.handleError);
-  }
-
-  getPlan(teamMemberId: number): Promise<IStrategyPlan> {
-
-    return this.http.get(this.baseUrl + 'GetCurrentPlanHeader/' + teamMemberId)
+  updateEvent(strategyEvent: IStrategyEvent) {
+    return this.http.put(this.baseUrl + 'UpdateStrategyEvent/', strategyEvent)
       .toPromise()
       .then((response: Response) => response.json())
       .catch(this.handleError);

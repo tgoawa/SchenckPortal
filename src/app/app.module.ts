@@ -26,7 +26,8 @@ import { ClientTierDetailsComponent } from './tiering/components/client-tier-det
 
 import { ClientTierListService, ClientTierAnalysisService, ClientTierScoreService } from './tiering/services/';
 import { StrategyPlanService,
-        DropDownDataService } from './businessDevelopment/services';
+        DropDownDataService,
+        StrategyEventService } from './businessDevelopment/services';
 
 import { ClientTierMetricHelper } from './tiering/helpers/';
 import { ClientTierResolver,
@@ -90,6 +91,7 @@ import { ClientContactsComponent } from './businessDevelopment/components/client
     ClientTierScoreService,
     StrategyPlanService,
     DropDownDataService,
+    StrategyEventService,
     ClientTierMetricHelper,
     ClientTierResolver,
     BillingScoreResolver,

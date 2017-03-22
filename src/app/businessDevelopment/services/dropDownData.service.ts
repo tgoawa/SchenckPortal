@@ -14,7 +14,7 @@ export class DropDownDataService {
   constructor(private http: Http) { }
 
   getKnownAs(): Promise<DropDownData[]> {
-    return this.http.get(this.baseUrl + 'getKnownAsLookups/')
+    return this.http.get(this.baseUrl + 'GetKnownAsLookups/')
     .toPromise()
     .then((response: Response) => response.json())
     .catch(this.handleError);

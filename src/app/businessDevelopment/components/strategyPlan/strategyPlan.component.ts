@@ -102,7 +102,7 @@ export class StrategyPlanComponent implements OnInit {
   }
 
   isCurrentPlanAvailable(): boolean {
-    return this.currentStrategyPlan !== undefined;
+    return this.currentStrategyPlan.PlanId !== 0;
   }
 
   showConfirmModal() {
