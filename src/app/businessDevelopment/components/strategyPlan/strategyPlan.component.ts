@@ -5,7 +5,7 @@ import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import { StrategyPlanService, DropDownDataService } from '../../services';
 import { TeamMemberService } from '../../../teamMember/teamMember.service';
-import { KnownAsModel, IStrategyPlan } from '../../models';
+import { IStrategyPlan, DropDownData } from '../../models';
 
 @Component({
   selector: 'app-strategy-plan',
@@ -25,7 +25,7 @@ export class StrategyPlanComponent implements OnInit {
   private teamMemberId: number;
   private marketingMemberId: number;
   private currentStrategyPlan: IStrategyPlan;
-  private knownAsLookup: KnownAsModel[];
+  private knownAsLookup: DropDownData[];
 
 
   constructor(private fb: FormBuilder,
@@ -76,7 +76,7 @@ export class StrategyPlanComponent implements OnInit {
     });
   }
 
-  getKnownAsData(): KnownAsModel[] {
+  getKnownAsData(): DropDownData[] {
     if (this.knownAsLookup === undefined) {
       this.dropDownData.getKnownAs()
         .then(data => this.knownAsLookup = data)

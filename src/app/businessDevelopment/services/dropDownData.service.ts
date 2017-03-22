@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 
 import { environment } from '../../../environments/environment';
 
-import { KnownAsModel } from '../models/';
+import { DropDownData } from '../models/';
 
 @Injectable()
 export class DropDownDataService {
@@ -13,14 +13,14 @@ export class DropDownDataService {
 
   constructor(private http: Http) { }
 
-  getKnownAs(): Promise<KnownAsModel[]> {
+  getKnownAs(): Promise<DropDownData[]> {
     return this.http.get(this.baseUrl + 'getKnownAsLookups/')
     .toPromise()
     .then((response: Response) => response.json())
     .catch(this.handleError);
   }
 
-  getEventStatuses(): Promise<KnownAsModel[]> {
+  getEventStatuses(): Promise<DropDownData[]> {
     return this.http.get(this.baseUrl + 'GetEventStatuses/')
     .toPromise()
     .then((response: Response) => response.json())

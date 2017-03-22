@@ -22,6 +22,7 @@ export class ClientContactsComponent implements OnInit {
 
   newClientRelationshipForm() {
     this.clientRelationshipForm = this.fb.group({
+      RelationshipId: 0,
       ClientName: [''],
       Contact: [''],
       RelationshipDetails: [''],
@@ -29,7 +30,11 @@ export class ClientContactsComponent implements OnInit {
     });
   }
 
-  addClientRelationship() {
+  editClientRelationship() {
+    // use setValue passing in the existing relationship item to set the form values
+  }
+
+  showClientRelationship() {
     this.clientRelationshipModal.show();
   }
 

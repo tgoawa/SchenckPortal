@@ -23,7 +23,7 @@
           <div class="form-group">
             <label for="knownAs">Known As</label>
             <select class="form-control" id="knownAs" formControlName="KnownAsId">
-            <option *ngFor="let item of knownAsLookup" [selected]="item.KnownAsId == knownAsKnownAsId" [value]="item.KnownAsId">{{item.KnownValue}}</option>
+            <option *ngFor="let item of knownAsLookup" [selected]="item.Id == KnownAsId" [value]="item.Id">{{item.Value}}</option>
           </select>
           </div>
           <div class="form-group">
@@ -50,7 +50,7 @@
             <div class="form-group">
               <label for="knownAs">Known As</label>
               <select class="form-control" id="knownAs" formControlName="KnownAsId">
-            <option *ngFor="let item of knownAsLookup" [selected]="item.KnownAsId == KnownAsId" [value]="item.KnownAsId">{{item.KnownValue}}</option>
+            <option *ngFor="let item of knownAsLookup" [selected]="item.Id == KnownAsId" [value]="item.Id">{{item.Value}}</option>
           </select>
             </div>
             <div class="form-group">
