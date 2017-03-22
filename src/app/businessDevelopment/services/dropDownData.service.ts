@@ -20,6 +20,13 @@ export class DropDownDataService {
     .catch(this.handleError);
   }
 
+  getEventStatuses(): Promise<KnownAsModel[]> {
+    return this.http.get(this.baseUrl + 'GetEventStatuses/')
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
   private handleError(error: any) {
      let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';

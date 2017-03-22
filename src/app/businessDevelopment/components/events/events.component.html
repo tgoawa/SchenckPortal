@@ -37,7 +37,7 @@
             <option *ngFor="let item of status" [selected]="item.id == status" [value]="item.id">{{item.IndustryValue}}</option>
           </select>
           </div>
-          <div class="form-group" *ngIf="eventCompleted">
+          <div class="form-group">
             <label for="feedback">Event Feedback</label>
             <textarea class="form-control" formControlName="EventFeedback" id="feedback"></textarea>
           </div>

@@ -1,3 +1,51 @@
-<p>
-  client-contacts works!
-</p>
+<div class="row" style="margin-top: 20px">
+  <div class="col-md-4">
+    <h2>Current Client Relationships</h2>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-success" (click)="addClientRelationship()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!--create new Client Relationship modal -->
+<div bsModal #clientRelationshipModal="bs-modal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Client Relationship</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideClientRelationship()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form novalidate (ngSubmit)="addClientRelationship()" [formGroup]="clientRelationshipForm">
+          <div class="modal-body">
+          <div class="form-group">
+            <label>Client</label>
+            <select class="form-control" formControlName="ClientName">
+            <option *ngFor="let item of Clients" [selected]="item.id == BusinessStrategy" [value]="item.id">{{item.IndustryValue}}</option>
+          </select>
+          </div>
+          <div class="form-group">
+            <label>Contact</label>
+            <select class="form-control" formControlName="Contact">
+            <option *ngFor="let item of Contacts" [selected]="item.id == BusinessStrategy" [value]="item.id">{{item.IndustryValue}}</option>
+          </select>
+          <small class="form-text text-muted">If contact is not listed, the contact must be added in Sales Logix</small>
+          </div>
+          <div class="form-group">
+            <label>Business Strategy</label>
+            <textarea formControlName="RelationshipDetails"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Date:</label>
+            <input type="date" formControlName="Date">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="clientRelationshipForm.invalid" class="btn btn-schenck">Submit</button>
+        <button type="button" class="btn btn-danger" (click)="hideClientRelationship()">Cancel</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
