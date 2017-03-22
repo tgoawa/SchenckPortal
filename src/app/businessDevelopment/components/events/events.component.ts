@@ -53,7 +53,6 @@ export class EventsComponent implements OnInit {
       .catch(this.handleError);
       this.eventForm.reset();
     }
-
   }
 
   eventSetComplete() {
