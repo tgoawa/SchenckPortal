@@ -22,8 +22,11 @@ export class ClientContactsComponent implements OnInit {
 
   newClientRelationshipForm() {
     this.clientRelationshipForm = this.fb.group({
-      
-    })
+      ClientName: [''],
+      Contact: [''],
+      RelationshipDetails: [''],
+      Date: ['']
+    });
   }
 
   addClientRelationship() {
