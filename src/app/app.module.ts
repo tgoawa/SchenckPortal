@@ -46,6 +46,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { StrategyPlanComponent } from './businessDevelopment/components/strategyPlan/strategyPlan.component';
 import { ActionItemsComponent } from './businessDevelopment/components/actionItems/actionItems.component';
 import { EventsComponent } from './businessDevelopment/components/events/events.component';
+import { ClientContactsComponent } from './businessDevelopment/components/clientContacts/clientContacts.component';
 
 
 
@@ -69,7 +70,8 @@ import { EventsComponent } from './businessDevelopment/components/events/events.
     StrategyPlanComponent,
     NegativeToParenthesis,
     ActionItemsComponent,
-    EventsComponent
+    EventsComponent,
+    ClientContactsComponent
   ],
   imports: [
     BrowserModule,

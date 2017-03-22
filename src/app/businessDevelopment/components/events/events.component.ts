@@ -13,6 +13,8 @@ export class EventsComponent implements OnInit {
   @Input() private currentPlanId: number;
 
   private newEventItem: FormGroup;
+  private editEventItem: FormGroup;
+  private eventCompleted = false;
 
   constructor(private fb: FormBuilder) { }
 
@@ -32,8 +34,22 @@ export class EventsComponent implements OnInit {
     //call service to add new event item
   }
 
+  eventSetComplete() {
+    this.eventCompleted = true;
+  }
+
   newEventItemForm() {
     this.newEventItem = this.fb.group({
+      EventItemName: [''],
+      EventDate: [''],
+      EventDescription: [''],
+      Status: [''],
+      EventFeedback: ['']
+    });
+  }
+
+  editEventItemForm() {
+    this.editEventItem = this.fb.group({
       EventItemName: [''],
       EventDate: [''],
       EventDescription: [''],
