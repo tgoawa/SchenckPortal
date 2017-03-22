@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClientContactsComponent } from './client-contacts.component';
+import { ClientContactsComponent } from './clientContacts.component';
 
 describe('ClientContactsComponent', () => {
   let component: ClientContactsComponent;
