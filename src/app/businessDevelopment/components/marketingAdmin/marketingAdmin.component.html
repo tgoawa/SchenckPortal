@@ -40,11 +40,13 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let tm of mentorshipList">
-              <td>{{tm.LastFirstName}}</td>
+              <td>{{tm.TeamMemberId}}</td>
+              <td>remove</td>
             </tr>
           </tbody>
         </table>
