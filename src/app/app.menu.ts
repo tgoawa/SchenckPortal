@@ -21,6 +21,10 @@ export const MENU = [
         path: 'strategy-plan',
         title: 'Individual Business Development Plan'
       },
+      {
+        path: 'marketing-admin',
+        title: 'Marketing Member Admin'
+      }
     ]
   }
 ];

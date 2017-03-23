@@ -16,7 +16,7 @@ import {
 } from './tiering/resolver/';
 
 import { StrategyPlanComponent } from './businessDevelopment/components/strategyPlan/strategyPlan.component';
-
+import { MarketingAdminComponent } from './businessDevelopment/components/marketingAdmin/marketingAdmin.component';
 import { TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
@@ -54,6 +54,10 @@ export const routes: Routes = [
             {
                 path: 'strategy-plan',
                 component: StrategyPlanComponent,
+            },
+            {
+                path: 'marketing-admin',
+                component: MarketingAdminComponent
             }
         ]
     },

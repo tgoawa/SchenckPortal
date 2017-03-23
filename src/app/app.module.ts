@@ -48,6 +48,7 @@ import { StrategyPlanComponent } from './businessDevelopment/components/strategy
 import { ActionItemsComponent } from './businessDevelopment/components/actionItems/actionItems.component';
 import { EventsComponent } from './businessDevelopment/components/events/events.component';
 import { ClientContactsComponent } from './businessDevelopment/components/clientContacts/clientContacts.component';
+import { MarketingAdminComponent } from './businessDevelopment/components/marketingAdmin/marketingAdmin.component';
 
 
 
@@ -72,7 +73,8 @@ import { ClientContactsComponent } from './businessDevelopment/components/client
     NegativeToParenthesis,
     ActionItemsComponent,
     EventsComponent,
-    ClientContactsComponent
+    ClientContactsComponent,
+    MarketingAdminComponent
   ],
   imports: [
     BrowserModule,
