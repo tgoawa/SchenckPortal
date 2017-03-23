@@ -14,7 +14,7 @@
           <div class="form-group">
             <label>Marketing Team Member:</label>
             <select class="form-control" formControlName="marketingMember">
-              <option *ngFor="let member of marketingTeam" [selected]="member.TeamMemberId == marketingMember" [value]="member.TeamMemberId">{{member.Name}}</option>
+              <option *ngFor="let member of mentors" [selected]="member.TeamMemberId == marketingMember" [value]="member.TeamMemberId">{{member.LastFirstName}}</option>
             </select>
           </div>
         </form>
@@ -43,10 +43,10 @@
           <div class="form-group col-md-6">
             <input ng2-auto-complete
                   formControlName="TeamMember"
-                  [source]="teamMemberList"
+                  [source]="activeTeamMembers"
                   [list-formatter]="teamMemberListFormatter"
-                  value-property-name="id"
-                  display-property-name="name"
+                  value-property-name="TeamMemberId"
+                  display-property-name="LastFirstName"
                   max-num-list= 10
                   placeholder="Team Members"
                   class="form-control">
