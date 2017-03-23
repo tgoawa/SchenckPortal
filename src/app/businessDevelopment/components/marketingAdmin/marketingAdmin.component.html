@@ -40,7 +40,7 @@
     <div class="row">
       <div class="col-md-6">
         <form class="form-inline" [formGroup]="teamMemberForm" (ngSubmit)="assignTeamMember(teamMemberForm.value)">
-          <div class="form-group">
+          <div class="form-group col-md-6">
             <input ng2-auto-complete
                   formControlName="TeamMember"
                   [source]="teamMemberList"
