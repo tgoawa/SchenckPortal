@@ -8,4 +8,5 @@ export interface IStrategyEvent {
     DisplayDateCreated: string;
     DisplayDateModified: string;
     ScheduledDate: string;
+    StatusText: string;
 }

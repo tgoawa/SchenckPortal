@@ -46,11 +46,13 @@ export class EventsComponent implements OnInit {
       this.eventService.createEvent(value)
       .then(data => this.currentEvents = data)
       .catch(this.handleError);
+      this.hideEventModal();
       this.eventForm.reset();
     } else {
       this.eventService.updateEvent(value)
       .then(data => this.currentEvents = data)
       .catch(this.handleError);
+      this.hideEventModal();
       this.eventForm.reset();
     }
   }
@@ -63,10 +65,10 @@ export class EventsComponent implements OnInit {
     this.eventForm = this.fb.group({
       PlanId: this.currentPlanId,
       EventId: 0,
-      Name: [''],
-      ScheduledDate: [''],
-      Description: [''],
-      StatusId: [''],
+      Name: ['', Validators.required],
+      ScheduledDate: ['', Validators.required],
+      Description: ['', [Validators.required, Validators.maxLength(200)]],
+      StatusId: ['', Validators.required],
       Feedback: ['']
     });
   }

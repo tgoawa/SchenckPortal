@@ -24,7 +24,7 @@
               <td>{{event.Name}}</td>
               <td>{{event.ScheduledDate}}</td>
               <td>{{event.Description}}</td>
-              <td>{{event.Status}}</td>
+              <td>{{event.StatusId}}</td>
               <td>edit</td>
             </tr> 
           </tbody>
@@ -47,20 +47,26 @@
           <div class="form-group">
             <label>Event Name</label>
             <input type="text" class="form-control" formControlName="Name">
+            <small class="form-text alert-danger" *ngIf="eventForm.get('Name').hasError('required') && eventForm.get('Name').touched">Name is required</small>
           </div>
           <div class="form-group">
             <label>Date of</label>
             <input type="date" class="form-control" formControlName="ScheduledDate">
+            <small class="form-text alert-danger" *ngIf="eventForm.get('ScheduledDate').hasError('required') && eventForm.get('ScheduledDate').touched">Date is required</small>
           </div>
           <div class="form-group">
             <label>Description</label>
             <textarea class="form-control" formControlName="Description"></textarea>
+            <small class="form-text alert-danger" *ngIf="eventForm.get('Description').hasError('required') && eventForm.get('Description').touched">Description is required</small>
+            <small class="form-text alert-danger" *ngIf="eventForm.get('Description').hasError('maxlength') && eventForm.get('Description').touched">Description is required</small>
+            
           </div>
           <div class="form-group">
             <label>Status</label>
             <select class="form-control" formControlName="StatusId">
             <option *ngFor="let item of eventStatus" [selected]="item.Id == StatusId" [value]="item.Id">{{item.Value}}</option>
           </select>
+          <small class="form-text alert-danger" *ngIf="eventForm.get('StatusId').hasError('required') && eventForm.get('StatusId').touched">Status is required</small>
           </div>
           <div class="form-group" *ngIf="isCompleted">
             <label>Event Feedback</label>

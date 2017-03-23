@@ -56,9 +56,8 @@ export class StrategyPlanComponent implements OnInit {
   }
 
   createNewPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
-    console.log(value);
     this.strategyPlanService.createPlan(value)
-      .then(data => this.currentStrategyPlan = data)
+      .then((data: IStrategyPlan) => this.currentStrategyPlan = data)
       .catch(this.handleError);
     this.startPlanMode = false;
     this.startEditPlan();
@@ -99,6 +98,12 @@ export class StrategyPlanComponent implements OnInit {
     if (this.isCurrentPlanAvailable()) {
       this.startEditPlan();
     }
+  }
+
+  editCurrentPlan({value, valid}: { value: IStrategyPlan, valid: boolean }) {
+    this.strategyPlanService.updatePlan(value)
+    .then(data => this.currentStrategyPlan = data)
+    .catch(this.handleError);
   }
 
   isCurrentPlanAvailable(): boolean {
