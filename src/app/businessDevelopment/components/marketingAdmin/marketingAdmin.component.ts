@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TeamMemberService, TeamMember } from '../../../teamMember/';
 import { MarketingAdminService } from '../../services/';
+import { MentorDTO, IMentor } from '../../models/';
 
 @Component({
   selector: 'app-marketing-admin',
@@ -15,10 +16,11 @@ export class MarketingAdminComponent implements OnInit {
   sideMenuItemId = 2; //Tell side menu the active menu index
 
   private teamMemberId: number;
-  private marketingMemberList: FormGroup;
-  private teamMemberForm: FormGroup;
+  private mentorshipForm: FormGroup;
   private mentors: TeamMember[];
+  private mentorshipList: IMentor[];
   private activeTeamMembers: TeamMember[];
+  private mentorDTO = new MentorDTO();
 
   constructor(private fb: FormBuilder,
   private teamMember: TeamMemberService,
@@ -28,14 +30,23 @@ export class MarketingAdminComponent implements OnInit {
   ngOnInit() {
     this.teamMemberId = this.teamMember.teamMember.TeamMemberId;
     this.getMentors();
+    this.getMentorshipList(this.teamMemberId);
     this.getActiveTeamMembers();
     this.setMarketingMemberForm();
-    this.setTeamMemberForm();
   }
 
   getMentors() {
     this.adminService.getMentors()
     .then((data: TeamMember[]) => this.mentors = data)
+    .catch(this.handleError);
+  }
+
+  getMentorshipList(mentorId: number) {
+    this.adminService.getMentorshipList(mentorId)
+    .then((data: IMentor[]) => {
+      this.mentorshipList = data;
+      console.log(this.mentorshipList);
+    })
     .catch(this.handleError);
   }
 
@@ -46,14 +57,10 @@ export class MarketingAdminComponent implements OnInit {
   }
 
   setMarketingMemberForm() {
-    this.marketingMemberList = this.fb.group({
-      marketingMember: this.teamMemberId,
-    });
-  }
-
-  setTeamMemberForm() {
-    this.teamMemberForm = this.fb.group({
-      TeamMember: ''
+    this.mentorshipForm = this.fb.group({
+      MentorshipId: 0,
+      MentorId: this.teamMemberId,
+      TeamMemberId: '',
     });
   }
 
@@ -62,8 +69,34 @@ export class MarketingAdminComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  assignTeamMember(value) {
-    console.log(value.TeamMember.TeamMemberId);
+  mentorshipFormSubmit(value) {
+    this.mapMentorship(value);
+  }
+
+  mapMentorship(formValue) {
+    this.mentorDTO.MentorshipId = formValue.MentorshipId;
+    this.mentorDTO.MentorId = formValue.MentorId;
+    this.mentorDTO.TeamMemberId = formValue.TeamMemberId.TeamMemberId;
+    this.saveMentorship(this.mentorDTO);
+  }
+
+  checkExistingMentorship(mentorship) {
+    for (let index = 0; index < this.mentorshipList.length; index ++) {
+      if (mentorship.TeamMemberId === this.mentorshipList[index].TeamMemberId) {
+        alert('That mentorship already exists');
+        return;
+      } else {
+        this.saveMentorship(mentorship);
+      }
+    }
+  }
+  
+  saveMentorship(mentorship) {
+    this.adminService.createMentorship(mentorship)
+    .then((data: IMentor) => {
+      this.mentorshipList.push(data);
+    })
+    .catch(this.handleError);
   }
 
   private handleError(error: any) {

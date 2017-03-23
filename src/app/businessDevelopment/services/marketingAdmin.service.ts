@@ -4,6 +4,7 @@ import { Http, Response } from '@angular/http';
 import { environment } from '../../../environments/environment';
 
 import { TeamMember } from '../../teamMember/';
+import { IMentor, MentorDTO } from '../models/';
 
 
 
@@ -24,6 +25,20 @@ export class MarketingAdminService {
 
   getMentors(): Promise<TeamMember[]> {
     return this.http.get(this.baseUrl + 'GetTeamMemberMentors/')
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  getMentorshipList(mentorId: number): Promise<IMentor[]> {
+    return this.http.get(this.baseUrl + 'getMentorshipList/' + mentorId)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  createMentorship(mentorship: MentorDTO) {
+    return this.http.post(this.baseUrl + 'SaveMentorRelationship/', mentorship)
     .toPromise()
     .then((response: Response) => response.json())
     .catch(this.handleError);

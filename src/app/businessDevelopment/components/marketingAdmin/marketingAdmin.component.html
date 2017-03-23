@@ -10,13 +10,26 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <form [formGroup]="marketingMemberList">
+        <form [formGroup]="mentorshipForm" (ngSubmit)="mentorshipFormSubmit(mentorshipForm.value)">
           <div class="form-group">
             <label>Marketing Team Member:</label>
-            <select class="form-control" formControlName="marketingMember">
-              <option *ngFor="let member of mentors" [selected]="member.TeamMemberId == marketingMember" [value]="member.TeamMemberId">{{member.LastFirstName}}</option>
+            <select class="form-control" formControlName="MentorId">
+              <option *ngFor="let member of mentors" [selected]="member.TeamMemberId == MentorId" [value]="member.TeamMemberId">{{member.LastFirstName}}</option>
             </select>
           </div>
+          <div class="form-group">
+            <input ng2-auto-complete
+                  formControlName="TeamMemberId"
+                  [source]="activeTeamMembers"
+                  [list-formatter]="teamMemberListFormatter"
+                  value-property-name="TeamMemberId"
+                  display-property-name="LastFirstName"
+                  max-num-list= 10
+                  placeholder="Team Members"
+                  class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-schenck">Assign</button>
         </form>
       </div>
     </div>
@@ -30,29 +43,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let tm of teamMembers">
-              <td>{{tm.Name}}</td>
+            <tr *ngFor="let tm of mentorshipList">
+              <td>{{tm.LastFirstName}}</td>
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <form class="form-inline" [formGroup]="teamMemberForm" (ngSubmit)="assignTeamMember(teamMemberForm.value)">
-          <div class="form-group col-md-6">
-            <input ng2-auto-complete
-                  formControlName="TeamMember"
-                  [source]="activeTeamMembers"
-                  [list-formatter]="teamMemberListFormatter"
-                  value-property-name="TeamMemberId"
-                  display-property-name="LastFirstName"
-                  max-num-list= 10
-                  placeholder="Team Members"
-                  class="form-control">
-          </div>
-          <button type="submit" class="btn btn-schenck">Assign</button>
-        </form>
       </div>
     </div>
   </div>
