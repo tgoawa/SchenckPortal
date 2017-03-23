@@ -3,21 +3,21 @@
     <h2>Strategy Action Plan</h2>
   </div>
   <div class="col-md-1">
-    <button class="btn btn-success" (click)="createNewActionItem()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    <button class="btn btn-success" (click)="showActionItemModal()"><i class="fa fa-plus" aria-hidden="true"></i></button>
   </div>
 </div>
 
 <!--create new Strategy Action Item modal -->
-<div bsModal #createActionItem="bs-modal" class="modal fade">
+<div bsModal #actionItemModal="bs-modal" class="modal fade">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Create Strategy Action Item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideCreateActionItem()">
+        <h5 class="modal-title">{{modalTitle}} Strategy Action Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideActionItemModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form novalidate (ngSubmit)="addActionItem()" [formGroup]="newActionItem">
+        <form novalidate (ngSubmit)="addActionItem()" [formGroup]="actionItemForm">
           <div class="modal-body">
           <div class="form-group">
             <label for="strategyActionItem">Details</label>
@@ -35,8 +35,8 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" [disabled]="newActionItem.invalid" class="btn btn-schenck">Create</button>
-        <button type="button" class="btn btn-danger" (click)="hideCreateActionItem()">Cancel</button>
+        <button type="submit" [disabled]="actionItemForm.invalid" class="btn btn-schenck">{{modalTitle}}</button>
+        <button type="button" class="btn btn-danger" (click)="hideActionItemModal()">Cancel</button>
       </div>
       </form>
     </div>

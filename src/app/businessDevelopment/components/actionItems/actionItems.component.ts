@@ -9,10 +9,11 @@ import { ModalDirective } from 'ng2-bootstrap/modal';
   styleUrls: ['./actionItems.component.css']
 })
 export class ActionItemsComponent implements OnInit {
-  @ViewChild('createActionItem') public createActionItem: ModalDirective;
+  @ViewChild('actionItemModal') public actionItemModal: ModalDirective;
   @Input() private currentPlanId: number;
 
-  private newActionItem: FormGroup;
+  private actionItemForm: FormGroup;
+  private modalTitle: string;
 
   constructor(private fb: FormBuilder) { }
 
@@ -20,12 +21,12 @@ export class ActionItemsComponent implements OnInit {
     this.newActionItemForm();
   }
 
-  createNewActionItem() {
-    this.createActionItem.show();
+  showActionItemModal() {
+    this.actionItemModal.show();
   }
 
-  hideCreateActionItem() {
-    this.createActionItem.hide();
+  hideActionItemModal() {
+    this.actionItemModal.hide();
   }
 
   addActionItem() {
@@ -33,7 +34,8 @@ export class ActionItemsComponent implements OnInit {
   }
 
   newActionItemForm() {
-    this.newActionItem = this.fb.group({
+    this.modalTitle = 'Create';
+    this.actionItemForm = this.fb.group({
       ActionItemDetails: [''],
       CompletionDate: [''],
       BusinessStrategy: [''],
