@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarketingAdminComponent implements OnInit {
 
+  sideMenuItemId = 2; //Tell side menu the active menu index
+  
   constructor() { }
 
   ngOnInit() {
