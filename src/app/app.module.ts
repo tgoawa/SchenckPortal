@@ -12,6 +12,7 @@ import { NegativeToParenthesis } from './customPipes';
 
 import { ProgressbarModule,
         ModalModule } from 'ng2-bootstrap';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome';
 
 import { AppComponent } from './app.component';
@@ -83,7 +84,8 @@ import { MarketingAdminComponent } from './businessDevelopment/components/market
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes, { useHash: true}),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    Ng2AutoCompleteModule
   ],
   providers: [
     { provide: APP_CONFIG, useValue: AppConfig },

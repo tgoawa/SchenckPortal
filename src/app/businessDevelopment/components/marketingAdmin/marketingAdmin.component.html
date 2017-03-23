@@ -37,6 +37,23 @@
         </table>
       </div>
     </div>
-    
+    <div class="row">
+      <div class="col-md-6">
+        <form class="form-inline" [formGroup]="teamMemberForm" (ngSubmit)="assignTeamMember(teamMemberForm.value)">
+          <div class="form-group">
+            <input ng2-auto-complete
+                  formControlName="TeamMember"
+                  [source]="teamMemberList"
+                  [list-formatter]="teamMemberListFormatter"
+                  value-property-name="id"
+                  display-property-name="name"
+                  max-num-list= 10
+                  placeholder="Team Members"
+                  class="form-control">
+          </div>
+          <button type="submit" class="btn btn-schenck">Assign</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
