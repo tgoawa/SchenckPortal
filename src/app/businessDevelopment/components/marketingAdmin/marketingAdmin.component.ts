@@ -37,7 +37,10 @@ export class MarketingAdminComponent implements OnInit {
 
   getMentors() {
     this.adminService.getMentors()
-    .then((data: TeamMember[]) => this.mentors = data)
+    .then((data: TeamMember[]) => {
+      this.mentors = data;
+      console.log(this.mentors);
+    })
     .catch(this.handleError);
   }
 
@@ -77,20 +80,22 @@ export class MarketingAdminComponent implements OnInit {
     this.mentorDTO.MentorshipId = formValue.MentorshipId;
     this.mentorDTO.MentorId = formValue.MentorId;
     this.mentorDTO.TeamMemberId = formValue.TeamMemberId.TeamMemberId;
-    this.saveMentorship(this.mentorDTO);
+    if (this.isExistingMentorship(this.mentorDTO)) {
+      alert('This mentorship already exists');
+      return;
+    } else {
+      this.saveMentorship(this.mentorDTO);
+    }
   }
 
-  checkExistingMentorship(mentorship) {
-    for (let index = 0; index < this.mentorshipList.length; index ++) {
+  isExistingMentorship(mentorship): boolean{
+    for (let index = 0; index < this.mentorshipList.length; index++) {
       if (mentorship.TeamMemberId === this.mentorshipList[index].TeamMemberId) {
-        alert('That mentorship already exists');
-        return;
-      } else {
-        this.saveMentorship(mentorship);
+        return true;
       }
     }
   }
-  
+
   saveMentorship(mentorship) {
     this.adminService.createMentorship(mentorship)
     .then((data: IMentor) => {
