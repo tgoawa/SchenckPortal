@@ -29,12 +29,18 @@ export class StrategyPlanService {
   }
 
   getPlan(teamMemberId: number): Promise<IStrategyPlan> {
-
     return this.http.get(this.baseUrl + 'GetCurrentPlanHeader/' + teamMemberId)
       .toPromise()
       .then((response: Response) => response.json())
       .catch(this.handleError);
   }
+
+  // completePlan(strategyPlanId: number) {
+  //   return this.http.get()
+  //   .toPromise()
+  //   .then((response: Response) => response.json())
+  //   .catch(this.handleError);
+  // }
 
   private handleError(error: any) {
      let errMsg = (error.message) ? error.message :

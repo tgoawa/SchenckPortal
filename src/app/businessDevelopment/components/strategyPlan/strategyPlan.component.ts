@@ -17,17 +17,18 @@ export class StrategyPlanComponent implements OnInit {
 
   sideMenuItemId = 2; //Tell side menu the active menu index
 
-  private startPlanMode = false;
-  private currentPlanMode = false;
-  private newActionItemMode = false;
   private mentorMode = false;
+  private planMode = false;
+  private displayPlanHeader = false;
   private strategyPlanForm: FormGroup;
-  private currentPlanForm: FormGroup;
   private teamMember: TeamMember;
   private marketingMemberId: number;
   private currentStrategyPlan: IStrategyPlan;
   private knownAsLookup: DropDownData[];
   private mentorshipList: IMentor[];
+  private menteeId: number;
+  private mentorId = 0;
+  private formTitle = 'Create';
 
 
   constructor(private fb: FormBuilder,
@@ -39,91 +40,88 @@ export class StrategyPlanComponent implements OnInit {
   ngOnInit() {
     this.teamMember = this.teamMemberService.teamMember;
     this.getKnownAsData();
-    this.getCurrentPlan();
+    this.setView(this.teamMember);
   }
 
-  startPlanButton() {
-    if (this.isCurrentPlanAvailable()) {
-      this.showConfirmModal();
+  setView(teamMember: TeamMember) {
+    if (this.isMentor(teamMember)) {
+      this.getMentorshipList(teamMember.TeamMemberId);
+      this.mentorId = this.teamMember.TeamMemberId;
+      this.mentorMode = true;
     } else {
-      this.startPlanMode = true;
-      this.strategyPlanForm = this.fb.group({
-        PlanId: [0],
-        TeamMemberId: [this.teamMember.TeamMemberId],
-        MarketingMemberId: [1001],
-        Title: ['', [Validators.required, Validators.maxLength(75)]],
-        KnownAsId: [''],
-        Famous: ['', Validators.maxLength(200)]
-      });
+      this.getPlan(teamMember.TeamMemberId);
+      this.planMode = true;
     }
   }
 
-  createNewPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
-    this.strategyPlanService.createPlan(value)
-      .then((data: IStrategyPlan) => this.currentStrategyPlan = data)
-      .catch(this.handleError);
-    this.startPlanMode = false;
-    this.startEditPlan();
+  startPlanButton() {
+    if (this.strategyPlanForm.get('PlanId').value > 0) {
+      this.showConfirmModal();
+    } else {
+      this.displayPlanHeader = true;
+      this.formTitle = 'Create';
+      this.setForm();
+    }
   }
 
-  startEditPlan() {
-    this.currentPlanMode = true;
-    this.currentPlanForm = this.fb.group({
-      PlanId: [this.currentStrategyPlan.PlanId],
-      TeamMemberId: [this.currentStrategyPlan.TeamMemberId],
-      MarketingMemberId: [this.currentStrategyPlan.MarketingMemberId],
-      Title: [this.currentStrategyPlan.Title, [Validators.required, Validators.maxLength(75)]],
-      KnownAsId: [this.currentStrategyPlan.KnownAsId],
-      Famous: [this.currentStrategyPlan.Famous, Validators.maxLength(200)]
+  startEditPlan(plan: IStrategyPlan) {
+    this.displayPlanHeader = true;
+    this.formTitle = 'Update';
+    this.strategyPlanForm = this.fb.group({
+      PlanId: [plan.PlanId],
+      TeamMemberId: [plan.TeamMemberId],
+      MarketingMemberId: [plan.MarketingMemberId],
+      Title: [plan.Title, [Validators.required, Validators.maxLength(75)]],
+      KnownAsId: [plan.KnownAsId],
+      Famous: [plan.Famous, Validators.maxLength(200)]
     });
   }
 
   getKnownAsData(): DropDownData[] {
-    if (this.knownAsLookup === undefined) {
       this.dropDownData.getKnownAs()
         .then(data => this.knownAsLookup = data)
         .catch(this.handleError);
-    }
     return this.knownAsLookup;
   }
 
-  getCurrentPlan() {
-    if (this.isMentor) {
-      this.mentorMode = true;
-      this.adminService.getMentorshipList(this.teamMember.TeamMemberId)
-      .then((data: IMentor[]) => {
-        this.mentorshipList = data;
-      })
-      .catch(this.handleError);
-    } else {
-      this.strategyPlanService.getPlan(this.teamMember.TeamMemberId)
-      .then(data => {
-        console.log(data);
-        this.currentStrategyPlan = data;
-        this.displayCurrentPlan();
-      })
-      .catch(this.handleError);
+  getPlan(teamMemberId: number)  {
+    this.strategyPlanService.getPlan(teamMemberId)
+    .then((data: IStrategyPlan) => {
+       this.displayCurrentPlan(data);
+    })
+    .catch(this.handleError);
+  }
+
+  getMentorshipList(teamMemberId: number) {
+    this.adminService.getMentorshipList(teamMemberId)
+    .then((data: IMentor[]) => this.mentorshipList = data)
+    .catch(this.handleError);
+  }
+
+  displayCurrentPlan(plan: IStrategyPlan) {
+    if (this.isCurrentPlanAvailable(plan)) {
+      this.startEditPlan(plan);
     }
   }
 
-  displayCurrentPlan() {
-    if (this.isCurrentPlanAvailable()) {
-      this.startEditPlan();
-    }
+  createPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
+    this.strategyPlanService.createPlan(value)
+      .then((data: IStrategyPlan) => this.displayCurrentPlan(data))
+      .catch(this.handleError);
   }
 
-  editCurrentPlan({value, valid}: { value: IStrategyPlan, valid: boolean }) {
+  editPlan({value, valid}: { value: IStrategyPlan, valid: boolean }) {
     this.strategyPlanService.updatePlan(value)
     .then(data => this.currentStrategyPlan = data)
     .catch(this.handleError);
   }
 
-  isMentor(): boolean {
+  isMentor(teamMember): boolean {
     return this.teamMember.IsMentor;
   }
 
-  isCurrentPlanAvailable(): boolean {
-    return this.currentStrategyPlan.PlanId !== 0;
+  isCurrentPlanAvailable(plan: IStrategyPlan): boolean {
+    return plan.PlanId > 0;
   }
 
   showConfirmModal() {
@@ -132,6 +130,23 @@ export class StrategyPlanComponent implements OnInit {
 
   hideConfirmModal() {
     this.savePlanModal.hide();
+  }
+
+  viewPlan(menteeId: number) {
+    this.menteeId = menteeId;
+    this.planMode = true;
+    this.getPlan(this.menteeId);
+  }
+
+  setForm() {
+    this.strategyPlanForm = this.fb.group({
+        PlanId: [0],
+        TeamMemberId: [this.menteeId],
+        MarketingMemberId: [this.mentorId],
+        Title: ['', [Validators.required, Validators.maxLength(75)]],
+        KnownAsId: [''],
+        Famous: ['', Validators.maxLength(200)]
+      });
   }
 
   private handleError(error: any) {

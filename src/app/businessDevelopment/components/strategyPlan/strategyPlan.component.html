@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="row" style="margin-top: 20px" *ngIf="mentorMode">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <h2>Teammembers currently mentoring</h2>
         <table class="table table-striped table-sm">
           <thead>
@@ -21,25 +21,26 @@
           <tbody>
             <tr *ngFor="let tm of mentorshipList">
               <td>{{tm.TeamMember.LastFirstName}}</td>
-              <td>View Plan</td>
+              <td><span class="cursor" (click)="viewPlan(tm.TeamMember.TeamMemberId)">View Plan</span></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+    <div *ngIf="planMode">
     <div class="row" style="margin-top: 20px">
       <div class="col-md-12">
         <button class="btn btn-schenck" (click)=startPlanButton()>Start New Plan</button>
       </div>
     </div>
-    <div class="row" style="margin-top: 20px" *ngIf="startPlanMode">
+    <div class="row" style="margin-top: 20px" *ngIf="displayPlanHeader">
       <div class="col-md-12">
-        <form novalidate (ngSubmit)="createNewPlan(strategyPlanForm)" [formGroup]="strategyPlanForm">
+        <form novalidate (ngSubmit)="createPlan(strategyPlanForm)" [formGroup]="strategyPlanForm">
           <div class="form-group">
             <label>Title</label>
             <input type="text" class="form-control" formControlName="Title" placeholder="Title of new strategy plan">
-            <small class="form-text alert-danger" *ngIf="eventForm.get('Title').hasError('required') && eventForm.get('Title').touched">Title is required</small>
-            <small class="form-text alert-danger" *ngIf="eventForm.get('Title').hasError('maxlength') && eventForm.get('Title').touched">Title should be less than 75 characters</small>
+            <small class="form-text alert-danger" *ngIf="strategyPlanForm.get('Title').hasError('required') && strategyPlanForm.get('Title').touched">Title is required</small>
+            <small class="form-text alert-danger" *ngIf="strategyPlanForm.get('Title').hasError('maxlength') && strategyPlanForm.get('Title').touched">Title should be less than 75 characters</small>
           </div>
           <div class="form-group">
             <label>Known As</label>
@@ -50,39 +51,11 @@
           <div class="form-group">
             <label>Famous</label>
             <textarea class="form-control" formControlName="Famous"></textarea>
-            <small class="form-text alert-danger" *ngIf="eventForm.get('Famous').hasError('maxlength') && eventForm.get('Famous').touched">Keep famous description below 200 characters</small>
+            <small class="form-text alert-danger" *ngIf="strategyPlanForm.get('Famous').hasError('maxlength') && strategyPlanForm.get('Famous').touched">Keep famous description below 200 characters</small>
           </div>
-          <button type="submit" [disabled]="strategyPlanForm.invalid" class="btn btn-schenck">Submit</button>
+          <button type="submit" [disabled]="strategyPlanForm.invalid" class="btn btn-schenck">{{formTitle}}</button>
         </form>
       </div>
-    </div>
-    <div style="margin-top: 20px" *ngIf="currentPlanMode">
-      <div class="row">
-        <div class="col-md-6 offset-md-4">
-          <span>Last modified: {{currentStrategyPlan?.DisplayDateModified}}</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <form novalidate (ngSubmit)="editCurrentPlan(currentPlanForm)" [formGroup]="currentPlanForm">
-            <div class="form-group">
-              <label for="strategyPlanTitle">Title</label>
-              <input type="text" class="form-control" formControlName="Title" id="strategyPlanTitle" placeholder="Title of new strategy plan">
-            </div>
-            <div class="form-group">
-              <label for="knownAs">Known As</label>
-              <select class="form-control" id="knownAs" formControlName="KnownAsId">
-            <option *ngFor="let item of knownAsLookup" [selected]="item.Id == KnownAsId" [value]="item.Id">{{item.Value}}</option>
-          </select>
-            </div>
-            <div class="form-group">
-              <label for="famous">Famous</label>
-              <textarea class="form-control" id="famous" formControlName="Famous"></textarea>
-            </div>
-            <button type="submit" [disabled]="currentPlanForm.invalid" class="btn btn-schenck">Update</button>
-          </form>
-        </div>
-      </div>  
     </div>
     <section *ngIf="currentPlanMode">
       <app-action-items [currentPlanId]="currentStrategyPlan?.PlanId"></app-action-items>
@@ -91,6 +64,7 @@
       [currentEvents]="currentStrategyPlan?.StrategyEvents"></app-events>
       <app-client-contacts [currentPlanId]="currentStrategyPlan?.PlanId"></app-client-contacts>
     </section>
+    </div>
   </div>
 </div>
 

@@ -47,7 +47,7 @@
           <tbody>
             <tr *ngFor="let tm of mentorshipList">
               <td>{{tm.TeamMember.LastFirstName}}</td>
-              <td><i class="fa fa-times" (click)="removeMentorship(tm.MentorshipId)" aria-hidden="true" style="color: red;"></i></td>
+              <td><i class="fa fa-times cursor" (click)="removeMentorship(tm.MentorshipId)" aria-hidden="true" style="color: red;"></i></td>
             </tr>
           </tbody>
         </table>

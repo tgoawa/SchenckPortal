@@ -62,3 +62,7 @@ tbody {
 .table-striped tbody tr:nth-of-type(even) {
     background-color: rgba(0, 175, 237, 0.2);
 }
+
+.cursor:hover {
+    cursor: pointer;
+}
