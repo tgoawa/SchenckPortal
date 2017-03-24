@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
-import { StrategyPlanService, DropDownDataService } from '../../services';
+import { StrategyPlanService, DropDownDataService, MarketingAdminService } from '../../services';
 import { TeamMemberService, TeamMember } from '../../../teamMember/';
-import { IStrategyPlan, DropDownData } from '../../models';
+import { IStrategyPlan, DropDownData, IMentor } from '../../models';
 
 @Component({
   selector: 'app-strategy-plan',
@@ -27,12 +27,14 @@ export class StrategyPlanComponent implements OnInit {
   private marketingMemberId: number;
   private currentStrategyPlan: IStrategyPlan;
   private knownAsLookup: DropDownData[];
+  private mentorshipList: IMentor[];
 
 
   constructor(private fb: FormBuilder,
     private dropDownData: DropDownDataService,
     private strategyPlanService: StrategyPlanService,
-    private teamMemberService: TeamMemberService) { }
+    private teamMemberService: TeamMemberService,
+    private adminService: MarketingAdminService) { }
 
   ngOnInit() {
     this.teamMember = this.teamMemberService.teamMember;
@@ -88,6 +90,11 @@ export class StrategyPlanComponent implements OnInit {
   getCurrentPlan() {
     if (this.isMentor) {
       this.mentorMode = true;
+      this.adminService.getMentorshipList(this.teamMember.TeamMemberId)
+      .then((data: IMentor[]) => {
+        this.mentorshipList = data;
+      })
+      .catch(this.handleError);
     } else {
       this.strategyPlanService.getPlan(this.teamMember.TeamMemberId)
       .then(data => {
