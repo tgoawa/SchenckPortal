@@ -104,6 +104,21 @@ export class MarketingAdminComponent implements OnInit {
     .catch(this.handleError);
   }
 
+  removeMentorship(mentorshipId: number) {
+    this.adminService.deleteMentorship(mentorshipId)
+    .then(data => {
+      this.mentorshipList.splice(this.findMentorshipIndex(mentorshipId), 1);
+    })
+    .catch(this.handleError);
+  }
+
+  findMentorshipIndex(mentorshipId: number) {
+    for (let index = 0; index < this.mentorshipList.length; index ++) {
+      if (mentorshipId === this.mentorshipList[index].MentorshipId) {
+        return index;
+      }
+    }
+  }
   private handleError(error: any) {
      let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';

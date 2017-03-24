@@ -44,6 +44,13 @@ export class MarketingAdminService {
     .catch(this.handleError);
   }
 
+  deleteMentorship(mentorshipId) {
+    return this.http.get(this.baseUrl + 'RemoveMentorship/' + mentorshipId)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
   private handleError(error: any) {
      let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';

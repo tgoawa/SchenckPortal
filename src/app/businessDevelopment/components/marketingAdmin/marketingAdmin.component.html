@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="row" style="margin-top:20px">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <h2>Teammembers currently mentoring</h2>
         <table class="table table-striped table-sm">
           <thead>
@@ -47,7 +47,7 @@
           <tbody>
             <tr *ngFor="let tm of mentorshipList">
               <td>{{tm.TeamMember.LastFirstName}}</td>
-              <td>remove</td>
+              <td><i class="fa fa-times" (click)="removeMentorship(tm.MentorshipId)" aria-hidden="true" style="color: red;"></i></td>
             </tr>
           </tbody>
         </table>
