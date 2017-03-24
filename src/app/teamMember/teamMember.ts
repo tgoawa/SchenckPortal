@@ -9,6 +9,7 @@ export interface TeamMember {
     IndustryTeams: string[];
     IsChargable: boolean;
     IsCoach: boolean;
+    IsMentor: boolean;
     IndustryTeam1: number;
     IndustryTeam2: number;
     IndustryTeam3: number;

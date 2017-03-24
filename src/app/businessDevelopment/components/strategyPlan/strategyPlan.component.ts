@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import { StrategyPlanService, DropDownDataService } from '../../services';
-import { TeamMemberService } from '../../../teamMember/teamMember.service';
+import { TeamMemberService, TeamMember } from '../../../teamMember/';
 import { IStrategyPlan, DropDownData } from '../../models';
 
 @Component({
@@ -20,9 +20,10 @@ export class StrategyPlanComponent implements OnInit {
   private startPlanMode = false;
   private currentPlanMode = false;
   private newActionItemMode = false;
+  private mentorMode = false;
   private strategyPlanForm: FormGroup;
   private currentPlanForm: FormGroup;
-  private teamMemberId: number;
+  private teamMember: TeamMember;
   private marketingMemberId: number;
   private currentStrategyPlan: IStrategyPlan;
   private knownAsLookup: DropDownData[];
@@ -34,7 +35,7 @@ export class StrategyPlanComponent implements OnInit {
     private teamMemberService: TeamMemberService) { }
 
   ngOnInit() {
-    this.teamMemberId = this.teamMemberService.teamMember.TeamMemberId;
+    this.teamMember = this.teamMemberService.teamMember;
     this.getKnownAsData();
     this.getCurrentPlan();
   }
@@ -46,7 +47,7 @@ export class StrategyPlanComponent implements OnInit {
       this.startPlanMode = true;
       this.strategyPlanForm = this.fb.group({
         PlanId: [0],
-        TeamMemberId: [this.teamMemberId],
+        TeamMemberId: [this.teamMember.TeamMemberId],
         MarketingMemberId: [1001],
         Title: ['', [Validators.required, Validators.maxLength(75)]],
         KnownAsId: [''],
@@ -85,13 +86,17 @@ export class StrategyPlanComponent implements OnInit {
   }
 
   getCurrentPlan() {
-    this.strategyPlanService.getPlan(this.teamMemberId)
+    if (this.isMentor) {
+      this.mentorMode = true;
+    } else {
+      this.strategyPlanService.getPlan(this.teamMember.TeamMemberId)
       .then(data => {
         console.log(data);
         this.currentStrategyPlan = data;
         this.displayCurrentPlan();
       })
       .catch(this.handleError);
+    }
   }
 
   displayCurrentPlan() {
@@ -104,6 +109,10 @@ export class StrategyPlanComponent implements OnInit {
     this.strategyPlanService.updatePlan(value)
     .then(data => this.currentStrategyPlan = data)
     .catch(this.handleError);
+  }
+
+  isMentor(): boolean {
+    return this.teamMember.IsMentor;
   }
 
   isCurrentPlanAvailable(): boolean {
