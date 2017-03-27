@@ -17,7 +17,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form novalidate (ngSubmit)="addActionItem()" [formGroup]="actionItemForm">
+        <form novalidate (ngSubmit)="addActionItem(actionItemForm.value)" [formGroup]="actionItemForm">
           <div class="modal-body">
           <div class="form-group">
             <label for="strategyActionItem">Details</label>

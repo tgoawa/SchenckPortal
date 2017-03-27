@@ -29,7 +29,8 @@ export class ActionItemsComponent implements OnInit {
     this.actionItemModal.hide();
   }
 
-  addActionItem() {
+  addActionItem(value) {
+    console.log(value);
     //call service to add new action item
   }
 
