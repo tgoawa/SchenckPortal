@@ -1,3 +1,5 @@
+import { IStrategyEvent } from './';
+
 export interface IStrategyPlan {
     PlanId: number;
     TeamMemberId: number;
@@ -7,4 +9,5 @@ export interface IStrategyPlan {
     Famous: string;
     DisplayDateCreated: string;
     DisplayDateModified: string;
+    StrategyEvents: IStrategyEvent[];
 }
