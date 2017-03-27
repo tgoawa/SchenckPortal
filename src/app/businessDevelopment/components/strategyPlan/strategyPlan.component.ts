@@ -47,6 +47,9 @@ export class StrategyPlanComponent implements OnInit {
     if (this.isMentor(teamMember)) {
       this.mentorView = true;
       this.getMentorshipList(teamMember.TeamMemberId);
+    } else {
+      this.mentorView = false;
+      this.getPlan(teamMember.TeamMemberId);
     }
   }
 
