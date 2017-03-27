@@ -59,7 +59,6 @@ export class StrategyPlanComponent implements OnInit {
     this.adminService.getMentorshipList(mentorId)
       .then((data: IMentor[]) => {
         this.mentorshipList = data;
-        console.log(data);
       })
       .catch(this.handleError);
   }
@@ -78,7 +77,6 @@ export class StrategyPlanComponent implements OnInit {
   getPlan(teamMemberId: number) {
     this.strategyPlanService.getPlan(teamMemberId)
       .then((data: IStrategyPlan) => {
-        console.log(data);
         this.currentPlan = data;
         if (this.currentPlan.PlanId === 0) {
           this.currentPlan.TeamMemberId = teamMemberId;
@@ -112,6 +110,7 @@ export class StrategyPlanComponent implements OnInit {
  createPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
     this.strategyPlanService.createPlan(value)
       .then((data: IStrategyPlan) => {
+        console.log(data);
         this.currentPlan = data;
         this.setPlanForm(this.currentPlan);
       })

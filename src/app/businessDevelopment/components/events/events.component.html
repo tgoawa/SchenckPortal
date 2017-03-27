@@ -21,10 +21,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let event of currentEvents">
-              <td>{{event.Name}}</td>
-              <td>{{event.ScheduledDate}}</td>
-              <td>{{event.Description}}</td>
-              <td>{{event.StatusId}}</td>
+              <td>{{event?.Name}}</td>
+              <td>{{event?.ScheduledDate}}</td>
+              <td>{{event?.Description}}</td>
+              <td>{{event?.StatusId}}</td>
               <td>edit</td>
             </tr> 
           </tbody>
