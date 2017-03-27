@@ -9,10 +9,12 @@ export class StrategyEventService {
 
   private environmentName = environment.envApi;
   private baseUrl = this.environmentName + 'schencksolutions.com:1016/StrategyPlanService/';
+ // private baseUrl = 'localhost:11585/schencksolutions.com:1016/StrategyPlanService/';
 
   constructor(private http: Http) { }
 
   createEvent(strategyEvent: IStrategyEvent) {
+    console.log(strategyEvent);
     return this.http.post(this.baseUrl + 'SaveStrategyEvent/', strategyEvent)
     .toPromise()
     .then((response: Response) => response.json())
