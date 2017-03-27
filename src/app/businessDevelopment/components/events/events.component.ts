@@ -44,7 +44,10 @@ export class EventsComponent implements OnInit {
     let eventId = this.eventForm.get('EventId').value;
     if (eventId === 0) {
       this.eventService.createEvent(value)
-      .then(data => this.currentEvents = data)
+      .then(data => {
+        this.currentEvents.push(data);
+        this.existingEvents = true;
+      })
       .catch(this.handleError);
       this.hideEventModal();
       this.eventForm.reset();
