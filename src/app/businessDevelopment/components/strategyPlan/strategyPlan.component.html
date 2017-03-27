@@ -57,12 +57,12 @@
         </form>
       </div>
     </div>
-    <section>
-      <app-action-items [currentPlanId]="currentStrategyPlan?.PlanId"></app-action-items>
+    <section *ngIf="planExists">
+      <app-action-items [currentPlanId]="currentPlan.PlanId"></app-action-items>
       <!--<app-events 
-      [currentPlanId]="currentStrategyPlan?.PlanId"
-      [currentEvents]="currentStrategyPlan?.StrategyEvents"></app-events>
-      <app-client-contacts [currentPlanId]="currentStrategyPlan?.PlanId"></app-client-contacts>-->
+      [currentPlanId]="currentPlan.PlanId"
+      [currentEvents]="currentPlan.StrategyEvents"></app-events>
+      <app-client-contacts [currentPlanId]="currentPlan.PlanId"></app-client-contacts>-->
     </section>
     </div>
   </div>

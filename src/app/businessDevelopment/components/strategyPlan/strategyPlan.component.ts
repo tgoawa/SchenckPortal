@@ -25,7 +25,7 @@ export class StrategyPlanComponent implements OnInit {
   private planExists = false;
   private mentorshipList: IMentor[];
   private strategyPlanForm: FormGroup;
-  private currentPlanId: number;
+  private currentPlan: IStrategyPlan;
 
   constructor(private fb: FormBuilder,
     private dropDownData: DropDownDataService,
@@ -87,8 +87,10 @@ export class StrategyPlanComponent implements OnInit {
       KnownAsId: [plan.KnownAsId],
       Famous: [plan.Famous, Validators.maxLength(200)]
     });
-    this.currentPlanId = this.strategyPlanForm.get('PlanId').value;
-    if (this.currentPlanId > 0) {
+
+    this.currentPlan = this.strategyPlanForm.value;
+
+    if (this.currentPlan.PlanId > 0) {
       this.planExists = true;
       this.formTitle = 'Update';
     };
