@@ -106,17 +106,17 @@ export class StrategyPlanComponent implements OnInit {
   }
 
   createPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
-    this.strategyPlanService.createPlan(value)
+    if (value.PlanId === 0) {
+      this.strategyPlanService.createPlan(value)
       .then((data: IStrategyPlan) => this.displayCurrentPlan(data))
       .catch(this.handleError);
-  }
-
-  editPlan({value, valid}: { value: IStrategyPlan, valid: boolean }) {
-    this.strategyPlanService.updatePlan(value)
+    } else {
+      this.strategyPlanService.updatePlan(value)
     .then(data => this.currentStrategyPlan = data)
     .catch(this.handleError);
+    }
   }
-
+  
   isMentor(teamMember): boolean {
     return this.teamMember.IsMentor;
   }
