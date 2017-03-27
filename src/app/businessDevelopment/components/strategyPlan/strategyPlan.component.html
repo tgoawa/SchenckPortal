@@ -8,7 +8,7 @@
         <h1>Individual Business Development Plan</h1>
       </div>
     </div>
-    <div class="row" style="margin-top: 20px" *ngIf="mentorMode">
+    <div class="row" style="margin-top: 20px" *ngIf="mentorView">
       <div class="col-md-6">
         <h2>Teammembers currently mentoring</h2>
         <table class="table table-striped table-sm">
@@ -21,19 +21,19 @@
           <tbody>
             <tr *ngFor="let tm of mentorshipList">
               <td>{{tm.TeamMember.LastFirstName}}</td>
-              <td><span class="cursor" (click)="viewPlan(tm.TeamMember.TeamMemberId)">View Plan</span></td>
+              <td><span class="cursor" (click)="viewMenteePlan(tm.TeamMember.TeamMemberId)">View Plan</span></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div *ngIf="planMode">
+    <div *ngIf="planView">
     <div class="row" style="margin-top: 20px">
       <div class="col-md-12">
         <button class="btn btn-schenck" (click)=startNewPlan()>Start New Plan</button>
       </div>
     </div>
-    <div class="row" style="margin-top: 20px" *ngIf="displayPlanHeader">
+    <div class="row" style="margin-top: 20px">
       <div class="col-md-12">
         <form novalidate (ngSubmit)="createPlan(strategyPlanForm)" [formGroup]="strategyPlanForm">
           <div class="form-group">
@@ -57,12 +57,12 @@
         </form>
       </div>
     </div>
-    <section *ngIf="currentPlanMode">
+    <section>
       <app-action-items [currentPlanId]="currentStrategyPlan?.PlanId"></app-action-items>
-      <app-events 
+      <!--<app-events 
       [currentPlanId]="currentStrategyPlan?.PlanId"
       [currentEvents]="currentStrategyPlan?.StrategyEvents"></app-events>
-      <app-client-contacts [currentPlanId]="currentStrategyPlan?.PlanId"></app-client-contacts>
+      <app-client-contacts [currentPlanId]="currentStrategyPlan?.PlanId"></app-client-contacts>-->
     </section>
     </div>
   </div>

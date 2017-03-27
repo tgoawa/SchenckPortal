@@ -17,19 +17,15 @@ export class StrategyPlanComponent implements OnInit {
 
   sideMenuItemId = 2; //Tell side menu the active menu index
 
-  private mentorMode = false;
-  private planMode = false;
-  private displayPlanHeader = false;
-  private strategyPlanForm: FormGroup;
   private teamMember: TeamMember;
-  private marketingMemberId: number;
-  private currentStrategyPlan: IStrategyPlan;
   private knownAsLookup: DropDownData[];
-  private mentorshipList: IMentor[];
-  private menteeId: number;
-  private mentorId = 0;
   private formTitle = 'Create';
-
+  private mentorView = false;
+  private planView = false;
+  private planExists = false;
+  private mentorshipList: IMentor[];
+  private strategyPlanForm: FormGroup;
+  private currentPlanId: number;
 
   constructor(private fb: FormBuilder,
     private dropDownData: DropDownDataService,
@@ -43,30 +39,46 @@ export class StrategyPlanComponent implements OnInit {
     this.setView(this.teamMember);
   }
 
+  isMentor(teamMember: TeamMember) {
+    return teamMember.IsMentor;
+  }
+
   setView(teamMember: TeamMember) {
     if (this.isMentor(teamMember)) {
+      this.mentorView = true;
       this.getMentorshipList(teamMember.TeamMemberId);
-      this.mentorId = this.teamMember.TeamMemberId;
-      this.mentorMode = true;
-    } else {
-      this.getPlan(teamMember.TeamMemberId);
-      this.planMode = true;
     }
   }
 
-  startNewPlan() {
-    if (this.strategyPlanForm !== undefined) {
-      this.showConfirmModal();
-    } else {
-      this.displayPlanHeader = true;
-      this.formTitle = 'Create';
-      this.setForm();
-    }
+  getMentorshipList(mentorId: number) {
+    this.adminService.getMentorshipList(mentorId)
+      .then((data: IMentor[]) => {
+        this.mentorshipList = data;
+      })
+      .catch(this.handleError);
   }
 
-  startEditPlan(plan: IStrategyPlan) {
-    this.displayPlanHeader = true;
-    this.formTitle = 'Update';
+  viewMenteePlan(teamMemberId: number) {
+    this.getPlan(teamMemberId);
+  }
+
+  getKnownAsData(): DropDownData[] {
+    this.dropDownData.getKnownAs()
+      .then(data => this.knownAsLookup = data)
+      .catch(this.handleError);
+    return this.knownAsLookup;
+  }
+
+  getPlan(teamMemberId: number) {
+    this.strategyPlanService.getPlan(teamMemberId)
+      .then((data: IStrategyPlan) => {
+        this.setPlanForm(data);
+      })
+      .catch(this.handleError);
+  }
+
+  setPlanForm(plan: IStrategyPlan) {
+    this.planView = true;
     this.strategyPlanForm = this.fb.group({
       PlanId: [plan.PlanId],
       TeamMemberId: [plan.TeamMemberId],
@@ -75,79 +87,11 @@ export class StrategyPlanComponent implements OnInit {
       KnownAsId: [plan.KnownAsId],
       Famous: [plan.Famous, Validators.maxLength(200)]
     });
-  }
-
-  getKnownAsData(): DropDownData[] {
-      this.dropDownData.getKnownAs()
-        .then(data => this.knownAsLookup = data)
-        .catch(this.handleError);
-    return this.knownAsLookup;
-  }
-
-  getPlan(teamMemberId: number)  {
-    this.strategyPlanService.getPlan(teamMemberId)
-    .then((data: IStrategyPlan) => {
-      this.currentStrategyPlan = data;
-       this.displayCurrentPlan(data);
-    })
-    .catch(this.handleError);
-  }
-
-  getMentorshipList(teamMemberId: number) {
-    this.adminService.getMentorshipList(teamMemberId)
-    .then((data: IMentor[]) => this.mentorshipList = data)
-    .catch(this.handleError);
-  }
-
-  displayCurrentPlan(plan: IStrategyPlan) {
-    if (this.isCurrentPlanAvailable(plan)) {
-      this.startEditPlan(plan);
-    }
-  }
-
-  createPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
-    if (value.PlanId === 0) {
-      this.strategyPlanService.createPlan(value)
-      .then((data: IStrategyPlan) => this.displayCurrentPlan(data))
-      .catch(this.handleError);
-    } else {
-      this.strategyPlanService.updatePlan(value)
-    .then(data => this.currentStrategyPlan = data)
-    .catch(this.handleError);
-    }
-  }
-  
-  isMentor(teamMember): boolean {
-    return this.teamMember.IsMentor;
-  }
-
-  isCurrentPlanAvailable(plan: IStrategyPlan): boolean {
-    return plan.PlanId > 0;
-  }
-
-  showConfirmModal() {
-    this.savePlanModal.show();
-  }
-
-  hideConfirmModal() {
-    this.savePlanModal.hide();
-  }
-
-  viewPlan(menteeId: number) {
-    this.menteeId = menteeId;
-    this.planMode = true;
-    this.getPlan(this.menteeId);
-  }
-
-  setForm() {
-    this.strategyPlanForm = this.fb.group({
-        PlanId: [0],
-        TeamMemberId: [this.menteeId],
-        MarketingMemberId: [this.mentorId],
-        Title: ['', [Validators.required, Validators.maxLength(75)]],
-        KnownAsId: [''],
-        Famous: ['', Validators.maxLength(200)]
-      });
+    this.currentPlanId = this.strategyPlanForm.get('PlanId').value;
+    if (this.currentPlanId > 0) {
+      this.planExists = true;
+      this.formTitle = 'Update';
+    };
   }
 
   private handleError(error: any) {
