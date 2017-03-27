@@ -102,6 +102,21 @@ export class StrategyPlanComponent implements OnInit {
     }
   }
 
+  newPlan() {
+    if (this.currentPlan.PlanId > 0) {
+      this.showConfirmModal();
+    } else {
+      //confirm plan functionality
+    }
+  }
+
+  showConfirmModal() {
+    this.savePlanModal.show();
+  }
+
+  hideConfirmModal() {
+    this.savePlanModal.hide();
+  }
   private handleError(error: any) {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
