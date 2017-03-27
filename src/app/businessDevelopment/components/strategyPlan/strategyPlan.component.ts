@@ -93,7 +93,10 @@ export class StrategyPlanComponent implements OnInit {
     if (this.currentPlan.PlanId > 0) {
       this.planExists = true;
       this.formTitle = 'Update';
-    };
+    } else {
+      this.planExists = false;
+      this.formTitle = 'Create';
+    }
   }
 
   private handleError(error: any) {
