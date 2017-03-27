@@ -55,7 +55,7 @@ export class StrategyPlanComponent implements OnInit {
   }
 
   startPlanButton() {
-    if (this.strategyPlanForm.get('PlanId').value > 0) {
+    if (this.strategyPlanForm !== undefined) {
       this.showConfirmModal();
     } else {
       this.displayPlanHeader = true;
@@ -87,6 +87,7 @@ export class StrategyPlanComponent implements OnInit {
   getPlan(teamMemberId: number)  {
     this.strategyPlanService.getPlan(teamMemberId)
     .then((data: IStrategyPlan) => {
+      this.currentStrategyPlan = data;
        this.displayCurrentPlan(data);
     })
     .catch(this.handleError);
