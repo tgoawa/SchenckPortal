@@ -28,7 +28,6 @@ export class EventsComponent implements OnInit {
     this.getStatusData();
     this.isExistingEvents();
     this.newEventItemForm();
-    console.log(this.currentPlanId);
   }
 
   showEventModal() {
