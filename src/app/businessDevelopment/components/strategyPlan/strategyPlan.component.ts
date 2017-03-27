@@ -54,7 +54,7 @@ export class StrategyPlanComponent implements OnInit {
     }
   }
 
-  startPlanButton() {
+  startNewPlan() {
     if (this.strategyPlanForm !== undefined) {
       this.showConfirmModal();
     } else {
