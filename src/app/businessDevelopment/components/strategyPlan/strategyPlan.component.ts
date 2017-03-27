@@ -26,6 +26,7 @@ export class StrategyPlanComponent implements OnInit {
   private mentorshipList: IMentor[];
   private strategyPlanForm: FormGroup;
   private currentPlan: IStrategyPlan;
+  private mentorId: number;
 
   constructor(private fb: FormBuilder,
     private dropDownData: DropDownDataService,
@@ -47,6 +48,7 @@ export class StrategyPlanComponent implements OnInit {
     if (this.isMentor(teamMember)) {
       this.mentorView = true;
       this.getMentorshipList(teamMember.TeamMemberId);
+      this.mentorId = teamMember.TeamMemberId;
     } else {
       this.mentorView = false;
       this.getPlan(teamMember.TeamMemberId);
@@ -57,6 +59,7 @@ export class StrategyPlanComponent implements OnInit {
     this.adminService.getMentorshipList(mentorId)
       .then((data: IMentor[]) => {
         this.mentorshipList = data;
+        console.log(data);
       })
       .catch(this.handleError);
   }
@@ -75,8 +78,13 @@ export class StrategyPlanComponent implements OnInit {
   getPlan(teamMemberId: number) {
     this.strategyPlanService.getPlan(teamMemberId)
       .then((data: IStrategyPlan) => {
+        console.log(data);
         this.currentPlan = data;
-        this.setPlanForm(data);
+        if (this.currentPlan.PlanId === 0) {
+          this.currentPlan.TeamMemberId = teamMemberId;
+          this.currentPlan.MarketingMemberId = this.mentorId;
+        }
+        this.setPlanForm(this.currentPlan);
       })
       .catch(this.handleError);
   }
@@ -99,6 +107,15 @@ export class StrategyPlanComponent implements OnInit {
       this.planExists = false;
       this.formTitle = 'Create';
     }
+  }
+
+ createPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
+    this.strategyPlanService.createPlan(value)
+      .then((data: IStrategyPlan) => {
+        this.currentPlan = data;
+        this.setPlanForm(this.currentPlan);
+      })
+      .catch(this.handleError);
   }
 
   newPlan() {
