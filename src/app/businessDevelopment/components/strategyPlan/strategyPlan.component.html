@@ -59,10 +59,10 @@
     </div>
     <section *ngIf="planExists">
       <app-action-items [currentPlanId]="currentPlan.PlanId"></app-action-items>
-      <!--<app-events 
-      [currentPlanId]="currentPlan.PlanId"
-      [currentEvents]="currentPlan.StrategyEvents"></app-events>
-      <app-client-contacts [currentPlanId]="currentPlan.PlanId"></app-client-contacts>-->
+      <app-events 
+      [currentPlanId]="currentPlan?.PlanId"
+      [currentEvents]="currentPlan?.StrategyEvents"></app-events>
+      <app-client-contacts [currentPlanId]="currentPlan?.PlanId"></app-client-contacts>
     </section>
     </div>
   </div>

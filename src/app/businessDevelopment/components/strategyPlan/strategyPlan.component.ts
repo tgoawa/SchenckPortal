@@ -75,6 +75,7 @@ export class StrategyPlanComponent implements OnInit {
   getPlan(teamMemberId: number) {
     this.strategyPlanService.getPlan(teamMemberId)
       .then((data: IStrategyPlan) => {
+        this.currentPlan = data;
         this.setPlanForm(data);
       })
       .catch(this.handleError);
@@ -90,8 +91,6 @@ export class StrategyPlanComponent implements OnInit {
       KnownAsId: [plan.KnownAsId],
       Famous: [plan.Famous, Validators.maxLength(200)]
     });
-
-    this.currentPlan = this.strategyPlanForm.value;
 
     if (this.currentPlan.PlanId > 0) {
       this.planExists = true;
