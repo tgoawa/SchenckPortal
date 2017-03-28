@@ -3,7 +3,7 @@
     <h2>Strategy Event</h2>
   </div>
   <div class="col-md-1">
-    <button class="btn btn-success" (click)="showEventModal()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    <button class="btn btn-success" (click)="newEvent()"><i class="fa fa-plus" aria-hidden="true"></i></button>
   </div>
 </div>
 
@@ -25,7 +25,7 @@
               <td>{{event?.ScheduledDate}}</td>
               <td>{{event?.Description}}</td>
               <td>{{event?.StatusId}}</td>
-              <td>edit</td>
+              <td><span class="cursor" (click)="editEvent(event)">edit</span></td>
             </tr> 
           </tbody>
         </table>
@@ -33,7 +33,7 @@
 </div>
 
 <!--create new Event Item modal -->
-<div bsModal #createEventItem="bs-modal" class="modal fade">
+<div bsModal #EventItemModal="bs-modal" class="modal fade">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
