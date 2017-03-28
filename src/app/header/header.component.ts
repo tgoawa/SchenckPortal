@@ -9,10 +9,16 @@ import { TeamMember } from '../teamMember/';
 export class HeaderComponent implements OnInit {
 
   @Input() teamMember: TeamMember;
+  private marketingAdmin = false;
   constructor() { }
 
   ngOnInit() {
-    console.log(this.teamMember);
+    this.isMentor();
   }
 
+  isMentor() {
+    if (this.teamMember.IsMentor = true) {
+      this.marketingAdmin = true;
+    }
+  }
 }
