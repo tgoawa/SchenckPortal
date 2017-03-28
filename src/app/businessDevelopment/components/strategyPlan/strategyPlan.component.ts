@@ -27,6 +27,7 @@ export class StrategyPlanComponent implements OnInit {
   private strategyPlanForm: FormGroup;
   private currentPlan: IStrategyPlan;
   private mentorId: number;
+  private currentTeamMember: string;
 
   constructor(private fb: FormBuilder,
     private dropDownData: DropDownDataService,
@@ -63,8 +64,9 @@ export class StrategyPlanComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  viewMenteePlan(teamMemberId: number) {
-    this.getPlan(teamMemberId);
+  viewMenteePlan(teamMember: TeamMember) {
+    this.getPlan(teamMember.TeamMemberId);
+    this.currentTeamMember = teamMember.LastFirstName;
   }
 
   getKnownAsData(): DropDownData[] {

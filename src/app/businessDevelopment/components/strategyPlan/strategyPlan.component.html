@@ -21,13 +21,18 @@
           <tbody>
             <tr *ngFor="let tm of mentorshipList">
               <td>{{tm.TeamMember.LastFirstName}}</td>
-              <td><span class="cursor" (click)="viewMenteePlan(tm.TeamMember.TeamMemberId)">View Plan</span></td>
+              <td><span class="cursor" (click)="viewMenteePlan(tm.TeamMember)">View Plan</span></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
     <div *ngIf="planView">
+      <div class="row" *ngIf="mentorView" style="margin-top: 20px">
+        <div class="col-md-6 offset-md-4">
+          <h2>Viewing plan of: {{currentTeamMember}}</h2>
+        </div>
+      </div>
     <div class="row" style="margin-top: 20px">
       <div class="col-md-12">
         <button class="btn btn-schenck" (click)=newPlan()>Start New Plan</button>
