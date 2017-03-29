@@ -51,6 +51,8 @@ import { ActionItemsComponent } from './businessDevelopment/components/actionIte
 import { EventsComponent } from './businessDevelopment/components/events/events.component';
 import { ClientContactsComponent } from './businessDevelopment/components/clientContacts/clientContacts.component';
 import { MarketingAdminComponent } from './businessDevelopment/components/marketingAdmin/marketingAdmin.component';
+import { OutreachInterestsComponent } from './businessDevelopment/components/outreachAndInterests/outreachAndInterests.component';
+
 
 
 
@@ -76,7 +78,8 @@ import { MarketingAdminComponent } from './businessDevelopment/components/market
     ActionItemsComponent,
     EventsComponent,
     ClientContactsComponent,
-    MarketingAdminComponent
+    MarketingAdminComponent,
+    OutreachInterestsComponent,
   ],
   imports: [
     BrowserModule,
