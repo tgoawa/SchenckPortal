@@ -119,6 +119,11 @@ export class StrategyPlanComponent implements OnInit {
       .catch(this.handleError);
   }
 
+  completePlan(planId: number) {
+    this.strategyPlanService.completePlan(planId);
+    this.hideConfirmModal();
+  }
+
   newPlan() {
     if (this.currentPlan.PlanId > 0) {
       this.showConfirmModal();
