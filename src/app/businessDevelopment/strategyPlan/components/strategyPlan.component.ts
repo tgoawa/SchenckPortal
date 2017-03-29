@@ -98,7 +98,7 @@ export class StrategyPlanComponent implements OnInit {
     this.strategyPlanForm = this.fb.group({
       PlanId: [plan.PlanId],
       TeamMemberId: [plan.TeamMemberId],
-      MarketingMemberId: [plan.MarketingMemberId],
+      MarketingMemberId: 100,
       Title: [plan.Title, [Validators.required, Validators.maxLength(75)]],
       KnownAsId: [plan.KnownAsId],
       Famous: [plan.Famous, Validators.maxLength(200)]
@@ -123,10 +123,11 @@ export class StrategyPlanComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  completePlan(planId: number) {
-    this.strategyPlanService.completePlan(planId);
-    this.hideConfirmModal();
-  }
+  // completePlan(planId: number) {
+  //   this.strategyPlanService.completePlan(planId)
+  //   .then(this.getPlan())
+  //   this.hideConfirmModal();
+  // }
 
   newPlan() {
     if (this.currentPlan.PlanId > 0) {

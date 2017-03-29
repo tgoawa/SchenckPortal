@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.teamMember = this.route.snapshot.data['teamMemberData'];
     this.teamMemberService.teamMember = this.teamMember;
+    console.log(this.teamMember);
   }
 
 }
