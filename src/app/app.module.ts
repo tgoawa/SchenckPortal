@@ -46,12 +46,12 @@ import { LoginService } from './login/services/login.service';
 import { TeamMemberService, TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
-import { StrategyPlanComponent } from './businessDevelopment/components/strategyPlan/strategyPlan.component';
-import { ActionItemsComponent } from './businessDevelopment/components/actionItems/actionItems.component';
-import { EventsComponent } from './businessDevelopment/components/events/events.component';
-import { ClientContactsComponent } from './businessDevelopment/components/clientContacts/clientContacts.component';
-import { MarketingAdminComponent } from './businessDevelopment/components/marketingAdmin/marketingAdmin.component';
-import { OutreachInterestsComponent } from './businessDevelopment/components/outreachAndInterests/outreachAndInterests.component';
+import { StrategyPlanComponent } from './businessDevelopment/strategyPlan/strategyPlan.component';
+import { ActionItemsComponent } from './businessDevelopment/actionItems/actionItems.component';
+import { EventsComponent } from './businessDevelopment/events/events.component';
+import { ClientContactsComponent } from './businessDevelopment/clientContacts/clientContacts.component';
+import { MarketingAdminComponent } from './businessDevelopment/marketingAdmin/marketingAdmin.component';
+import { OutreachInterestsComponent } from './businessDevelopment/outreachAndInterests/outreachAndInterests.component';
 
 
 
