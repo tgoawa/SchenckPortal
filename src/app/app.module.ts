@@ -26,10 +26,10 @@ import { ClientTierListComponent } from './tiering/components/client-tier-list/c
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/clientTierDetails.component';
 
 import { ClientTierListService, ClientTierAnalysisService, ClientTierScoreService } from './tiering/services/';
-import { StrategyPlanService,
-        DropDownDataService,
-        StrategyEventService,
-        MarketingAdminService } from './businessDevelopment/services';
+import { StrategyPlanService } from './businessDevelopment/strategyPlan/services/strategyPlan.service';
+import { DropDownDataService } from './businessDevelopment/planLookups/services/dropDownData.service';
+import { StrategyEventService } from './businessDevelopment/events/services/strategyEvent.service';
+import { MarketingAdminService } from './businessDevelopment/marketingAdmin/services/marketingAdmin.service';
 
 import { ClientTierMetricHelper } from './tiering/helpers/';
 import { ClientTierResolver,
@@ -46,12 +46,12 @@ import { LoginService } from './login/services/login.service';
 import { TeamMemberService, TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
-import { StrategyPlanComponent } from './businessDevelopment/strategyPlan/strategyPlan.component';
-import { ActionItemsComponent } from './businessDevelopment/actionItems/actionItems.component';
-import { EventsComponent } from './businessDevelopment/events/events.component';
-import { ClientContactsComponent } from './businessDevelopment/clientContacts/clientContacts.component';
-import { MarketingAdminComponent } from './businessDevelopment/marketingAdmin/marketingAdmin.component';
-import { OutreachInterestsComponent } from './businessDevelopment/outreachAndInterests/outreachAndInterests.component';
+import { StrategyPlanComponent } from './businessDevelopment/strategyPlan/components/strategyPlan.component';
+import { ActionItemsComponent } from './businessDevelopment/actionItems/components/actionItems.component';
+import { EventsComponent } from './businessDevelopment/events/components/events.component';
+import { ClientContactsComponent } from './businessDevelopment/clientContacts/components/clientContacts.component';
+import { MarketingAdminComponent } from './businessDevelopment/marketingAdmin/components/marketingAdmin.component';
+import { OutreachInterestsComponent } from './businessDevelopment/outreachAndInterests/components/outreachAndInterests.component';
 
 
 

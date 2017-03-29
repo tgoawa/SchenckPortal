@@ -3,9 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
-import { StrategyPlanService, DropDownDataService, MarketingAdminService } from '../../services';
+import { StrategyPlanService } from '../services/strategyPlan.service';
+import { DropDownDataService } from '../../planLookups/services/dropDownData.service';
+import { MarketingAdminService } from '../../marketingAdmin/services/marketingAdmin.service';
 import { TeamMemberService, TeamMember } from '../../../teamMember/';
-import { IStrategyPlan, DropDownData, IMentor } from '../../models';
+import { IStrategyPlan } from '../models/strategyPlan.model';
+import { DropDownData } from '../../planLookups/models/dropDownData.model';
+import { IMentor } from '../../marketingAdmin/models/mentor.dto';
 
 @Component({
   selector: 'app-strategy-plan',

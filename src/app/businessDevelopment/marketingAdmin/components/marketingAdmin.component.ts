@@ -3,8 +3,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TeamMemberService, TeamMember } from '../../../teamMember/';
-import { MarketingAdminService } from '../../services/';
-import { MentorDTO, IMentor } from '../../models/';
+import { MarketingAdminService } from '../services/marketingAdmin.service';
+import { MentorDTO, IMentor } from '../models/mentor.dto';
 
 @Component({
   selector: 'app-marketing-admin',

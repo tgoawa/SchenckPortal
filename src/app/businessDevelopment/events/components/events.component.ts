@@ -2,11 +2,10 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ModalDirective } from 'ng2-bootstrap/modal';
-import {
-  DropDownDataService,
-  StrategyEventService
-} from '../../services/';
-import { IStrategyEvent, DropDownData } from '../../models/';
+import { DropDownDataService } from '../../planLookups/services/dropDownData.service';
+import { IStrategyEvent } from '../models/strategyEvent.model';
+import { StrategyEventService } from '../services/strategyEvent.service';
+import { DropDownData } from '../../planLookups/models/dropDownData.model';
 
 @Component({
   selector: 'app-events',
