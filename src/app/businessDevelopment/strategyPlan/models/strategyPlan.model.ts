@@ -1,4 +1,4 @@
-import { IStrategyEvent } from './';
+import { IStrategyEvent } from '../../events/models/strategyEvent.model';
 
 export interface IStrategyPlan {
     PlanId: number;

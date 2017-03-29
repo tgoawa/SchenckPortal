@@ -15,8 +15,8 @@ import {
     TierScoreResolver
 } from './tiering/resolver/';
 
-import { StrategyPlanComponent } from './businessDevelopment/components/strategyPlan/strategyPlan.component';
-import { MarketingAdminComponent } from './businessDevelopment/components/marketingAdmin/marketingAdmin.component';
+import { StrategyPlanComponent } from './businessDevelopment/strategyPlan/components/strategyPlan.component';
+import { MarketingAdminComponent } from './businessDevelopment/marketingAdmin/components/marketingAdmin.component';
 import { TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
