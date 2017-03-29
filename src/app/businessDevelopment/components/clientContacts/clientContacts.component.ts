@@ -11,9 +11,10 @@ import { ModalDirective } from 'ng2-bootstrap/modal';
 export class ClientContactsComponent implements OnInit {
   @ViewChild('clientRelationshipModal') public clientRelationshipModal: ModalDirective;
   @Input() private currentPlanId: number;
+  @Input() private currentRelationships: any[];
 
   private clientRelationshipForm: FormGroup;
-
+  private modalTitle = 'Create';
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -21,17 +22,28 @@ export class ClientContactsComponent implements OnInit {
   }
 
   newClientRelationshipForm() {
+    this.modalTitle = 'Create';
     this.clientRelationshipForm = this.fb.group({
+      PlanId: this.currentPlanId,
       RelationshipId: 0,
-      ClientName: [''],
-      Contact: [''],
-      RelationshipDetails: [''],
-      Date: ['']
+      ClientName: ['', Validators.required],
+      Contact: ['', Validators.required],
+      RelationshipDetails: ['', [Validators.required, Validators.maxLength(200)]],
+      Date: ['', Validators.required]
     });
   }
 
   editClientRelationship() {
-    // use setValue passing in the existing relationship item to set the form values
+    this.modalTitle = 'Update';
+    this.clientRelationshipForm = this.fb.group({
+      PlanId: this.currentPlanId,
+      RelationshipId: 0,
+      ClientName: ['', Validators.required],
+      Contact: ['', Validators.required],
+      RelationshipDetails: ['', [Validators.required, Validators.maxLength(200)]],
+      Date: ['', Validators.required]
+    });
+    this.showClientRelationship();
   }
 
   showClientRelationship() {
