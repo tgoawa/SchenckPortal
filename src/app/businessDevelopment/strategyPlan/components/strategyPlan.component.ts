@@ -23,10 +23,10 @@ export class StrategyPlanComponent implements OnInit {
 
   private teamMember: TeamMember;
   private knownAsLookup: DropDownData[];
-  private formTitle = 'Create';
-  private mentorView = false;
-  private planView = false;
-  private planExists = false;
+  private formTitle: string;
+  private isMentorView = false;
+  private isPlanView = false;
+  private isPlanExists = false;
   private mentorshipList: IMentor[];
   private strategyPlanForm: FormGroup;
   private currentPlan: IStrategyPlan;
@@ -45,20 +45,55 @@ export class StrategyPlanComponent implements OnInit {
     this.setView(this.teamMember);
   }
 
-  isMentor(teamMember: TeamMember) {
-    return teamMember.IsMentor;
+  // general view functionality
+
+  getKnownAsData(): DropDownData[] {
+    this.dropDownData.getKnownAs()
+      .then(data => this.knownAsLookup = data)
+      .catch(this.handleError);
+    return this.knownAsLookup;
   }
 
+  getPlan(teamMemberId: number) {
+    this.strategyPlanService.getPlan(teamMemberId)
+      .then((data: IStrategyPlan) => {
+        this.currentPlan = data;
+        this.determineFormToUse();
+        this.setPlanForm();
+      })
+      .catch(this.handleError);
+  }
+
+  showConfirmModal() {
+    this.savePlanModal.show();
+  }
+
+  hideConfirmModal() {
+    this.savePlanModal.hide();
+  }
+
+  // setup the view for mentor or teammember
   setView(teamMember: TeamMember) {
-    if (this.isMentor(teamMember)) {
-      this.mentorView = true;
-      this.getMentorshipList(teamMember.TeamMemberId);
-      this.mentorId = teamMember.TeamMemberId;
+    if (teamMember.IsMentor === true) {
+      this.mentorPage(teamMember);
     } else {
-      this.mentorView = false;
-      this.getPlan(teamMember.TeamMemberId);
+      this.teamMemberPage(teamMember);
     }
   }
+
+  mentorPage(teamMember: TeamMember) {
+    this.isMentorView = true;
+    this.getMentorshipList(teamMember.TeamMemberId);
+    this.mentorId = teamMember.TeamMemberId;
+  }
+
+  teamMemberPage(teamMember: TeamMember) {
+    this.isMentorView = false;
+    this.getPlan(teamMember.TeamMemberId);
+    this.mentorId = 0;
+  }
+
+  // Mentor view functionality
 
   getMentorshipList(mentorId: number) {
     this.adminService.getMentorshipList(mentorId)
@@ -73,77 +108,66 @@ export class StrategyPlanComponent implements OnInit {
     this.currentTeamMember = teamMember.LastFirstName;
   }
 
-  getKnownAsData(): DropDownData[] {
-    this.dropDownData.getKnownAs()
-      .then(data => this.knownAsLookup = data)
-      .catch(this.handleError);
-    return this.knownAsLookup;
-  }
+  // form functions
 
-  getPlan(teamMemberId: number) {
-    this.strategyPlanService.getPlan(teamMemberId)
-      .then((data: IStrategyPlan) => {
-        this.currentPlan = data;
-        if (this.currentPlan.PlanId === 0) {
-          this.currentPlan.TeamMemberId = teamMemberId;
-          this.currentPlan.MarketingMemberId = this.mentorId;
-        }
-        this.setPlanForm(this.currentPlan);
-      })
-      .catch(this.handleError);
-  }
-
-  setPlanForm(plan: IStrategyPlan) {
-    this.planView = true;
-    this.strategyPlanForm = this.fb.group({
-      PlanId: [plan.PlanId],
-      TeamMemberId: [plan.TeamMemberId],
-      MarketingMemberId: 100,
-      Title: [plan.Title, [Validators.required, Validators.maxLength(75)]],
-      KnownAsId: [plan.KnownAsId],
-      Famous: [plan.Famous, Validators.maxLength(200)]
-    });
-
+  determineFormToUse() {
     if (this.currentPlan.PlanId > 0) {
-      this.planExists = true;
+      this.isPlanView = true;
+      this.isPlanExists = true;
       this.formTitle = 'Update';
     } else {
-      this.planExists = false;
+      this.isPlanExists = false;
       this.formTitle = 'Create';
+      this.currentPlan.TeamMemberId = this.teamMember.TeamMemberId;
+      this.currentPlan.MarketingMemberId = this.mentorId;
     }
   }
 
- createPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
+  setPlanForm() {
+    this.strategyPlanForm = this.fb.group({
+      PlanId: [this.currentPlan.PlanId],
+      TeamMemberId: [this.currentPlan.TeamMemberId],
+      MarketingMemberId: [this.currentPlan.MarketingMemberId],
+      Title: [this.currentPlan.Title, [Validators.required, Validators.maxLength(75)]],
+      KnownAsId: [this.currentPlan.KnownAsId],
+      Famous: [this.currentPlan.Famous, Validators.maxLength(200)]
+    });
+  }
+
+  createPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
     this.strategyPlanService.createPlan(value)
       .then((data: IStrategyPlan) => {
         console.log(data);
         this.currentPlan = data;
-        this.setPlanForm(this.currentPlan);
+        this.determineFormToUse();
+        this.setPlanForm();
       })
       .catch(this.handleError);
   }
 
-  // completePlan(planId: number) {
-  //   this.strategyPlanService.completePlan(planId)
-  //   .then(this.getPlan())
-  //   this.hideConfirmModal();
-  // }
+  completePlan() {
+    this.strategyPlanService.completePlan(this.currentPlan.PlanId);
+    this.currentPlan.PlanId = 0;
+    this.isPlanView = false;
+    this.strategyPlanForm.reset();
+    this.hideConfirmModal();
+  }
 
   newPlan() {
     if (this.currentPlan.PlanId > 0) {
+      this.isFormDirty();
       this.showConfirmModal();
     } else {
-      //confirm plan functionality
+      this.isPlanView = true;
     }
   }
 
-  showConfirmModal() {
-    this.savePlanModal.show();
+  isFormDirty() {
+    if (this.strategyPlanForm.dirty === true) {
+      alert('Please save changes before proceeding');
+    }
   }
 
-  hideConfirmModal() {
-    this.savePlanModal.hide();
-  }
   private handleError(error: any) {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
