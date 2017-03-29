@@ -1,3 +1,56 @@
-<p>
-  outreach-interests works!
-</p>
+<div class="row" style="margin-top: 20px">
+  <div class="col-md-4">
+    <h2>Community Outreach and Interests</h2>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-success" (click)="showCommunityModal()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!--create new Community modal -->
+<div bsModal #communityModal="bs-modal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{modalTitle}} Community Outreach and Interests</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideCommunityModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <!--<form novalidate (ngSubmit)="addCommunityItem()" [formGroup]="communityForm">
+          <div class="modal-body">
+          <div class="form-group">
+            <label>Client</label>
+            <select class="form-control" formControlName="ClientName">
+            <option *ngFor="let item of Clients" [selected]="item.id == BusinessStrategy" [value]="item.id">{{item.IndustryValue}}</option>
+          </select>
+          <small class="form-text alert-danger" *ngIf="communityForm.get('ClientName').hasError('required') && communityForm.get('ClientName').touched">Name is required</small>
+          </div>
+          <div class="form-group">
+            <label>Contact</label>
+            <select class="form-control" formControlName="Contact">
+            <option *ngFor="let item of Contacts" [selected]="item.id == BusinessStrategy" [value]="item.id">{{item.IndustryValue}}</option>
+          </select>
+          <small class="form-text text-muted">If contact is not listed, the contact must be added in Sales Logix</small>
+          <small class="form-text alert-danger" *ngIf="communityForm.get('Contact').hasError('required') && communityForm.get('Contact').touched">Contact Name is required</small>
+          </div>
+          <div class="form-group">
+            <label>Business Strategy</label>
+            <textarea class="form-control" formControlName="RelationshipDetails"></textarea>
+            <small class="form-text alert-danger" *ngIf="communityForm.get('RelationshipDetails').hasError('required') && communityForm.get('RelationshipDetails').touched">Description is required</small>
+            <small class="form-text alert-danger" *ngIf="communityForm.get('RelationshipDetails').hasError('maxlength') && communityForm.get('RelationshipDetails').touched">Description is required</small>
+          </div>
+          <div class="form-group">
+            <label>Date:</label>
+            <input class="form-control" type="date" formControlName="Date">
+            <small class="form-text alert-danger" *ngIf="communityForm.get('Date').hasError('required') && communityForm.get('Date').touched">Date is required</small>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="communityForm.invalid" class="btn btn-schenck">Submit</button>
+        <button type="button" class="btn btn-danger" (click)="hideCommunityModal()">Cancel</button>
+      </div>
+      </form>-->
+    </div>
+  </div>
+</div>
