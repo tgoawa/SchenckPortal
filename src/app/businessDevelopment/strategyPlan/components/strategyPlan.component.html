@@ -27,17 +27,13 @@
         </table>
       </div>
     </div>
-    <div class="row" *ngIf="isMentorView" style="margin-top: 20px">
-      <div class="col-md-6 offset-md-4">
-        <h2>Viewing plan of: {{currentTeamMember}}</h2>
-      </div>
-    </div>
+    <div *ngIf="isPlanView">
     <div class="row" style="margin-top: 20px">
       <div class="col-md-12">
-        <button class="btn btn-schenck" (click)=newPlan()>Start New Plan</button>
+        <button *ngIf="isCreateForm" class="btn btn-schenck" (click)=newPlanButton()>Start New Plan</button>
+        <button *ngIf="isUpdateForm" class="btn btn-schenck" (click)=completePlanButton()>Complete Plan</button>
       </div>
     </div>
-    <div *ngIf="isPlanView">
       <div class="row" *ngIf="isMentorView" style="margin-top: 20px">
       <div class="col-md-12 text-center">
         <h2>Viewing plan of: {{currentTeamMember}}</h2>
@@ -49,7 +45,7 @@
         <h2 *ngIf="currentPlan?.MarketingMemberId !== 0">Plan Mentor: {{currentPlan?.Mentor.LastFirstName}}</h2>
       </div>
     </div>
-      <div class="row" style="margin-top: 20px">
+      <div class="row" *ngIf="isDisplayForm" style="margin-top: 20px">
         <div class="col-md-12">
           <span>Last Modfied: {{currentPlan?.DisplayDateModified}}</span>
         </div>
@@ -103,8 +99,30 @@
         <p>Are you sure you want to continue?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-schenck" (click)="completePlan()">Yes</button>
+        <button type="button" class="btn btn-schenck" (click)="confirmCompletePlan()">Yes</button>
         <button type="button" class="btn btn-danger" (click)="hideConfirmModal()">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--confirm dirty form modal -->
+<div bsModal #dirtyFormModal="bs-modal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Unsaved changes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideDirtyFormModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>There are unsaved changes to this plan.</p>
+        <p>Do you want to save them?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-schenck" (click)="confirmCompletePlan()">Yes</button>
+        <button type="button" class="btn btn-danger" (click)="hideDirtyFormModal()">No</button>
       </div>
     </div>
   </div>

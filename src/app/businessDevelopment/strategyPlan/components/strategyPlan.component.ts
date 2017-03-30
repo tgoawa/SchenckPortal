@@ -18,11 +18,13 @@ import { IMentor } from '../../marketingAdmin/models/mentor.dto';
 })
 export class StrategyPlanComponent implements OnInit {
   @ViewChild('savePlanModal') public savePlanModal: ModalDirective;
+  @ViewChild('dirtyFormModal') public dirtyFormModal: ModalDirective;
 
   sideMenuItemId = 2; //Tell side menu the active menu index
 
   private teamMember: TeamMember;
   private knownAsLookup: DropDownData[];
+  private isDisplayForm = false;
   private isUpdateForm = false;
   private isCreateForm = true;
   private isMentorView = false;
@@ -86,6 +88,7 @@ export class StrategyPlanComponent implements OnInit {
   mentorPage(teamMember: TeamMember) {
     this.isMentorView = true;
     this.isTeamMemberView = false;
+    this.isPlanView = false;
     this.getMentorshipList(teamMember.TeamMemberId);
     this.mentorId = teamMember.TeamMemberId;
   }
@@ -93,6 +96,7 @@ export class StrategyPlanComponent implements OnInit {
   teamMemberPage(teamMember: TeamMember) {
     this.isMentorView = false;
     this.isTeamMemberView = true;
+    this.isPlanView = true;
     this.getPlan(teamMember.TeamMemberId);
     this.mentorId = 0;
   }
@@ -108,6 +112,7 @@ export class StrategyPlanComponent implements OnInit {
   }
 
   viewMenteePlan(teamMember: TeamMember) {
+    this.isPlanView = true;
     this.getPlan(teamMember.TeamMemberId);
     this.currentTeamMember = teamMember.LastFirstName;
   }
@@ -151,7 +156,7 @@ export class StrategyPlanComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  completePlan() {
+  confirmCompletePlan() {
     this.strategyPlanService.completePlan(this.currentPlan.PlanId)
     .then(data => console.log(data))
     .catch(this.handleError);
@@ -161,20 +166,28 @@ export class StrategyPlanComponent implements OnInit {
     this.hideConfirmModal();
   }
 
-  newPlan() {
-    if (this.currentPlan.PlanId > 0) {
-      this.determineFormState();
-    } else {
-      this.isPlanView = true;
-    }
+  newPlanButton() {
+    this.isDisplayForm = true;
   }
 
-  determineFormState() {
-    if (this.strategyPlanForm.dirty === true) {
-      alert('Please save changes before proceeding');
+  completePlanButton() {
+    if (this.isFormDirty()) {
+      this.showDirtyFormModal();
     } else {
       this.showConfirmModal();
     }
+  }
+
+  showDirtyFormModal() {
+    this.dirtyFormModal.show();
+  }
+
+  hideDirtyFormModal(){
+    this.dirtyFormModal.hide();
+  }
+
+  isFormDirty() {
+   return this.strategyPlanForm.dirty;
   }
 
   private handleError(error: any) {

@@ -53,6 +53,7 @@ import { ClientContactsComponent } from './businessDevelopment/clientContacts/co
 import { MarketingAdminComponent } from './businessDevelopment/marketingAdmin/components/marketingAdmin.component';
 import { OutreachInterestsComponent } from './businessDevelopment/outreachAndInterests/components/outreachAndInterests.component';
 import { BusinessPeopleComponent } from './businessDevelopment/businessPeople/components/businessPeople.component';
+import { PlanHeaderComponent } from './businessDevelopment/planHeader/components/planHeader.component';
 
 
 
@@ -82,6 +83,7 @@ import { BusinessPeopleComponent } from './businessDevelopment/businessPeople/co
     MarketingAdminComponent,
     OutreachInterestsComponent,
     BusinessPeopleComponent,
+    PlanHeaderComponent,
   ],
   imports: [
     BrowserModule,
