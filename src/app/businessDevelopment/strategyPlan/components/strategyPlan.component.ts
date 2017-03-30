@@ -140,7 +140,6 @@ export class StrategyPlanComponent implements OnInit {
   createPlan({ value, valid }: { value: IStrategyPlan, valid: boolean }) {
     this.strategyPlanService.createPlan(value)
       .then((data: IStrategyPlan) => {
-        console.log(data);
         this.currentPlan = data;
         this.determineFormToUse();
         this.setPlanForm();
@@ -154,7 +153,6 @@ export class StrategyPlanComponent implements OnInit {
     .catch(this.handleError);
     this.currentPlan.PlanId = 0;
     this.isPlanView = false;
-    // console.log(this.isPlanView);
     this.strategyPlanForm.reset();
     this.hideConfirmModal();
   }
