@@ -23,7 +23,8 @@ export class StrategyPlanComponent implements OnInit {
 
   private teamMember: TeamMember;
   private knownAsLookup: DropDownData[];
-  private formTitle: string;
+  private isUpdateForm = false;
+  private isCreateForm = true;
   private isMentorView = false;
   private isPlanView = false;
   private isPlanExists = false;
@@ -112,12 +113,14 @@ export class StrategyPlanComponent implements OnInit {
 
   determineFormToUse() {
     if (this.currentPlan.PlanId > 0) {
+      this.isUpdateForm = true;
+      this.isCreateForm = false;
       this.isPlanView = true;
       this.isPlanExists = true;
-      this.formTitle = 'Update';
     } else {
+      this.isUpdateForm = false;
+      this.isCreateForm = true;
       this.isPlanExists = false;
-      this.formTitle = 'Create';
       this.currentPlan.TeamMemberId = this.teamMember.TeamMemberId;
       this.currentPlan.MarketingMemberId = this.mentorId;
     }
@@ -146,9 +149,12 @@ export class StrategyPlanComponent implements OnInit {
   }
 
   completePlan() {
-    this.strategyPlanService.completePlan(this.currentPlan.PlanId);
+    this.strategyPlanService.completePlan(this.currentPlan.PlanId)
+    .then(data => console.log(data))
+    .catch(this.handleError);
     this.currentPlan.PlanId = 0;
     this.isPlanView = false;
+    // console.log(this.isPlanView);
     this.strategyPlanForm.reset();
     this.hideConfirmModal();
   }
@@ -156,7 +162,6 @@ export class StrategyPlanComponent implements OnInit {
   newPlan() {
     if (this.currentPlan.PlanId > 0) {
       this.isFormDirty();
-      this.showConfirmModal();
     } else {
       this.isPlanView = true;
     }
@@ -165,6 +170,8 @@ export class StrategyPlanComponent implements OnInit {
   isFormDirty() {
     if (this.strategyPlanForm.dirty === true) {
       alert('Please save changes before proceeding');
+    } else {
+      this.showConfirmModal();
     }
   }
 

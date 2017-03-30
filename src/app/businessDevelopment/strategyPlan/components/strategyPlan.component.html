@@ -61,7 +61,8 @@
               <textarea class="form-control" formControlName="Famous"></textarea>
               <small class="form-text alert-danger" *ngIf="strategyPlanForm.get('Famous').hasError('maxlength') && strategyPlanForm.get('Famous').touched">Keep famous description below 200 characters</small>
             </div>
-            <button type="submit" [disabled]="strategyPlanForm.invalid" class="btn btn-schenck">{{formTitle}}</button>
+            <button type="submit" [disabled]="strategyPlanForm.invalid" class="btn btn-schenck" *ngIf="isCreateForm">Create</button>
+            <button type="submit" [disabled]="strategyPlanForm.invalid" class="btn btn-schenck" *ngIf="isUpdateForm">Update</button>
           </form>
         </div>
       </div>
