@@ -1,6 +1,18 @@
-<app-plan-header></app-plan-header>
-<app-action-items></app-action-items>
-<app-events></app-events>
-<app-client-contacts></app-client-contacts>
-<app-outreach-interests></app-outreach-interests>
-<app-business-people></app-business-people>
+<div class="row">
+    <div class="col-md-2">
+        <app-side-bar [menuItemId]="sideMenuItemId"></app-side-bar>
+    </div>
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Mentor Strategy Plan</h1>
+                <app-plan-header></app-plan-header>
+                <app-action-items></app-action-items>
+                <app-events></app-events>
+                <app-client-contacts></app-client-contacts>
+                <app-outreach-interests></app-outreach-interests>
+                <app-business-people></app-business-people>
+            </div>
+        </div>
+    </div>
+</div>

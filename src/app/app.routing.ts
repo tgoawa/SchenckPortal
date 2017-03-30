@@ -17,6 +17,8 @@ import {
 
 import { StrategyPlanComponent } from './businessDevelopment/strategyPlan/components/strategyPlan.component';
 import { MarketingAdminComponent } from './businessDevelopment/marketingAdmin/components/marketingAdmin.component';
+import { MentorStrategyPlanComponent } from 
+'./businessDevelopment/mentorStrategyPlan/components/mentorStrategyPlan.component';
 import { TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
@@ -58,6 +60,10 @@ export const routes: Routes = [
             {
                 path: 'marketing-admin',
                 component: MarketingAdminComponent
+            },
+            {
+                path: 'mentor-plan-admin',
+                component: MentorStrategyPlanComponent,
             }
         ]
     },

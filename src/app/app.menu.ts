@@ -22,5 +22,17 @@ export const MENU = [
         title: 'Individual Business Development Plan'
       }
     ]
-  }
+  },
+  {
+    id: 3,
+    inDev: true,
+    path: 'mentor-admin',
+    title: 'Mentor Admin',
+    children: [
+      {
+        path: 'mentor-plan-admin',
+        title: 'Mentor Strategy Plan'
+      }
+    ]
+  },
 ];

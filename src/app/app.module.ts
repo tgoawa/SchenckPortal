@@ -26,7 +26,7 @@ import { ClientTierListComponent } from './tiering/components/client-tier-list/c
 import { ClientTierDetailsComponent } from './tiering/components/client-tier-details/clientTierDetails.component';
 
 import { ClientTierListService, ClientTierAnalysisService, ClientTierScoreService } from './tiering/services/';
-import { StrategyPlanService } from './businessDevelopment/strategyPlan/services/strategyPlan.service';
+import { StrategyPlanService } from './businessDevelopment/planHeader/services/strategyPlan.service';
 import { DropDownDataService } from './businessDevelopment/planLookups/services/dropDownData.service';
 import { StrategyEventService } from './businessDevelopment/events/services/strategyEvent.service';
 import { MarketingAdminService } from './businessDevelopment/marketingAdmin/services/marketingAdmin.service';
