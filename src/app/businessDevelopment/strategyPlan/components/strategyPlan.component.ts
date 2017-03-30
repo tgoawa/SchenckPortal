@@ -159,13 +159,13 @@ export class StrategyPlanComponent implements OnInit {
 
   newPlan() {
     if (this.currentPlan.PlanId > 0) {
-      this.isFormDirty();
+      this.determineFormState();
     } else {
       this.isPlanView = true;
     }
   }
 
-  isFormDirty() {
+  determineFormState() {
     if (this.strategyPlanForm.dirty === true) {
       alert('Please save changes before proceeding');
     } else {
