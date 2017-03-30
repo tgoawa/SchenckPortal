@@ -15,6 +15,7 @@ export class PlanHeaderComponent implements OnInit {
   @ViewChild('CreatePlanModal') public CreatePlanModal: ModalDirective;
 
   private planHeaderForm: FormGroup;
+  private createPlanForm: FormGroup;
   private teamMemberId: number;
   private currentPlan: IStrategyPlan;
 
@@ -43,6 +44,14 @@ export class PlanHeaderComponent implements OnInit {
     this.currentPlan.Title = formValue.Title;
     this.currentPlan.KnownAsId = formValue.KnownAsId;
     this.currentPlan.Famous = formValue.Famouse;
+  }
+
+  bindCreateForm() {
+    this.createPlanForm = this.fb.group({
+      Title: ['', [Validators.required, Validators.maxLength(75)]],
+      KnownAsId: [''],
+      Famous: ['', [Validators.maxLength(200)]]
+    })
   }
 
   bindEditForm() {
