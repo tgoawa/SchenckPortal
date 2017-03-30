@@ -52,6 +52,7 @@ import { EventsComponent } from './businessDevelopment/events/components/events.
 import { ClientContactsComponent } from './businessDevelopment/clientContacts/components/clientContacts.component';
 import { MarketingAdminComponent } from './businessDevelopment/marketingAdmin/components/marketingAdmin.component';
 import { OutreachInterestsComponent } from './businessDevelopment/outreachAndInterests/components/outreachAndInterests.component';
+import { BusinessPeopleComponent } from './businessDevelopment/businessPeople/components/businessPeople.component';
 
 
 
@@ -80,6 +81,7 @@ import { OutreachInterestsComponent } from './businessDevelopment/outreachAndInt
     ClientContactsComponent,
     MarketingAdminComponent,
     OutreachInterestsComponent,
+    BusinessPeopleComponent,
   ],
   imports: [
     BrowserModule,
