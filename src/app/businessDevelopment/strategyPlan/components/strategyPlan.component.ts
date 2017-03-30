@@ -7,7 +7,7 @@ import { StrategyPlanService } from '../services/strategyPlan.service';
 import { DropDownDataService } from '../../planLookups/services/dropDownData.service';
 import { MarketingAdminService } from '../../marketingAdmin/services/marketingAdmin.service';
 import { TeamMemberService, TeamMember } from '../../../teamMember/';
-import { IStrategyPlan } from '../models/strategyPlan.model';
+import { IStrategyPlan, StrategyPlan } from '../models/strategyPlan.model';
 import { DropDownData } from '../../planLookups/models/dropDownData.model';
 import { IMentor } from '../../marketingAdmin/models/mentor.dto';
 
@@ -26,6 +26,7 @@ export class StrategyPlanComponent implements OnInit {
   private isUpdateForm = false;
   private isCreateForm = true;
   private isMentorView = false;
+  private isTeamMemberView = false;
   private isPlanView = false;
   private isPlanExists = false;
   private mentorshipList: IMentor[];
@@ -84,12 +85,14 @@ export class StrategyPlanComponent implements OnInit {
 
   mentorPage(teamMember: TeamMember) {
     this.isMentorView = true;
+    this.isTeamMemberView = false;
     this.getMentorshipList(teamMember.TeamMemberId);
     this.mentorId = teamMember.TeamMemberId;
   }
 
   teamMemberPage(teamMember: TeamMember) {
     this.isMentorView = false;
+    this.isTeamMemberView = true;
     this.getPlan(teamMember.TeamMemberId);
     this.mentorId = 0;
   }
@@ -121,6 +124,7 @@ export class StrategyPlanComponent implements OnInit {
       this.isUpdateForm = false;
       this.isCreateForm = true;
       this.isPlanExists = false;
+      this.currentPlan = new StrategyPlan();
       this.currentPlan.TeamMemberId = this.teamMember.TeamMemberId;
       this.currentPlan.MarketingMemberId = this.mentorId;
     }
@@ -151,7 +155,7 @@ export class StrategyPlanComponent implements OnInit {
     this.strategyPlanService.completePlan(this.currentPlan.PlanId)
     .then(data => console.log(data))
     .catch(this.handleError);
-    this.currentPlan.PlanId = 0;
+    this.currentPlan = new StrategyPlan();
     this.isPlanView = false;
     this.strategyPlanForm.reset();
     this.hideConfirmModal();

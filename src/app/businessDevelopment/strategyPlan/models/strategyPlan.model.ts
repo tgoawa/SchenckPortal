@@ -11,3 +11,15 @@ export interface IStrategyPlan {
     DisplayDateModified: string;
     StrategyEvents: IStrategyEvent[];
 }
+
+export class StrategyPlan implements IStrategyPlan {
+    PlanId = 0;
+    TeamMemberId = 0;
+    MarketingMemberId = 0;
+    Title = '';
+    KnownAsId = 0;
+    Famous = '';
+    DisplayDateCreated = '';
+    DisplayDateModified = '';
+    StrategyEvents = [];
+}

@@ -38,6 +38,17 @@
       </div>
     </div>
     <div *ngIf="isPlanView">
+      <div class="row" *ngIf="isMentorView" style="margin-top: 20px">
+      <div class="col-md-12 text-center">
+        <h2>Viewing plan of: {{currentTeamMember}}</h2>
+      </div>
+    </div>
+    <div class="row" *ngIf="isTeamMemberView" style="margin-top: 20px">
+      <div class="col-md-12 text-center">
+        <h2 *ngIf="currentPlan?.MarketingMemberId === 0">Plan Mentor: NA</h2>
+        <h2 *ngIf="currentPlan?.MarketingMemberId !== 0">Plan Mentor: {{currentPlan?.Mentor.LastFirstName}}</h2>
+      </div>
+    </div>
       <div class="row" style="margin-top: 20px">
         <div class="col-md-12">
           <span>Last Modfied: {{currentPlan?.DisplayDateModified}}</span>
