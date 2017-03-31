@@ -15,7 +15,7 @@ import {
     TierScoreResolver
 } from './tiering/resolver/';
 
-import { StrategyPlanComponent } from './businessDevelopment/strategyPlan/components/strategyPlan.component';
+import { IndividualStrategyPlanComponent } from './businessDevelopment/individualStrategyPlan/components/individualStrategyPlan.component';
 import { MarketingAdminComponent } from './businessDevelopment/marketingAdmin/components/marketingAdmin.component';
 import { MentorStrategyPlanComponent } from 
 './businessDevelopment/mentorStrategyPlan/components/mentorStrategyPlan.component';
@@ -55,7 +55,7 @@ export const routes: Routes = [
             },
             {
                 path: 'strategy-plan',
-                component: StrategyPlanComponent,
+                component: IndividualStrategyPlanComponent,
             },
             {
                 path: 'marketing-admin',

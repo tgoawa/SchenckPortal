@@ -55,6 +55,7 @@ import { OutreachInterestsComponent } from './businessDevelopment/outreachAndInt
 import { BusinessPeopleComponent } from './businessDevelopment/businessPeople/components/businessPeople.component';
 import { PlanHeaderComponent } from './businessDevelopment/planHeader/components/planHeader.component';
 import { MentorStrategyPlanComponent } from './businessDevelopment/mentorStrategyPlan/components/mentorStrategyPlan.component';
+import { IndividualStrategyPlanComponent } from './businessDevelopment/individualStrategyPlan/components/individualStrategyPlan.component';
 
 
 
@@ -86,6 +87,7 @@ import { MentorStrategyPlanComponent } from './businessDevelopment/mentorStrateg
     BusinessPeopleComponent,
     PlanHeaderComponent,
     MentorStrategyPlanComponent,
+    IndividualStrategyPlanComponent,
   ],
   imports: [
     BrowserModule,

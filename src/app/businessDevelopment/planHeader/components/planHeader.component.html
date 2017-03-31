@@ -1,4 +1,14 @@
-<div class="col-md-12">
+<div *ngIf="isCurrentPlan">
+  <div class="row">
+    <div class="col-md-2 offset-md-10">
+      <button type="button" class="btn btn-success" (click)="onCompletePlan()">Complete plan</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <span>Last Modified: {{currentPlan?.DisplayDateModified}}</span>
+    </div>
+  </div>
   <form novalidate (ngSubmit)="onEditPlan(planHeaderForm.value)" [formGroup]="planHeaderForm">
     <div class="form-group">
       <label>Title</label>
@@ -9,7 +19,7 @@
     <div class="form-group">
       <label>Known As</label>
       <select class="form-control" formControlName="KnownAsId">
-            <option *ngFor="let item of knownAsLookup" [selected]="item.Id == KnownAsId" [value]="item.Id">{{item.Value}}</option>
+            <option *ngFor="let item of knownAsLookup" [selected]="item?.Id == KnownAsId" [value]="item?.Id">{{item?.Value}}</option>
           </select>
     </div>
     <div class="form-group">
@@ -17,37 +27,34 @@
       <textarea class="form-control" formControlName="Famous"></textarea>
       <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Famous').hasError('maxlength') && planHeaderForm.get('Famous').touched">Keep famous description below 200 characters</small>
     </div>
-    <button type="submit" [disabled]="strategyPlanForm.invalid" class="btn btn-schenck">Edit header</button>
+    <button type="submit" [disabled]="planHeaderForm.invalid" class="btn btn-schenck">Edit header</button>
   </form>
-  <app-action-items></app-action-items>
-  <app-events></app-events>
-  <app-client-contacts></app-client-contacts>
+  <app-action-items [currentPlanId]="currentPlan?.PlanId"></app-action-items>
+  <app-events [currentPlanId]="currentPlan?.PlanId" [currentEvents]="currentPlan?.StrategyEvents"></app-events>
+  <app-client-contacts [currentPlanId]="currentPlan?.PlanId"></app-client-contacts>
   <app-outreach-interests></app-outreach-interests>
-  <app-business-people></app-business-people>
+  
 </div>
 
 <!--create plan header modal -->
-<div bsModal #CreatePlanModal="bs-modal" class="modal fade">
+<div bsModal #CreatePlanModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Create Strategy Plan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideCreatePlanModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <form novalidate (ngSubmit)="onCreatePlan(createPlanForm.value)" [formGroup]="createPlanForm">
         <div class="modal-body">
           <div class="form-group">
             <label>Title</label>
             <input type="text" class="form-control" formControlName="Title">
-            <small class="form-text alert-danger" *ngIf="createPlanForm.get('Title').hasError('required') && createPlanForm.get('Name').touched">Title is required</small>
+            <small class="form-text alert-danger" *ngIf="createPlanForm.get('Title').hasError('required') && createPlanForm.get('Title').touched">Title is required</small>
             <small class="form-text alert-danger" *ngIf="createPlanForm.get('Title').hasError('maxlength') && createPlanForm.get('Title').touched">Title should be less than 75 characters</small>
           </div>
           <div class="form-group">
             <label>Known As</label>
             <select class="form-control" formControlName="KnownAsId">
-            <option *ngFor="let item of knownAsLookup" [selected]="item.Id == KnownAsId" [value]="item.Id">{{item.Value}}</option>
+            <option *ngFor="let item of knownAsLookup" [selected]="item?.Id == KnownAsId" [value]="item?.Id">{{item?.Value}}</option>
           </select>
           </div>
           <div class="form-group">
@@ -58,9 +65,30 @@
         </div>
         <div class="modal-footer">
           <button type="submit" [disabled]="createPlanForm.invalid" class="btn btn-schenck">Submit</button>
-          <button type="button" class="btn btn-danger" (click)="hideCreatePlanModal()">Cancel</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!--complete plan modal -->
+<div bsModal #CompletePlanModal="bs-modal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Save Current Plan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideCompletePlanModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This will save the current plan and set it as complete.</p>
+        <p>Are you sure you want to continue?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-schenck" (click)="onConfirmCompletePlan()">Yes</button>
+        <button type="button" class="btn btn-danger" (click)="hideCompletePlanModal()">No</button>
+      </div>
     </div>
   </div>
 </div>
