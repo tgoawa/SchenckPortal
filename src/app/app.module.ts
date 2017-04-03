@@ -47,7 +47,6 @@ import { LoginService } from './login/services/login.service';
 import { TeamMemberService, TeamMemberResolver } from './teamMember/';
 
 import { AuthGuard } from './auth/auth.guard';
-import { StrategyPlanComponent } from './businessDevelopment/strategyPlan/components/strategyPlan.component';
 import { ActionItemsComponent } from './businessDevelopment/actionItems/components/actionItems.component';
 import { EventsComponent } from './businessDevelopment/events/components/events.component';
 import { ClientContactsComponent } from './businessDevelopment/clientContacts/components/clientContacts.component';
@@ -78,7 +77,6 @@ import { IndividualStrategyPlanComponent } from './businessDevelopment/individua
     ClientTierListComponent,
     ClientTierDetailsComponent,
     LoginComponent,
-    StrategyPlanComponent,
     NegativeToParenthesis,
     ActionItemsComponent,
     EventsComponent,
