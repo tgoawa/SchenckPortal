@@ -77,7 +77,6 @@ export class MentorStrategyPlanComponent implements OnInit {
   createPlan() {
     this.strategyPlanService.createPlan(this.currentPlan)
       .then((data: IStrategyPlan) => {
-        // this.currentPlan = data;
         this.getPlan();
       })
       .catch(this.handleError);

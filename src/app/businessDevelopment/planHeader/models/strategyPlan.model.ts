@@ -1,4 +1,5 @@
 import { IStrategyEvent } from '../../events/models/strategyEvent.model';
+import { TeamMember } from '../../../teamMember';
 
 export interface IStrategyPlan {
     PlanId: number;
@@ -10,6 +11,7 @@ export interface IStrategyPlan {
     DisplayDateCreated: string;
     DisplayDateModified: string;
     StrategyEvents: IStrategyEvent[];
+    Mentor: TeamMember;
 }
 
 export class StrategyPlan implements IStrategyPlan {
@@ -22,4 +24,5 @@ export class StrategyPlan implements IStrategyPlan {
     DisplayDateCreated = '';
     DisplayDateModified = '';
     StrategyEvents = [];
+    Mentor;
 }
