@@ -1,75 +1,40 @@
-<div *ngIf="isCurrentPlan">
-  <div class="row">
-    <div class="col-md-2 offset-md-10">
-      <button type="button" class="btn btn-success" (click)="onCompletePlan()">Complete plan</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <span>Last Modified: {{currentPlan?.DisplayDateModified}}</span>
-    </div>
-  </div>
-  <form novalidate (ngSubmit)="onEditPlan(planHeaderForm.value)" [formGroup]="planHeaderForm">
-    <div class="form-group">
-      <label>Title</label>
-      <input type="text" class="form-control" formControlName="Title" placeholder="Title of new strategy plan">
-      <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Title').hasError('required') && planHeaderForm.get('Title').touched">Title is required</small>
-      <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Title').hasError('maxlength') && planHeaderForm.get('Title').touched">Title should be less than 75 characters</small>
-    </div>
-    <div class="form-group">
-      <label>Known As</label>
-      <select class="form-control" formControlName="KnownAsId">
-            <option *ngFor="let item of knownAsLookup" [selected]="item?.Id == KnownAsId" [value]="item?.Id">{{item?.Value}}</option>
-          </select>
-    </div>
-    <div class="form-group">
-      <label>Famous</label>
-      <textarea class="form-control" formControlName="Famous"></textarea>
-      <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Famous').hasError('maxlength') && planHeaderForm.get('Famous').touched">Keep famous description below 200 characters</small>
-    </div>
-    <button type="submit" [disabled]="planHeaderForm.invalid" class="btn btn-schenck">Edit header</button>
-  </form>
-  <app-action-items [currentPlanId]="currentPlan?.PlanId"></app-action-items>
-  <app-events [currentPlanId]="currentPlan?.PlanId" [currentEvents]="currentPlan?.StrategyEvents"></app-events>
-  <app-client-contacts [currentPlanId]="currentPlan?.PlanId"></app-client-contacts>
-  <app-outreach-interests></app-outreach-interests>
-  
-</div>
-
-<!--create plan header modal -->
-<div bsModal #CreatePlanModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Create Strategy Plan</h5>
-      </div>
-      <form novalidate (ngSubmit)="onCreatePlan(createPlanForm.value)" [formGroup]="createPlanForm">
-        <div class="modal-body">
-          <div class="form-group">
-            <label>Title</label>
-            <input type="text" class="form-control" formControlName="Title">
-            <small class="form-text alert-danger" *ngIf="createPlanForm.get('Title').hasError('required') && createPlanForm.get('Title').touched">Title is required</small>
-            <small class="form-text alert-danger" *ngIf="createPlanForm.get('Title').hasError('maxlength') && createPlanForm.get('Title').touched">Title should be less than 75 characters</small>
-          </div>
-          <div class="form-group">
-            <label>Known As</label>
-            <select class="form-control" formControlName="KnownAsId">
-            <option *ngFor="let item of knownAsLookup" [selected]="item?.Id == KnownAsId" [value]="item?.Id">{{item?.Value}}</option>
-          </select>
-          </div>
-          <div class="form-group">
-            <label>Famous</label>
-            <textarea class="form-control" formControlName="Famous"></textarea>
-            <small class="form-text alert-danger" *ngIf="createPlanForm.get('Famous').hasError('maxlength') && createPlanForm.get('Famous').touched">Keep famous description below 200 characters</small>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" [disabled]="createPlanForm.invalid" class="btn btn-schenck">Submit</button>
-        </div>
-      </form>
-    </div>
+<div class="row">
+  <div class="col-md-2 offset-md-10">
+    <button type="button" class="btn btn-success" (click)="onCompletePlan()">Complete plan</button>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <div *ngFor="let alert of alerts">
+      <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+    </div>
+    <span>Last Modified: {{currentPlan?.DisplayDateModified}}</span>
+  </div>
+</div>
+<form novalidate (ngSubmit)="onEditPlan(planHeaderForm.value)" [formGroup]="planHeaderForm">
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" formControlName="Title" placeholder="Title of new strategy plan">
+    <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Title').hasError('required') && planHeaderForm.get('Title').touched">Title is required</small>
+    <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Title').hasError('maxlength') && planHeaderForm.get('Title').touched">Title should be less than 75 characters</small>
+  </div>
+  <div class="form-group">
+    <label>Known As</label>
+    <select class="form-control" formControlName="KnownAsId">
+            <option *ngFor="let item of knownAsLookup" [selected]="item?.Id == KnownAsId" [value]="item?.Id">{{item?.Value}}</option>
+          </select>
+  </div>
+  <div class="form-group">
+    <label>Famous</label>
+    <textarea class="form-control" formControlName="Famous"></textarea>
+    <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Famous').hasError('maxlength') && planHeaderForm.get('Famous').touched">Keep famous description below 200 characters</small>
+  </div>
+  <button type="submit" [disabled]="planHeaderForm.invalid" class="btn btn-schenck">Update header</button>
+</form>
+<app-action-items [currentPlanId]="currentPlan?.PlanId"></app-action-items>
+<app-events [currentPlanId]="currentPlan?.PlanId" [currentEvents]="currentPlan?.StrategyEvents"></app-events>
+<app-client-contacts [currentPlanId]="currentPlan?.PlanId"></app-client-contacts>
+<app-outreach-interests></app-outreach-interests>
 
 <!--complete plan modal -->
 <div bsModal #CompletePlanModal="bs-modal" class="modal fade">

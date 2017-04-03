@@ -14,39 +14,27 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
   styleUrls: ['./planHeader.component.css']
 })
 export class PlanHeaderComponent implements OnInit {
-  @ViewChild('CreatePlanModal') public CreatePlanModal: ModalDirective;
   @ViewChild('CompletePlanModal') public CompletePlanModal: ModalDirective;
+  @Input() private currentPlan: IStrategyPlan;
   @Input() private teamMemberId: number;
+  @Input() private knownAsLookup: DropDownData[];
+
+  public alerts: any = [];
 
   private planHeaderForm: FormGroup;
-  private createPlanForm: FormGroup;
-  private knownAsLookup: DropDownData[];
-
-  private currentPlan: IStrategyPlan;
-
-  private isCurrentPlan = false;
 
   constructor(private fb: FormBuilder,
   private planService: StrategyPlanService,
   private dropDownData: DropDownDataService) { };
 
   ngOnInit() {
-    this.bindCreateForm();
-    this.getKnownAs();
-    this.getPlan();
-  }
-
-  onCreatePlan(value) {
-    this.mapFormToPlanHeader(value);
-    this.mapTeamMemberToPlan();
-    this.createPlan();
-    this.hideCreatePlanModal();
-    this.bindCreateForm();
+    this.bindEditForm();
   }
 
   onEditPlan(value) {
     this.mapFormToPlanHeader(value);
     this.updatePlan();
+    this.editAlert();
   }
 
   onCompletePlan() {
@@ -66,20 +54,7 @@ export class PlanHeaderComponent implements OnInit {
     this.currentPlan.Famous = formValue.Famous;
   }
 
-  mapTeamMemberToPlan() {
-    this.currentPlan.TeamMemberId = this.teamMemberId;
-  }
-
-  bindCreateForm() {
-    this.createPlanForm = this.fb.group({
-      Title: ['', [Validators.required, Validators.maxLength(75)]],
-      KnownAsId: [''],
-      Famous: ['', [Validators.maxLength(200)]]
-    });
-  }
-
   bindEditForm() {
-    console.log(this.knownAsLookup);
     this.planHeaderForm = this.fb.group({
       Title: [this.currentPlan.Title, [Validators.required, Validators.maxLength(75)]],
       KnownAsId: [this.currentPlan.KnownAsId],
@@ -87,40 +62,13 @@ export class PlanHeaderComponent implements OnInit {
     });
   }
 
-  displayCreatePlanModal() {
-    if (this.currentPlan.PlanId === 0) {
-      this.showCreatePlanModal();
-    } else {
-      this.isCurrentPlan = true;
-      this.bindEditForm();
-      this.getKnownAs();
-    }
-  }
-
   // calls to service
-
-  getPlan() {
-    this.planService.getPlan(this.teamMemberId)
-      .then((data: IStrategyPlan) => {
-        this.currentPlan = data;
-        this.displayCreatePlanModal();
-      })
-      .catch(this.handleError);
-  }
 
   getKnownAs() {
     this.dropDownData.getKnownAs()
-    .then(data => this.knownAsLookup = data)
+    .then(data => this.knownAsLookup = data
+    )
     .catch(this.handleError);
-  }
-
-  createPlan() {
-    this.planService.createPlan(this.currentPlan)
-      .then((data: IStrategyPlan) => {
-        this.currentPlan = data;
-        this.getPlan();
-      })
-      .catch(this.handleError);
   }
 
   updatePlan() {
@@ -131,21 +79,11 @@ export class PlanHeaderComponent implements OnInit {
 
   completePlan() {
     this.planService.completePlan(this.currentPlan.PlanId)
-      .then(data => {
-        this.getPlan();
-      })
+      .then()
       .catch(this.handleError);
   }
 
-  // show and hide for modals
-
-  showCreatePlanModal() {
-    this.CreatePlanModal.show();
-  }
-
-  hideCreatePlanModal() {
-    this.CreatePlanModal.hide();
-  }
+  // show and hide for modal
 
   showCompletePlanModal() {
     this.CompletePlanModal.show();
@@ -153,6 +91,14 @@ export class PlanHeaderComponent implements OnInit {
 
   hideCompletePlanModal() {
     this.CompletePlanModal.hide();
+  }
+
+  editAlert() {
+    this.alerts.push({
+      type: 'success',
+      msg: 'Plan header successfully edited',
+      timeout: 3000
+    });
   }
 
   private handleError(error: any) {

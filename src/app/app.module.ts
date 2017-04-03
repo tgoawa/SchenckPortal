@@ -11,7 +11,8 @@ import { routes } from './app.routing';
 import { NegativeToParenthesis } from './customPipes';
 
 import { ProgressbarModule,
-        ModalModule } from 'ng2-bootstrap';
+        ModalModule,
+        AlertModule } from 'ng2-bootstrap';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome';
 
@@ -97,6 +98,7 @@ import { IndividualStrategyPlanComponent } from './businessDevelopment/individua
     HttpModule,
     RouterModule.forRoot(routes, { useHash: true}),
     ModalModule.forRoot(),
+    AlertModule.forRoot(),
     Ng2AutoCompleteModule
   ],
   providers: [
