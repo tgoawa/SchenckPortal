@@ -15,7 +15,7 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
 })
 export class PlanHeaderComponent implements OnInit {
   @ViewChild('CompletePlanModal') public CompletePlanModal: ModalDirective;
-  @Input() private currentPlan: IStrategyPlan;
+  @Input() private currentPlan = <IStrategyPlan>null;
   @Input() private teamMemberId: number;
   @Input() private knownAsLookup: DropDownData[];
 

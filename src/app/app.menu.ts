@@ -30,6 +30,10 @@ export const MENU = [
     title: 'Mentor Admin',
     children: [
       {
+        path: 'marketing-admin',
+        title: 'Marketing Member Admin'
+      },
+      {
         path: 'mentor-plan-admin',
         title: 'Mentor Strategy Plan'
       }
