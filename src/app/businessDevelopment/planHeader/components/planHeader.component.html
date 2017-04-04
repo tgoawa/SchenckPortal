@@ -5,32 +5,44 @@
 </div>
 <div class="row">
   <div class="col-md-12 text-center">
-    <div *ngFor="let alert of alerts">
-      <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
-    </div>
     <span>Last Modified: {{currentPlan?.DisplayDateModified}}</span>
   </div>
 </div>
-<form novalidate (ngSubmit)="onEditPlan(planHeaderForm.value)" [formGroup]="planHeaderForm">
-  <div class="form-group">
-    <label>Title</label>
-    <input type="text" class="form-control" formControlName="Title" placeholder="Title of new strategy plan">
-    <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Title').hasError('required') && planHeaderForm.get('Title').touched">Title is required</small>
-    <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Title').hasError('maxlength') && planHeaderForm.get('Title').touched">Title should be less than 75 characters</small>
+<div class="row">
+  <div class="col-md-3">
+    <h2>Title:</h2>
   </div>
-  <div class="form-group">
-    <label>Known As</label>
-    <select class="form-control" formControlName="KnownAsId">
-            <option *ngFor="let item of knownAsLookup" [selected]="item?.Id == KnownAsId" [value]="item?.Id">{{item?.Value}}</option>
-          </select>
+</div>
+<div class="row">
+  <div class="col-md-3">
+  <span>{{currentPlan?.Title}}</span>
   </div>
-  <div class="form-group">
-    <label>Famous</label>
-    <textarea class="form-control" formControlName="Famous"></textarea>
-    <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Famous').hasError('maxlength') && planHeaderForm.get('Famous').touched">Keep famous description below 200 characters</small>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <h2>Known As:</h2>
   </div>
-  <button type="submit" [disabled]="planHeaderForm.invalid" class="btn btn-schenck">Update header</button>
-</form>
+</div>
+<div class="row">
+  <div class="col-md-3">
+  <span>{{currentPlan?.KnownAs}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <h2>Famous:</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+  <span>{{currentPlan?.Famous}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <button type="button" class="btn btn-schenck" (click)="editPlanHeader()">Update Plan Header</button>
+  </div>
+</div>
 <app-action-items [currentPlanId]="currentPlan?.PlanId"></app-action-items>
 <app-events [currentPlanId]="currentPlan?.PlanId" [currentEvents]="currentPlan?.StrategyEvents"></app-events>
 <app-client-contacts [currentPlanId]="currentPlan?.PlanId"></app-client-contacts>
@@ -54,6 +66,45 @@
         <button type="button" class="btn btn-schenck" (click)="onConfirmCompletePlan()">Yes</button>
         <button type="button" class="btn btn-danger" (click)="hideCompletePlanModal()">No</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!--edit plan header modal -->
+<div bsModal #EditPlanModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Strategy Plan</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideEditPlanModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form novalidate (ngSubmit)="onEditPlan(planHeaderForm.value)" [formGroup]="planHeaderForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" formControlName="Title">
+            <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Title').hasError('required') && planHeaderForm.get('Title').touched">Title is required</small>
+            <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Title').hasError('maxlength') && planHeaderForm.get('Title').touched">Title should be less than 75 characters</small>
+          </div>
+          <div class="form-group">
+            <label>Known As</label>
+            <select class="form-control" formControlName="KnownAsId">
+            <option *ngFor="let item of knownAsLookup" [selected]="item?.Id == KnownAsId" [value]="item?.Id">{{item?.Value}}</option>
+          </select>
+          </div>
+          <div class="form-group">
+            <label>Famous</label>
+            <textarea class="form-control" formControlName="Famous"></textarea>
+            <small class="form-text alert-danger" *ngIf="planHeaderForm.get('Famous').hasError('maxlength') && planHeaderForm.get('Famous').touched">Keep famous description below 200 characters</small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" [disabled]="planHeaderForm.invalid" class="btn btn-schenck">Submit</button>
+          <button type="button" class="btn btn-danger" (click)="hideEditPlanModal()">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

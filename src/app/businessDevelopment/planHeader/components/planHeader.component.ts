@@ -15,11 +15,10 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
 })
 export class PlanHeaderComponent implements OnInit {
   @ViewChild('CompletePlanModal') public CompletePlanModal: ModalDirective;
+  @ViewChild('EditPlanModal') public EditPlanModal: ModalDirective;
   @Input() private currentPlan = <IStrategyPlan>null;
   @Input() private teamMemberId: number;
   @Input() private knownAsLookup: DropDownData[];
-
-  public alerts: any = [];
 
   private planHeaderForm: FormGroup;
 
@@ -34,7 +33,7 @@ export class PlanHeaderComponent implements OnInit {
   onEditPlan(value) {
     this.mapFormToPlanHeader(value);
     this.updatePlan();
-    this.editAlert();
+    this.hideEditPlanModal();
   }
 
   onCompletePlan() {
@@ -62,6 +61,10 @@ export class PlanHeaderComponent implements OnInit {
     });
   }
 
+  editPlanHeader() {
+    this.showEditPlanModal();
+  }
+
   // calls to service
 
   getKnownAs() {
@@ -83,7 +86,7 @@ export class PlanHeaderComponent implements OnInit {
       .catch(this.handleError);
   }
 
-  // show and hide for modal
+  // show and hide for modals
 
   showCompletePlanModal() {
     this.CompletePlanModal.show();
@@ -93,12 +96,12 @@ export class PlanHeaderComponent implements OnInit {
     this.CompletePlanModal.hide();
   }
 
-  editAlert() {
-    this.alerts.push({
-      type: 'success',
-      msg: 'Plan header successfully edited',
-      timeout: 3000
-    });
+  showEditPlanModal() {
+    this.EditPlanModal.show();
+  }
+
+  hideEditPlanModal() {
+    this.EditPlanModal.hide();
   }
 
   private handleError(error: any) {
