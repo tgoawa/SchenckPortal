@@ -10,7 +10,7 @@
         </div>
         <div class="row" *ngIf="currentPlan?.PlanId > 0" style="margin-top: 20px">
             <div class="col-md-12 text-center">
-                <h2>Plan Mentor: {{mentorName}}</h2>
+                <h2>Plan Mentor: {{currentPlan?.Mentor.LastFirstName}}</h2>
             </div>
             <div class="col-md-12">
                 <app-plan-header [teamMemberId]="menteeId" [currentPlan]="currentPlan" [knownAsLookup]="knownAsLookup"></app-plan-header>

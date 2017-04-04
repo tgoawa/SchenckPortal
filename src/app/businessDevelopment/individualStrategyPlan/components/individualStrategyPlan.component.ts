@@ -48,7 +48,6 @@ export class IndividualStrategyPlanComponent implements OnInit {
       .then((data: IStrategyPlan) => {
         console.log(data);
         this.currentPlan = data;
-        this.mentorName = this.currentPlan.Mentor.LastFirstName;
         if (this.currentPlan.PlanId === 0) {
           this.showCreatePlanModal();
         }
