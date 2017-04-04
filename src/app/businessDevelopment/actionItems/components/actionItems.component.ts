@@ -37,9 +37,9 @@ export class ActionItemsComponent implements OnInit {
   newActionItemForm() {
     this.modalTitle = 'Create';
     this.actionItemForm = this.fb.group({
-      ActionItemDetails: [''],
-      CompletionDate: [''],
-      BusinessStrategy: [''],
+      ActionItemDetails: ['', Validators.required],
+      CompletionDate: ['', Validators.required],
+      BusinessStrategy: ['', Validators.required],
       PlanID: this.currentPlanId
     });
   }
