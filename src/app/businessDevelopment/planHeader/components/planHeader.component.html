@@ -1,41 +1,35 @@
 <div class="row">
-  <div class="col-md-2 offset-md-10">
-    <button type="button" class="btn btn-success" (click)="onCompletePlan()">Complete plan</button>
+  <div class="col-md-12 text-center">
+    <span>Last Modified: {{currentPlan?.DisplayDateModified}}</span>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12 text-center">
-    <span>Last Modified: {{currentPlan?.DisplayDateModified}}</span>
+  <div class="col-md-2 offset-md-10">
+    <button type="button" class="btn btn-success" (click)="onCompletePlan()">Complete plan</button>
   </div>
 </div>
 <div class="row">
   <div class="col-md-3">
     <h2>Title:</h2>
   </div>
-</div>
-<div class="row">
   <div class="col-md-3">
-  <span>{{currentPlan?.Title}}</span>
+    <span>{{currentPlan?.Title}}</span>
   </div>
 </div>
 <div class="row">
   <div class="col-md-3">
     <h2>Known As:</h2>
   </div>
-</div>
-<div class="row">
   <div class="col-md-3">
-  <span>{{currentPlan?.KnownAs}}</span>
+    <span>{{currentPlan?.KnownAs}}</span>
   </div>
 </div>
 <div class="row">
   <div class="col-md-3">
     <h2>Famous:</h2>
   </div>
-</div>
-<div class="row">
   <div class="col-md-6">
-  <span>{{currentPlan?.Famous}}</span>
+    <span>{{currentPlan?.Famous}}</span>
   </div>
 </div>
 <div class="row">
@@ -76,7 +70,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Create Strategy Plan</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideEditPlanModal()">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideEditPlanModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
