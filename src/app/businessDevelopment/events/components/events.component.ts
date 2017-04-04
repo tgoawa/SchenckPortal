@@ -81,22 +81,22 @@ export class EventsComponent implements OnInit {
 
   addEventItem({ value, valid }: { value: IStrategyEvent, valid: boolean }) {
     let eventId = this.eventForm.get('EventId').value;
-    if (eventId === 0) {
-      this.eventService.createEvent(value)
-        .then(data => {
-          this.currentEvents.push(data);
-          this.existingEvents = true;
-        })
-        .catch(this.handleError);
-      this.hideEventModal();
-      this.eventForm.reset();
-    } else {
-      this.eventService.updateEvent(value)
-        .then(data => this.currentEvents = data)
-        .catch(this.handleError);
-      this.hideEventModal();
-      this.eventForm.reset();
-    }
+    // if (eventId === 0) {
+    //   this.eventService.createEvent(value)
+    //     .then(data => {
+    //       this.currentEvents.push(data);
+    //       this.existingEvents = true;
+    //     })
+    //     .catch(this.handleError);
+    //   this.hideEventModal();
+    //   this.eventForm.reset();
+    // } else {
+    //   this.eventService.updateEvent(value)
+    //     .then(data => this.currentEvents = data)
+    //     .catch(this.handleError);
+    //   this.hideEventModal();
+    //   this.eventForm.reset();
+    // }
   }
 
   eventSetComplete() {

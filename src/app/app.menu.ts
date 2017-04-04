@@ -13,7 +13,7 @@ export const MENU = [
   },
   {
     id: 2,
-    inDev: true,
+    inDev: false,
     path: 'business-development',
     title: 'Business Development',
     children: [
@@ -25,7 +25,7 @@ export const MENU = [
   },
   {
     id: 3,
-    inDev: true,
+    inDev: false,
     path: 'mentor-admin',
     title: 'Mentor Admin',
     children: [
