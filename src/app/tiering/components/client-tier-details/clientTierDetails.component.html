@@ -88,7 +88,7 @@
         <span class="range-text">{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true: '1.2-2'}}</span>
       </div>
     </div>
-    <div *ngIf="parentAnalysisData?.Children.length > 0">
+    <div *ngIf="doesClientHaveChildren()">
       <div class="row">
         <div class="col-md-4">
           <a class="childExpand" data-toggle="collapse" href="#child-billing" aria-expanded="false" tabindex="-1">View Child Billing Data</a>
@@ -144,7 +144,7 @@
         <span class="range-text">{{clientTierScore?.RealizationScore.MaxValue}}%</span>
       </div>
     </div>
-    <div *ngIf="parentAnalysisData?.Children.length > 0">
+    <div *ngIf="doesClientHaveChildren()">
       <div class="row">
         <div class="col-md-4">
           <a class="childExpand" data-toggle="collapse" href="#child-realization" aria-expanded="false" tabindex="-1">View Child Realization Data</a>
@@ -231,7 +231,7 @@
         <span class="range-text">{{clientTierScore?.TimelinessScore.MinValue}}%</span>
       </div>
     </div>
-    <div *ngIf="parentAnalysisData?.Children.length > 0">
+    <div *ngIf="doesClientHaveChildren()">
       <div class="row">
         <div class="col-md-4">
           <a class="childExpand" data-toggle="collapse" href="#child-work-timing" aria-expanded="false" tabindex="-1">View Child Work Timing Data</a>
@@ -292,7 +292,7 @@
         <span class="range-text">{{clientTierScore?.ServiceTouchesScore.MaxValue}}</span>
       </div>
     </div>
-    <div *ngIf="parentAnalysisData?.ServiceTouches.length > 0">
+    <div *ngIf="doesClientHaveChildren()">
       <div class="row">
         <div class="col-md-4">
           <a class="childExpand" data-toggle="collapse" href="#service-touches" aria-expanded="false" tabindex="-1">View Associated Services</a>
@@ -349,7 +349,7 @@
         <span class="range-text">{{clientTierScore?.PaymentScore.MinValue}}</span>
       </div>
     </div>
-    <div *ngIf="parentAnalysisData?.Children.length > 0">
+    <div *ngIf="doesClientHaveChildren()">
       <div class="row">
         <div class="col-md-4">
           <a class="childExpand" data-toggle="collapse" href="#child-payment" aria-expanded="false" tabindex="-1">View Child Payment Timeliness Data</a>

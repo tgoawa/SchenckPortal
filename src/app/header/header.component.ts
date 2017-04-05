@@ -7,18 +7,11 @@ import { TeamMember } from '../teamMember/';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Input() public teamMember: TeamMember;
 
-  @Input() teamMember: TeamMember;
-  private marketingAdmin = false;
   constructor() { }
 
   ngOnInit() {
-    this.isMentor();
   }
 
-  isMentor() {
-    if (this.teamMember.IsMentor === true) {
-      this.marketingAdmin = true;
-    }
-  }
 }

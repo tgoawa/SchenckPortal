@@ -12,4 +12,8 @@ export class BusinessPeopleComponent implements OnInit {
   ngOnInit() {
   }
 
+  showBusinessPeopleModal() {
+    // show modal;
+  }
+
 }

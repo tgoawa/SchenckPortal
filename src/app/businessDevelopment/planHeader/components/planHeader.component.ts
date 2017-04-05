@@ -16,11 +16,11 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
 export class PlanHeaderComponent implements OnInit {
   @ViewChild('CompletePlanModal') public CompletePlanModal: ModalDirective;
   @ViewChild('EditPlanModal') public EditPlanModal: ModalDirective;
-  @Input() private currentPlan = <IStrategyPlan>null;
-  @Input() private teamMemberId: number;
-  @Input() private knownAsLookup: DropDownData[];
+  @Input() public currentPlan = <IStrategyPlan>null;
+  @Input() public teamMemberId: number;
+  @Input() public knownAsLookup: DropDownData[];
 
-  private planHeaderForm: FormGroup;
+  public planHeaderForm: FormGroup;
 
   constructor(private fb: FormBuilder,
   private planService: StrategyPlanService,

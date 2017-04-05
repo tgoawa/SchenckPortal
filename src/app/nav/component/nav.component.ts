@@ -13,8 +13,7 @@ import { MENU } from '../../app.menu';
 })
 export class NavComponent implements OnInit {
 
-  private menuItems: any[] = [];
-  private teamMember: TeamMember;
+  public menuItems: any[] = [];
 
   constructor(private teamMemberService: TeamMemberService) { }
 

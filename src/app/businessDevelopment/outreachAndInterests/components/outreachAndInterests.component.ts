@@ -9,7 +9,9 @@ import { ModalDirective } from 'ng2-bootstrap/modal';
   styleUrls: ['./outreachAndInterests.component.css']
 })
 export class OutreachInterestsComponent implements OnInit {
-  @ViewChild('communityModal') public communityModal: ModalDirective; 
+  @ViewChild('communityModal') public communityModal: ModalDirective;
+
+  public modalTitle: string;
   constructor() { }
 
   ngOnInit() {

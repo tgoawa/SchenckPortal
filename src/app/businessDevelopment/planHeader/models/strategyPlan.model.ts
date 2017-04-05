@@ -7,6 +7,7 @@ export interface IStrategyPlan {
     MarketingMemberId: number;
     Title: string;
     KnownAsId: number;
+    KnownAs: string;
     Famous: string;
     DisplayDateCreated: string;
     DisplayDateModified: string;
@@ -20,6 +21,7 @@ export class StrategyPlan implements IStrategyPlan {
     MarketingMemberId = 0;
     Title = '';
     KnownAsId = 0;
+    KnownAs = '';
     Famous = '';
     DisplayDateCreated = '';
     DisplayDateModified = '';

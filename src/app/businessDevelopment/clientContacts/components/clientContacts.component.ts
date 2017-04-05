@@ -10,11 +10,11 @@ import { ModalDirective } from 'ng2-bootstrap/modal';
 })
 export class ClientContactsComponent implements OnInit {
   @ViewChild('clientRelationshipModal') public clientRelationshipModal: ModalDirective;
-  @Input() private currentPlanId: number;
-  @Input() private currentRelationships: any[];
+  @Input() public currentPlanId: number;
+  @Input() public currentRelationships: any[];
 
-  private clientRelationshipForm: FormGroup;
-  private modalTitle = 'Create';
+  public clientRelationshipForm: FormGroup;
+  public modalTitle = 'Create';
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -44,6 +44,10 @@ export class ClientContactsComponent implements OnInit {
       Date: ['', Validators.required]
     });
     this.showClientRelationship();
+  }
+
+  onAddClientRelationship() {
+    // client relationship form submit
   }
 
   showClientRelationship() {

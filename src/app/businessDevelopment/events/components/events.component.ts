@@ -14,14 +14,14 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
 })
 export class EventsComponent implements OnInit {
   @ViewChild('EventItemModal') public EventItemModal: ModalDirective;
-  @Input() private currentPlanId: number;
-  @Input() private currentEvents: IStrategyEvent[];
+  @Input() public currentPlanId: number;
+  @Input() public currentEvents: IStrategyEvent[];
 
-  private eventForm: FormGroup;
-  private existingEvents = false;
-  private modalTitle: string;
-  private isCompleted = false;
-  private eventStatus: DropDownData[];
+  public eventForm: FormGroup;
+  public existingEvents = false;
+  public modalTitle: string;
+  public isCompleted = false;
+  public eventStatus: DropDownData[];
 
   constructor(private fb: FormBuilder, private dds: DropDownDataService, private eventService: StrategyEventService) { }
 

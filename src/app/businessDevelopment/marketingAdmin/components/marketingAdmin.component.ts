@@ -13,13 +13,12 @@ import { MentorDTO, IMentor } from '../models/mentor.dto';
 })
 export class MarketingAdminComponent implements OnInit {
 
-  sideMenuItemId = 3; //Tell side menu the active menu index
-
+  public sideMenuItemId = 3; //Tell side menu the active menu index
+  public mentorshipForm: FormGroup;
+  public mentors: TeamMember[];
+  public mentorshipList: IMentor[];
+  public activeTeamMembers: TeamMember[];
   private teamMemberId: number;
-  private mentorshipForm: FormGroup;
-  private mentors: TeamMember[];
-  private mentorshipList: IMentor[];
-  private activeTeamMembers: TeamMember[];
   private mentorDTO = new MentorDTO();
 
   constructor(private fb: FormBuilder,

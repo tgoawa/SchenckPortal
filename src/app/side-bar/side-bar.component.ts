@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { MENU } from '../app.menu';
+import { ISidebar } from './models/sideBar.model';
 
 @Component({
   selector: 'app-side-bar',
@@ -8,10 +9,10 @@ import { MENU } from '../app.menu';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
+  @Input() public menuItemId: number;
+  public sideBarMenuItem: ISidebar;
 
-  @Input() menuItemId: number;
   private menu = MENU;
-  private sideBarMenuItem = {};
   constructor() { }
 
   ngOnInit() {

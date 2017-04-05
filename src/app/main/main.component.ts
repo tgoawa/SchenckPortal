@@ -9,7 +9,7 @@ import { TeamMember, TeamMemberService } from '../teamMember/';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  private teamMember: TeamMember;
+  public teamMember: TeamMember;
   constructor(private route: ActivatedRoute, private teamMemberService: TeamMemberService) { }
 
   ngOnInit() {

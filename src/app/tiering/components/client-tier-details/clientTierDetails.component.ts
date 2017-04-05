@@ -23,18 +23,17 @@ import {
   styleUrls: ['./clientTierDetails.component.css'],
 })
 export class ClientTierDetailsComponent implements OnInit {
-  sideMenuItemId: number = 1; //Tell side menu the active menu item
+  public sideMenuItemId: number = 1; //Tell side menu the active menu item
+  public billingValue: any;
+  public realizationValue: any;
+  public workTimingValue: any;
+  public serviceTouch: any;
+  public payment: any;
 
-  billingValue: any;
-  realizationValue: any;
-  workTimingValue: any;
-  serviceTouch: any;
-  payment: any;
-
-  private parentAnalysisData: IClientVal;
-  private displayData: IClientVal;
+  public parentAnalysisData: IClientVal;
+  public displayData: IClientVal;
   private scoreRanges: Scores;
-  private clientTierScore: ITiering;
+  public clientTierScore: ITiering;
   private clientTierHelper;
   private errorMessage: any = '';
 
@@ -128,6 +127,12 @@ export class ClientTierDetailsComponent implements OnInit {
     this.payment = '';
     
     this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
+
+    console.log(this.parentAnalysisData);
+  }
+
+  doesClientHaveChildren(): boolean {
+    return this.parentAnalysisData.Children.length > 0;
   }
 
   reset() {

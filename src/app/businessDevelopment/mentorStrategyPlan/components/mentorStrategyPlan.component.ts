@@ -19,16 +19,15 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
 export class MentorStrategyPlanComponent implements OnInit {
   @ViewChild('CreatePlanModal') public CreatePlanModal: ModalDirective;
 
-  sideMenuItemId = 3; //Tell side menu the active menu index
+  public sideMenuItemId = 3; //Tell side menu the active menu index
+  public mentorshipList: IMentor[];
+  public menteeId: number;
+  public menteeName: string;
+  public currentPlan: IStrategyPlan;
+  public createPlanForm: FormGroup;
+  public knownAsLookup: DropDownData[];
 
   private teamMemberId: number;
-  private mentorshipList: IMentor[];
-  private menteeId: number;
-  private menteeName: string;
-  private currentPlan: IStrategyPlan;
-
-  private createPlanForm: FormGroup;
-  private knownAsLookup: DropDownData[];
 
   constructor(private fb: FormBuilder,
     private adminService: MarketingAdminService,

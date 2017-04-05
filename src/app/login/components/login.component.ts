@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   };
-  private errMessage: string;
-  private isError: boolean;
+  public errMessage: string;
+  public isError: boolean;
 
   constructor(private _fb: FormBuilder, private _login: LoginService, private _router: Router) {}
 
