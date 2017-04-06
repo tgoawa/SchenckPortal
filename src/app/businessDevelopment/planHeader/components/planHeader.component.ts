@@ -14,7 +14,6 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
   styleUrls: ['./planHeader.component.css']
 })
 export class PlanHeaderComponent implements OnInit {
-  @ViewChild('CompletePlanModal') public CompletePlanModal: ModalDirective;
   @ViewChild('EditPlanModal') public EditPlanModal: ModalDirective;
   @Input() public currentPlan = <IStrategyPlan>null;
   @Input() public teamMemberId: number;
@@ -34,17 +33,6 @@ export class PlanHeaderComponent implements OnInit {
     this.mapFormToPlanHeader(value);
     this.updatePlan();
     this.hideEditPlanModal();
-  }
-
-  onCompletePlan() {
-    this.showCompletePlanModal();
-  }
-
-  onConfirmCompletePlan() {
-    this.mapFormToPlanHeader(this.planHeaderForm.value);
-    this.completePlan();
-    this.planHeaderForm.reset();
-    this.hideCompletePlanModal();
   }
 
   mapFormToPlanHeader(formValue) {
@@ -67,34 +55,13 @@ export class PlanHeaderComponent implements OnInit {
 
   // calls to service
 
-  getKnownAs() {
-    this.dropDownData.getKnownAs()
-    .then(data => this.knownAsLookup = data
-    )
-    .catch(this.handleError);
-  }
-
   updatePlan() {
     this.planService.updatePlan(this.currentPlan)
-      .then((data: IStrategyPlan) => this.currentPlan = data)
-      .catch(this.handleError);
-  }
-
-  completePlan() {
-    this.planService.completePlan(this.currentPlan.PlanId)
-      .then()
+      .then(data => this.currentPlan = new StrategyPlan())
       .catch(this.handleError);
   }
 
   // show and hide for modals
-
-  showCompletePlanModal() {
-    this.CompletePlanModal.show();
-  }
-
-  hideCompletePlanModal() {
-    this.CompletePlanModal.hide();
-  }
 
   showEditPlanModal() {
     this.EditPlanModal.show();
