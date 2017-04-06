@@ -58,7 +58,7 @@
           <span>Original Value</span>
         </div>
         <div class="score-box-grey">
-          <span>{{parentAnalysisData?.Billings | currency: 'USD': true: '1.2-2'}}</span>
+          <span>{{parentAnalysisData?.Billings | currency: 'USD': true: '1.0-0'}}</span>
         </div>
       </div>
       <div class="col-md-2">
@@ -71,21 +71,21 @@
         <div class="calc-headers-scores">
           <span>lower</span>
         </div>
-        <span class="range-text">{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true: '1.2-2'}}</span>
+        <span class="range-text">{{clientTierScore?.BillingScore.MinValue | currency: 'USD': true: '1.0-0'}}</span>
       </div>
       <div class="col-md-4">
         <div class="calc-headers-scores">
           <span>Progress</span>
         </div>
         <div class="progress">
-          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.BillingScore.Score == 0 || 1, 'orange': clientTierScore?.BillingScore.Score == 2, 'yellow': clientTierScore?.BillingScore.Score == 3, 'yellow-green': clientTierScore?.BillingScore.Score == 4, 'green': clientTierScore?.BillingScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">{{displayData?.Billings | currency: 'USD': true: '1.2-2'}} </div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.BillingScore.Score == 0 || 1, 'orange': clientTierScore?.BillingScore.Score == 2, 'yellow': clientTierScore?.BillingScore.Score == 3, 'yellow-green': clientTierScore?.BillingScore.Score == 4, 'green': clientTierScore?.BillingScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.BillingScore.ProgressPercent | percent">{{displayData?.Billings | currency: 'USD': true: '1.0-0'}} </div>
         </div>
       </div>
       <div class="col-md-1">
         <div class="calc-headers-scores">
           <span>upper</span>
         </div>
-        <span class="range-text">{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true: '1.2-2'}}</span>
+        <span class="range-text">{{clientTierScore?.BillingScore.MaxValue | currency: 'USD': true: '1.0-0'}}</span>
       </div>
     </div>
     <div *ngIf="doesClientHaveChildren()">
@@ -106,8 +106,8 @@
           <tbody>
             <tr *ngFor="let child of parentAnalysisData?.Children">
               <td>{{child.ClientName}}</td>
-              <td>${{child.Billings | number:'1.2-2' | negativeToParenthesis }}</td>
-              <td>${{child.Adjustments | number:'1.2-2' | negativeToParenthesis}}</td>
+              <td>${{child.Billings | number:'1.0-0' | negativeToParenthesis }}</td>
+              <td>${{child.Adjustments | number:'1.0-0' | negativeToParenthesis}}</td>
             </tr> 
           </tbody>
         </table>
@@ -126,22 +126,22 @@
       </div>
       <div class="col-md-2 offset-md-1">
         <div class="score-box-grey">
-          <span>{{parentAnalysisData?.Realization}}%</span>
+          <span>{{parentAnalysisData?.Realization | number:'1.1-1'}}%</span>
         </div>
       </div>
       <div class="col-md-2">
         <input type="text" class="form-control score-box-blue" [(ngModel)]="realizationValue" id="realization-test-val" (change)="updateRealization()">
       </div>
       <div class="col-md-1">
-        <span class="range-text">{{clientTierScore?.RealizationScore.MinValue}}%</span>
+        <span class="range-text">{{clientTierScore?.RealizationScore.MinValue | number:'1.1-1'}}%</span>
       </div>
       <div class="col-md-4">
         <div class="progress">
-          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.RealizationScore.Score == 0 || 1, 'orange': clientTierScore?.RealizationScore.Score == 2, 'yellow': clientTierScore?.RealizationScore.Score == 3, 'yellow-green': clientTierScore?.RealizationScore.Score == 4, 'green': clientTierScore?.RealizationScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.RealizationScore.ProgressPercent | percent">{{displayData?.Realization}}% </div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.RealizationScore.Score == 0 || 1, 'orange': clientTierScore?.RealizationScore.Score == 2, 'yellow': clientTierScore?.RealizationScore.Score == 3, 'yellow-green': clientTierScore?.RealizationScore.Score == 4, 'green': clientTierScore?.RealizationScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.RealizationScore.ProgressPercent | percent">{{displayData?.Realization | number:'1.1-1'}}% </div>
         </div>
       </div>
       <div class="col-md-1">
-        <span class="range-text">{{clientTierScore?.RealizationScore.MaxValue}}%</span>
+        <span class="range-text">{{clientTierScore?.RealizationScore.MaxValue | number:'1.1-1'}}%</span>
       </div>
     </div>
     <div *ngIf="doesClientHaveChildren()">
@@ -161,7 +161,7 @@
           <tbody>
             <tr *ngFor="let child of parentAnalysisData?.Children">
               <td>{{child.ClientName}}</td>
-              <td>{{child.Realization}}%</td>
+              <td>{{child.Realization | number:'1.1-1'}}%</td>
             </tr> 
           </tbody>
         </table>
@@ -203,7 +203,7 @@
     <div class="row">
       <div class="col-md-1">
         <div class="score-box-grey">
-          <span>{{clientTierScore?.TimelinessScore.Score}}</span>
+          <span>{{clientTierScore?.TimelinessScore.Score }}</span>
         </div>
       </div>
       <div class="col-md-1">
@@ -213,22 +213,22 @@
       </div>
       <div class="col-md-2">
         <div class="score-box-grey">
-          <span>{{parentAnalysisData?.PeakPercent}}%</span>
+          <span>{{parentAnalysisData?.PeakPercent | number:'1.1-1'}}%</span>
         </div>
       </div>
       <div class="col-md-2">
         <input type="text" class="form-control score-box-blue" [(ngModel)]="workTimingValue" id="work-timing-test-val" (change)="updateWorkTiming()">
       </div>
       <div class="col-md-1">
-        <span class="range-text">{{clientTierScore?.TimelinessScore.MaxValue}}%</span>
+        <span class="range-text">{{clientTierScore?.TimelinessScore.MaxValue | number:'1.1-1'}}%</span>
       </div>
       <div class="col-md-4">
         <div class="progress">
-          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.TimelinessScore.Score == 0 || 1, 'orange': clientTierScore?.TimelinessScore.Score == 2, 'yellow': clientTierScore?.TimelinessScore.Score == 3, 'yellow-green': clientTierScore?.TimelinessScore.Score == 4, 'green': clientTierScore?.TimelinessScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.TimelinessScore.ProgressPercent | percent">{{displayData?.PeakPercent }}% </div>
+          <div class="progress-bar" [ngClass]="{'red': clientTierScore?.TimelinessScore.Score == 0 || 1, 'orange': clientTierScore?.TimelinessScore.Score == 2, 'yellow': clientTierScore?.TimelinessScore.Score == 3, 'yellow-green': clientTierScore?.TimelinessScore.Score == 4, 'green': clientTierScore?.TimelinessScore.Score == 5 }" role="progressbar" [style.width]="clientTierScore?.TimelinessScore.ProgressPercent | percent">{{displayData?.PeakPercent | number:'1.1-1'}}% </div>
         </div>
       </div>
       <div class="col-md-1">
-        <span class="range-text">{{clientTierScore?.TimelinessScore.MinValue}}%</span>
+        <span class="range-text">{{clientTierScore?.TimelinessScore.MinValue | number:'1.1-1'}}%</span>
       </div>
     </div>
     <div *ngIf="doesClientHaveChildren()">
@@ -249,8 +249,8 @@
           <tbody>
             <tr *ngFor="let child of parentAnalysisData?.Children">
               <td>{{child.ClientName}}</td>
-              <td>{{child.BusySeasonHours | number: '1.2-2'}}</td>
-              <td>{{child.NormalHours | number: '1.2-2'}}</td>
+              <td>{{child.BusySeasonHours | number:'1.1-1'}}</td>
+              <td>{{child.NormalHours | number:'1.1-1'}}</td>
             </tr> 
           </tbody>
         </table>
