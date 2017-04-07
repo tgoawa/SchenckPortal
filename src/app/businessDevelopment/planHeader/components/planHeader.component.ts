@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ModalDirective } from 'ng2-bootstrap/modal';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { IStrategyPlan, StrategyPlan } from '../models/strategyPlan.model';
 import { StrategyPlanService } from '../services/strategyPlan.service';
