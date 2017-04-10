@@ -18,6 +18,7 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
 })
 export class MentorStrategyPlanComponent implements OnInit {
   @ViewChild('CreatePlanModal') public CreatePlanModal: ModalDirective;
+  @ViewChild('CompletePlanModal') public CompletePlanModal: ModalDirective;
 
   public sideMenuItemId = 3; //Tell side menu the active menu index
   public mentorshipList: IMentor[];
@@ -81,6 +82,11 @@ export class MentorStrategyPlanComponent implements OnInit {
       .catch(this.handleError);
   }
 
+  completePlan() {
+    this.strategyPlanService.completePlan(this.currentPlan.PlanId)
+      .then()
+      .catch(this.handleError);
+  }
 
   onViewMenteePlan(mentee: TeamMember) {
     this.currentPlan = new StrategyPlan();
@@ -95,6 +101,16 @@ export class MentorStrategyPlanComponent implements OnInit {
     this.createPlan();
     this.hideCreatePlanModal();
     this.bindCreateForm();
+  }
+
+  onCompletePlan() {
+    this.showCompletePlanModal();
+  }
+
+  onConfirmCompletePlan() {
+    this.completePlan();
+    this.currentPlan = new StrategyPlan();
+    this.hideCompletePlanModal();
   }
 
   mapFormToPlanHeader(formValue) {
@@ -115,6 +131,14 @@ export class MentorStrategyPlanComponent implements OnInit {
 
   hideCreatePlanModal() {
     this.CreatePlanModal.hide();
+  }
+
+  showCompletePlanModal() {
+    this.CompletePlanModal.show();
+  }
+
+  hideCompletePlanModal() {
+    this.CompletePlanModal.hide();
   }
 
   private handleError(error: any) {

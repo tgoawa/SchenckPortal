@@ -16,6 +16,7 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
 })
 export class IndividualStrategyPlanComponent implements OnInit {
   @ViewChild('CreatePlanModal') public CreatePlanModal: ModalDirective;
+  @ViewChild('CompletePlanModal') public CompletePlanModal: ModalDirective;
 
   public sideMenuItemId = 2; //Tell side menu the active menu index
   public currentPlan: IStrategyPlan;
@@ -45,7 +46,6 @@ export class IndividualStrategyPlanComponent implements OnInit {
   getPlan() {
     this.strategyPlanService.getPlan(this.teamMemberId)
       .then((data: IStrategyPlan) => {
-        console.log(data);
         this.currentPlan = data;
         if (this.currentPlan.PlanId === 0) {
           this.showCreatePlanModal();
@@ -70,12 +70,31 @@ export class IndividualStrategyPlanComponent implements OnInit {
       .catch(this.handleError);
   }
 
+  completePlan() {
+    this.strategyPlanService.completePlan(this.currentPlan.PlanId)
+      .then(data => {
+        this.currentPlan = new StrategyPlan();
+        this.getPlan();
+      })
+      .catch(this.handleError);
+  }
+
   onCreatePlan(value) {
     this.mapFormToPlanHeader(value);
     this.mapTeamMemberToPlan();
     this.createPlan();
     this.hideCreatePlanModal();
     this.bindCreateForm();
+  }
+
+  onCompletePlan() {
+    this.showCompletePlanModal();
+  }
+
+  onConfirmCompletePlan() {
+    this.completePlan();
+    this.hideCompletePlanModal();
+    this.getPlan();
   }
 
   mapFormToPlanHeader(formValue) {
@@ -96,6 +115,14 @@ export class IndividualStrategyPlanComponent implements OnInit {
 
   hideCreatePlanModal() {
     this.CreatePlanModal.hide();
+  }
+
+  showCompletePlanModal() {
+    this.CompletePlanModal.show();
+  }
+
+  hideCompletePlanModal() {
+    this.CompletePlanModal.hide();
   }
 
   private handleError(error: any) {
