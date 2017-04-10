@@ -12,13 +12,13 @@
       <div class="col-md-6">
         <form [formGroup]="mentorshipForm" (ngSubmit)="mentorshipFormSubmit(mentorshipForm.value)">
           <div class="form-group">
-            <label>Marketing Team Member:</label>
+            <label>Marketing Mentor:</label>
             <select class="form-control" formControlName="MentorId">
               <option *ngFor="let member of mentors" [selected]="member.TeamMemberId == MentorId" [value]="member.TeamMemberId">{{member.LastFirstName}}</option>
             </select>
           </div>
           <div class="form-group">
-            <label>Active Teammembers</label>
+            <label>Active Team Members</label>
             <input ng2-auto-complete
                   formControlName="TeamMemberId"
                   [source]="activeTeamMembers"
@@ -36,7 +36,7 @@
     </div>
     <div class="row" style="margin-top:20px">
       <div class="col-md-6">
-        <h2>Teammembers currently mentoring</h2>
+        <h2>Mentees</h2>
         <table class="table table-striped table-sm">
           <thead>
             <tr>
