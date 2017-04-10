@@ -29,11 +29,11 @@ export class ClientTierDetailsComponent implements OnInit {
   public workTimingValue: any;
   public serviceTouch: any;
   public payment: any;
-
   public parentAnalysisData: IClientVal;
   public displayData: IClientVal;
-  private scoreRanges: Scores;
   public clientTierScore: ITiering;
+
+  private scoreRanges: Scores;
   private clientTierHelper;
   private errorMessage: any = '';
 
@@ -125,10 +125,8 @@ export class ClientTierDetailsComponent implements OnInit {
     this.workTimingValue = '';
     this.serviceTouch = '';
     this.payment = '';
-    
-    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
 
-    console.log(this.parentAnalysisData);
+    this.clientTierScore = this.clientTierHelper.getTier(this.displayData);
   }
 
   doesClientHaveChildren(): boolean {

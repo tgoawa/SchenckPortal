@@ -13,8 +13,12 @@ export class ServiceTouchMetric extends TierMetricBase {
         this.score.MinValue = this.getMinValue();
         this.score.Score = this.getScoreValue();
         this.score.Weighted = this.getWeightedValue(multiplier, this.score.Score);
-        this.score.ProgressPercent = this.getPercentage(displayVal);
+        this.score.ProgressPercent = this.getServiceTouchPercentage(displayVal);
 
         return this.score;
+    }
+
+    protected getServiceTouchPercentage(displayVal: number): number {
+        return displayVal / this.score.MaxValue;
     }
 }
