@@ -13,11 +13,14 @@ import { DropDownData } from '../../planLookups/models/dropDownData.model';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  @ViewChild('EventItemModal') public EventItemModal: ModalDirective;
+  @ViewChild('CreateEventModal') public CreateEventModal: ModalDirective;
+  @ViewChild('EditEventModal') public EditEventModal: ModalDirective;
+
   @Input() public currentPlanId: number;
   @Input() public currentEvents: IStrategyEvent[];
 
   public eventForm: FormGroup;
+  public EditEventForm: FormGroup;
   public existingEvents = false;
   public modalTitle: string;
   public isCompleted = false;
@@ -27,8 +30,10 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     this.getStatusData();
-    this.isExistingEvents();
     this.newEventItemForm();
+    this.editEventForm();
+    this.isExistingEvents();
+
   }
 
   getStatusData() {
@@ -38,21 +43,23 @@ export class EventsComponent implements OnInit {
   }
 
   isExistingEvents() {
-    if (this.currentEvents[0].EventId !== 0) {
+    if (this.currentEvents[0].EventId === 0) {
+      this.currentEvents.pop();
+      this.existingEvents = false;
+    } else {
       this.existingEvents = true;
     }
   }
 
-  newEvent() {
-    this.modalTitle = 'Create';
+  onNewEvent() {
     this.newEventItemForm();
-    this.EventItemModal.show();
+    this.showCreateModal();
   }
 
-  editEvent(event) {
-    this.modalTitle = 'Update';
-    this.editEventForm(event);
-    this.EventItemModal.show();
+  onEditItem(event: IStrategyEvent) {
+    console.log(event);
+    this.setEditForm(event);
+    this.showEditModal();
   }
 
   newEventItemForm() {
@@ -67,44 +74,79 @@ export class EventsComponent implements OnInit {
     });
   }
 
-  editEventForm(event: IStrategyEvent) {
-    this.eventForm = this.fb.group({
-      PlanId: event.PlanId,
-      EventId: event.EventId,
-      Name: [event.Name, Validators.required],
-      ScheduledDate: [event.ScheduledDate, Validators.required],
-      Description: [event.Description, [Validators.required, Validators.maxLength(200)]],
-      StatusId: [event.StatusId, Validators.required],
-      Feedback: [event.Feedback]
+  editEventForm() {
+    this.EditEventForm = this.fb.group({
+      PlanId: this.currentPlanId,
+      EventId: 0,
+      Name: ['', Validators.required],
+      ScheduledDate: ['', Validators.required],
+      Description: ['', [Validators.required, Validators.maxLength(200)]],
+      StatusId: ['', Validators.required],
+      Feedback: ['']
     });
   }
 
-  addEventItem({ value, valid }: { value: IStrategyEvent, valid: boolean }) {
-    let eventId = this.eventForm.get('EventId').value;
-    // if (eventId === 0) {
-    //   this.eventService.createEvent(value)
-    //     .then(data => {
-    //       this.currentEvents.push(data);
-    //       this.existingEvents = true;
-    //     })
-    //     .catch(this.handleError);
-    //   this.hideEventModal();
-    //   this.eventForm.reset();
-    // } else {
-    //   this.eventService.updateEvent(value)
-    //     .then(data => this.currentEvents = data)
-    //     .catch(this.handleError);
-    //   this.hideEventModal();
-    //   this.eventForm.reset();
-    // }
+  setEditForm(event: IStrategyEvent) {
+    this.EditEventForm.patchValue({
+      PlanId: event.PlanId,
+      EventId: event.EventId,
+      Name: event.Name,
+      ScheduledDate: event.ScheduledDate,
+      Description: event.Description,
+      StatusId: event.StatusId,
+      Feedback: event.Feedback
+    });
+  }
+
+  onAddEvent(value) {
+    this.addEvent(value);
+    this.hideCreateModal();
+    this.eventForm.reset();
+  }
+
+  onEditEvent(value) {
+    this.EditEvent(value);
+    this.hideEditModal();
+    this.EditEventForm.reset();
+  }
+
+  addEvent(value) {
+    this.eventService.createEvent(value)
+    .then(data => {
+      this.currentEvents.push(data);
+      this.isExistingEvents();
+    })
+    .catch(this.handleError);
+  }
+
+  EditEvent(value) {
+    this.eventService.updateEvent(value)
+    .then(data => {
+      console.log(data);
+    })
+    .catch(this.handleError);
   }
 
   eventSetComplete() {
     this.isCompleted = true;
   }
 
-  hideEventModal() {
-    this.EventItemModal.hide();
+  // Modals
+
+  showCreateModal() {
+    this.CreateEventModal.show();
+  }
+
+  hideCreateModal() {
+    this.CreateEventModal.hide();
+  }
+
+  showEditModal() {
+    this.EditEventModal.show();
+  }
+
+  hideEditModal() {
+    this.EditEventModal.hide();
   }
 
   private handleError(error: any) {

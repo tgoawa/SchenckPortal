@@ -3,7 +3,7 @@
     <h2>Strategy Event</h2>
   </div>
   <div class="col-md-1">
-    <button class="btn btn-success" (click)="newEvent()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    <button class="btn btn-success" (click)="onNewEvent()"><i class="fa fa-plus" aria-hidden="true"></i></button>
   </div>
 </div>
 
@@ -25,7 +25,7 @@
               <td>{{event?.ScheduledDate}}</td>
               <td>{{event?.Description}}</td>
               <td>{{event?.StatusId}}</td>
-              <td><span class="cursor" (click)="editEvent(event)">edit</span></td>
+              <td><span class="cursor" (click)="onEditItem(event)">edit</span></td>
             </tr> 
           </tbody>
         </table>
@@ -33,16 +33,16 @@
 </div>
 
 <!--create new Event Item modal -->
-<div bsModal #EventItemModal="bs-modal" class="modal fade">
+<div bsModal #CreateEventModal="bs-modal" class="modal fade">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">{{modalTitle}} Strategy Event Item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideEventModal()">
+        <h5 class="modal-title">Create Strategy Event Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideCreateModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form novalidate (ngSubmit)="addEventItem(eventForm)" [formGroup]="eventForm">
+        <form novalidate (ngSubmit)="onAddEvent(eventForm.value)" [formGroup]="eventForm">
           <div class="modal-body">
           <div class="form-group">
             <label>Event Name</label>
@@ -75,7 +75,57 @@
       </div>
       <div class="modal-footer">
         <button type="submit" [disabled]="eventForm.invalid" class="btn btn-schenck">Submit</button>
-        <button type="button" class="btn btn-danger" (click)="hideEventModal()">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="hideCreateModal()">Cancel</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--Edit Event Item modal -->
+<div bsModal #EditEventModal="bs-modal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Strategy Event Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideEditModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form novalidate (ngSubmit)="onEditEvent(EditEventForm)" [formGroup]="EditEventForm">
+          <div class="modal-body">
+          <div class="form-group">
+            <label>Event Name</label>
+            <input type="text" class="form-control" formControlName="Name">
+            <small class="form-text alert-danger" *ngIf="eventForm.get('Name').hasError('required') && eventForm.get('Name').touched">Name is required</small>
+          </div>
+          <div class="form-group">
+            <label>Date of</label>
+            <input type="date" class="form-control" formControlName="ScheduledDate">
+            <small class="form-text alert-danger" *ngIf="eventForm.get('ScheduledDate').hasError('required') && eventForm.get('ScheduledDate').touched">Date is required</small>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" formControlName="Description"></textarea>
+            <small class="form-text alert-danger" *ngIf="eventForm.get('Description').hasError('required') && eventForm.get('Description').touched">Description is required</small>
+            <small class="form-text alert-danger" *ngIf="eventForm.get('Description').hasError('maxlength') && eventForm.get('Description').touched">Description is required</small>
+            
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select class="form-control" formControlName="StatusId">
+            <option *ngFor="let item of eventStatus" [selected]="item.Id == StatusId" [value]="item.Id">{{item.Value}}</option>
+          </select>
+          <small class="form-text alert-danger" *ngIf="eventForm.get('StatusId').hasError('required') && eventForm.get('StatusId').touched">Status is required</small>
+          </div>
+          <div class="form-group" *ngIf="isCompleted">
+            <label>Event Feedback</label>
+            <textarea class="form-control" formControlName="Feedback"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="EditEventForm.invalid" class="btn btn-schenck">Submit</button>
+        <button type="button" class="btn btn-danger" (click)="hideEditModal()">Cancel</button>
       </div>
       </form>
     </div>
