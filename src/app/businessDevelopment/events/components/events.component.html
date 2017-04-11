@@ -22,9 +22,9 @@
           <tbody>
             <tr *ngFor="let event of currentEvents">
               <td>{{event?.Name}}</td>
-              <td>{{event?.ScheduledDate}}</td>
+              <td>{{event?.DisplayScheduledDate}}</td>
               <td>{{event?.Description}}</td>
-              <td>{{event?.StatusId}}</td>
+              <td>{{event?.StatusText}}</td>
               <td><span class="cursor" (click)="onEditItem(event)">edit</span></td>
             </tr> 
           </tbody>
@@ -51,8 +51,8 @@
           </div>
           <div class="form-group">
             <label>Date of</label>
-            <input type="date" class="form-control" formControlName="ScheduledDate">
-            <small class="form-text alert-danger" *ngIf="eventForm.get('ScheduledDate').hasError('required') && eventForm.get('ScheduledDate').touched">Date is required</small>
+            <input type="date" class="form-control" formControlName="DisplayScheduledDate">
+            <small class="form-text alert-danger" *ngIf="eventForm.get('DisplayScheduledDate').hasError('required') && eventForm.get('DisplayScheduledDate').touched">Date is required</small>
           </div>
           <div class="form-group">
             <label>Description</label>
@@ -92,7 +92,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form novalidate (ngSubmit)="onEditEvent(EditEventForm)" [formGroup]="EditEventForm">
+        <form novalidate (ngSubmit)="onEditEvent(EditEventForm.value)" [formGroup]="EditEventForm">
           <div class="modal-body">
           <div class="form-group">
             <label>Event Name</label>
@@ -101,8 +101,8 @@
           </div>
           <div class="form-group">
             <label>Date of</label>
-            <input type="date" class="form-control" formControlName="ScheduledDate">
-            <small class="form-text alert-danger" *ngIf="eventForm.get('ScheduledDate').hasError('required') && eventForm.get('ScheduledDate').touched">Date is required</small>
+            <input type="date" class="form-control" formControlName="DisplayScheduledDate">
+            <small class="form-text alert-danger" *ngIf="eventForm.get('DisplayScheduledDate').hasError('required') && eventForm.get('DisplayScheduledDate').touched">Date is required</small>
           </div>
           <div class="form-group">
             <label>Description</label>
@@ -124,7 +124,7 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" [disabled]="EditEventForm.invalid" class="btn btn-schenck">Submit</button>
+        <button type="submit" [disabled]="editFormChanged()" class="btn btn-schenck">Submit</button>
         <button type="button" class="btn btn-danger" (click)="hideEditModal()">Cancel</button>
       </div>
       </form>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -6,6 +6,8 @@ import { DropDownDataService } from '../../planLookups/services/dropDownData.ser
 import { IStrategyEvent } from '../models/strategyEvent.model';
 import { StrategyEventService } from '../services/strategyEvent.service';
 import { DropDownData } from '../../planLookups/models/dropDownData.model';
+
+import { APP_CONFIG, SchenckAppConfig } from '../../../app.config';
 
 @Component({
   selector: 'app-events',
@@ -17,7 +19,7 @@ export class EventsComponent implements OnInit {
   @ViewChild('EditEventModal') public EditEventModal: ModalDirective;
 
   @Input() public currentPlanId: number;
-  @Input() public currentEvents: IStrategyEvent[];
+  public currentEvents: IStrategyEvent[];
 
   public eventForm: FormGroup;
   public EditEventForm: FormGroup;
@@ -26,13 +28,15 @@ export class EventsComponent implements OnInit {
   public isCompleted = false;
   public eventStatus: DropDownData[];
 
-  constructor(private fb: FormBuilder, private dds: DropDownDataService, private eventService: StrategyEventService) { }
+  constructor(private fb: FormBuilder,
+  private dds: DropDownDataService, 
+  private eventService: StrategyEventService, @Inject(APP_CONFIG) private config) { }
 
   ngOnInit() {
     this.getStatusData();
+    this.getPlanEvents();
     this.newEventItemForm();
     this.editEventForm();
-    this.isExistingEvents();
 
   }
 
@@ -40,6 +44,15 @@ export class EventsComponent implements OnInit {
     this.dds.getEventStatuses()
       .then((data: DropDownData[]) => this.eventStatus = data)
       .catch(this.handleError);
+  }
+
+  getPlanEvents() {
+    this.eventService.getEvents(this.currentPlanId)
+    .then((data: IStrategyEvent[]) => {
+      this.currentEvents = data;
+      this.isExistingEvents();
+    })
+    .catch(this.handleError);
   }
 
   isExistingEvents() {
@@ -57,7 +70,6 @@ export class EventsComponent implements OnInit {
   }
 
   onEditItem(event: IStrategyEvent) {
-    console.log(event);
     this.setEditForm(event);
     this.showEditModal();
   }
@@ -67,7 +79,7 @@ export class EventsComponent implements OnInit {
       PlanId: this.currentPlanId,
       EventId: 0,
       Name: ['', Validators.required],
-      ScheduledDate: ['', Validators.required],
+      DisplayScheduledDate: ['', Validators.required],
       Description: ['', [Validators.required, Validators.maxLength(200)]],
       StatusId: ['', Validators.required],
       Feedback: ['']
@@ -79,7 +91,7 @@ export class EventsComponent implements OnInit {
       PlanId: this.currentPlanId,
       EventId: 0,
       Name: ['', Validators.required],
-      ScheduledDate: ['', Validators.required],
+      DisplayScheduledDate: ['', Validators.required],
       Description: ['', [Validators.required, Validators.maxLength(200)]],
       StatusId: ['', Validators.required],
       Feedback: ['']
@@ -91,11 +103,15 @@ export class EventsComponent implements OnInit {
       PlanId: event.PlanId,
       EventId: event.EventId,
       Name: event.Name,
-      ScheduledDate: event.ScheduledDate,
+      DisplayScheduledDate: event.DisplayScheduledDate,
       Description: event.Description,
       StatusId: event.StatusId,
       Feedback: event.Feedback
     });
+  }
+
+  editFormChanged() {
+    return this.EditEventForm.pristine && this.EditEventForm.valid;
   }
 
   onAddEvent(value) {
@@ -105,7 +121,7 @@ export class EventsComponent implements OnInit {
   }
 
   onEditEvent(value) {
-    this.EditEvent(value);
+    this.editEvent(value);
     this.hideEditModal();
     this.EditEventForm.reset();
   }
@@ -113,16 +129,23 @@ export class EventsComponent implements OnInit {
   addEvent(value) {
     this.eventService.createEvent(value)
     .then(data => {
-      this.currentEvents.push(data);
-      this.isExistingEvents();
+      if (data.EventId > 0) {
+        this.getPlanEvents();
+      } else {
+        alert(this.config.serverErrorMessage);
+      }
     })
     .catch(this.handleError);
   }
 
-  EditEvent(value) {
+  editEvent(value) {
     this.eventService.updateEvent(value)
     .then(data => {
-      console.log(data);
+      if (data === true) {
+        this.getPlanEvents();
+      } else {
+        alert(this.config.serverErrorMessage);
+      }
     })
     .catch(this.handleError);
   }

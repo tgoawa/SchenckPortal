@@ -11,6 +11,13 @@ export class StrategyEventService {
   private baseUrl = this.environmentName + 'schencksolutions.com:1016/StrategyPlanService/';
 
   constructor(private http: Http) { }
+  
+  getEvents(planId: number) {
+    return this.http.get(this.baseUrl + 'GetEventsForPlan/' + planId)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
 
   createEvent(strategyEvent: IStrategyEvent) {
     return this.http.post(this.baseUrl + 'SaveStrategyEvent/', strategyEvent)
