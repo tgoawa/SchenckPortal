@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -7,28 +7,37 @@ import { IStrategyEvent } from '../models/strategyEvent.model';
 import { StrategyEventService } from '../services/strategyEvent.service';
 import { DropDownData } from '../../planLookups/models/dropDownData.model';
 
+import { APP_CONFIG, SchenckAppConfig } from '../../../app.config';
+
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  @ViewChild('EventItemModal') public EventItemModal: ModalDirective;
+  @ViewChild('CreateEventModal') public CreateEventModal: ModalDirective;
+  @ViewChild('EditEventModal') public EditEventModal: ModalDirective;
+
   @Input() public currentPlanId: number;
-  @Input() public currentEvents: IStrategyEvent[];
+  public currentEvents: IStrategyEvent[];
 
   public eventForm: FormGroup;
+  public EditEventForm: FormGroup;
   public existingEvents = false;
   public modalTitle: string;
   public isCompleted = false;
   public eventStatus: DropDownData[];
 
-  constructor(private fb: FormBuilder, private dds: DropDownDataService, private eventService: StrategyEventService) { }
+  constructor(private fb: FormBuilder,
+  private dds: DropDownDataService, 
+  private eventService: StrategyEventService, @Inject(APP_CONFIG) private config) { }
 
   ngOnInit() {
     this.getStatusData();
-    this.isExistingEvents();
+    this.getPlanEvents();
     this.newEventItemForm();
+    this.editEventForm();
+
   }
 
   getStatusData() {
@@ -37,22 +46,32 @@ export class EventsComponent implements OnInit {
       .catch(this.handleError);
   }
 
+  getPlanEvents() {
+    this.eventService.getEvents(this.currentPlanId)
+    .then((data: IStrategyEvent[]) => {
+      this.currentEvents = data;
+      this.isExistingEvents();
+    })
+    .catch(this.handleError);
+  }
+
   isExistingEvents() {
-    if (this.currentEvents[0].EventId !== 0) {
+    if (this.currentEvents[0].EventId === 0) {
+      this.currentEvents.pop();
+      this.existingEvents = false;
+    } else {
       this.existingEvents = true;
     }
   }
 
-  newEvent() {
-    this.modalTitle = 'Create';
+  onNewEvent() {
     this.newEventItemForm();
-    this.EventItemModal.show();
+    this.showCreateModal();
   }
 
-  editEvent(event) {
-    this.modalTitle = 'Update';
-    this.editEventForm(event);
-    this.EventItemModal.show();
+  onEditItem(event: IStrategyEvent) {
+    this.setEditForm(event);
+    this.showEditModal();
   }
 
   newEventItemForm() {
@@ -60,51 +79,97 @@ export class EventsComponent implements OnInit {
       PlanId: this.currentPlanId,
       EventId: 0,
       Name: ['', Validators.required],
-      ScheduledDate: ['', Validators.required],
+      DisplayScheduledDate: ['', Validators.required],
       Description: ['', [Validators.required, Validators.maxLength(200)]],
       StatusId: ['', Validators.required],
       Feedback: ['']
     });
   }
 
-  editEventForm(event: IStrategyEvent) {
-    this.eventForm = this.fb.group({
-      PlanId: event.PlanId,
-      EventId: event.EventId,
-      Name: [event.Name, Validators.required],
-      ScheduledDate: [event.ScheduledDate, Validators.required],
-      Description: [event.Description, [Validators.required, Validators.maxLength(200)]],
-      StatusId: [event.StatusId, Validators.required],
-      Feedback: [event.Feedback]
+  editEventForm() {
+    this.EditEventForm = this.fb.group({
+      PlanId: this.currentPlanId,
+      EventId: 0,
+      Name: ['', Validators.required],
+      DisplayScheduledDate: ['', Validators.required],
+      Description: ['', [Validators.required, Validators.maxLength(200)]],
+      StatusId: ['', Validators.required],
+      Feedback: ['']
     });
   }
 
-  addEventItem({ value, valid }: { value: IStrategyEvent, valid: boolean }) {
-    let eventId = this.eventForm.get('EventId').value;
-    // if (eventId === 0) {
-    //   this.eventService.createEvent(value)
-    //     .then(data => {
-    //       this.currentEvents.push(data);
-    //       this.existingEvents = true;
-    //     })
-    //     .catch(this.handleError);
-    //   this.hideEventModal();
-    //   this.eventForm.reset();
-    // } else {
-    //   this.eventService.updateEvent(value)
-    //     .then(data => this.currentEvents = data)
-    //     .catch(this.handleError);
-    //   this.hideEventModal();
-    //   this.eventForm.reset();
-    // }
+  setEditForm(event: IStrategyEvent) {
+    this.EditEventForm.patchValue({
+      PlanId: event.PlanId,
+      EventId: event.EventId,
+      Name: event.Name,
+      DisplayScheduledDate: event.DisplayScheduledDate,
+      Description: event.Description,
+      StatusId: event.StatusId,
+      Feedback: event.Feedback
+    });
+  }
+
+  editFormChanged() {
+    return this.EditEventForm.pristine && this.EditEventForm.valid;
+  }
+
+  onAddEvent(value) {
+    this.addEvent(value);
+    this.hideCreateModal();
+    this.eventForm.reset();
+  }
+
+  onEditEvent(value) {
+    this.editEvent(value);
+    this.hideEditModal();
+    this.EditEventForm.reset();
+  }
+
+  addEvent(value) {
+    this.eventService.createEvent(value)
+    .then(data => {
+      if (data.EventId > 0) {
+        this.getPlanEvents();
+      } else {
+        alert(this.config.serverErrorMessage);
+      }
+    })
+    .catch(this.handleError);
+  }
+
+  editEvent(value) {
+    this.eventService.updateEvent(value)
+    .then(data => {
+      if (data === true) {
+        this.getPlanEvents();
+      } else {
+        alert(this.config.serverErrorMessage);
+      }
+    })
+    .catch(this.handleError);
   }
 
   eventSetComplete() {
     this.isCompleted = true;
   }
 
-  hideEventModal() {
-    this.EventItemModal.hide();
+  // Modals
+
+  showCreateModal() {
+    this.CreateEventModal.show();
+  }
+
+  hideCreateModal() {
+    this.CreateEventModal.hide();
+  }
+
+  showEditModal() {
+    this.EditEventModal.show();
+  }
+
+  hideEditModal() {
+    this.EditEventModal.hide();
   }
 
   private handleError(error: any) {

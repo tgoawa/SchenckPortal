@@ -7,6 +7,7 @@ export interface IStrategyEvent {
     StatusId: number;
     DisplayDateCreated: string;
     DisplayDateModified: string;
+    DisplayScheduledDate: string;
     ScheduledDate: string;
     StatusText: string;
 }

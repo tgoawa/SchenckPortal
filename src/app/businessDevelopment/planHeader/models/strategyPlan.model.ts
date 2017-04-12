@@ -11,7 +11,6 @@ export interface IStrategyPlan {
     Famous: string;
     DisplayDateCreated: string;
     DisplayDateModified: string;
-    StrategyEvents: IStrategyEvent[];
     Mentor: TeamMember;
 }
 
@@ -25,6 +24,5 @@ export class StrategyPlan implements IStrategyPlan {
     Famous = '';
     DisplayDateCreated = '';
     DisplayDateModified = '';
-    StrategyEvents = [];
     Mentor;
 }
