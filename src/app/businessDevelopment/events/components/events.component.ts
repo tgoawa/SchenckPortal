@@ -29,8 +29,9 @@ export class EventsComponent implements OnInit {
   public eventStatus: DropDownData[];
 
   constructor(private fb: FormBuilder,
-  private dds: DropDownDataService, 
-  private eventService: StrategyEventService, @Inject(APP_CONFIG) private config) { }
+  private dds: DropDownDataService,
+  private eventService: StrategyEventService,
+  @Inject(APP_CONFIG) private config) { }
 
   ngOnInit() {
     this.getStatusData();
@@ -56,8 +57,7 @@ export class EventsComponent implements OnInit {
   }
 
   isExistingEvents() {
-    if (this.currentEvents[0].EventId === 0) {
-      this.currentEvents.pop();
+    if (this.currentEvents.length < 1) {
       this.existingEvents = false;
     } else {
       this.existingEvents = true;
