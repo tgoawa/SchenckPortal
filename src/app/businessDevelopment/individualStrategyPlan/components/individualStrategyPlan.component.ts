@@ -46,6 +46,7 @@ export class IndividualStrategyPlanComponent implements OnInit {
   getPlan() {
     this.strategyPlanService.getPlan(this.teamMemberId)
       .then((data: IStrategyPlan) => {
+        console.log(data);
         this.currentPlan = data;
         if (this.currentPlan.PlanId === 0) {
           this.showCreatePlanModal();
