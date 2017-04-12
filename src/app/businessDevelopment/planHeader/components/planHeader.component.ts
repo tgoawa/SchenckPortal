@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -7,6 +7,8 @@ import { IStrategyPlan, StrategyPlan } from '../models/strategyPlan.model';
 import { StrategyPlanService } from '../services/strategyPlan.service';
 import { DropDownDataService } from '../../planLookups/services/dropDownData.service';
 import { DropDownData } from '../../planLookups/models/dropDownData.model';
+
+import { APP_CONFIG, SchenckAppConfig } from '../../../app.config';
 
 @Component({
   selector: 'app-plan-header',
@@ -23,7 +25,8 @@ export class PlanHeaderComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
   private planService: StrategyPlanService,
-  private dropDownData: DropDownDataService) { };
+  private dropDownData: DropDownDataService,
+  @Inject(APP_CONFIG) private config) { };
 
   ngOnInit() {
     this.bindEditForm();
@@ -53,11 +56,19 @@ export class PlanHeaderComponent implements OnInit {
     this.showEditPlanModal();
   }
 
+  editFormChanged() {
+    return this.planHeaderForm.pristine && this.planHeaderForm.valid;
+  }
+
   // calls to service
 
   updatePlan() {
     this.planService.updatePlan(this.currentPlan)
-      .then(data => this.currentPlan = new StrategyPlan())
+      .then(data => {
+        if (data === false) {
+          alert(this.config.serverErrorMessage);
+        }
+      })
       .catch(this.handleError);
   }
 
