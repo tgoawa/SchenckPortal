@@ -29,7 +29,7 @@ export class MarketingAdminComponent implements OnInit {
   ngOnInit() {
     this.teamMemberId = this.teamMember.teamMember.TeamMemberId;
     this.getMentors();
-    this.getMentorshipList(this.teamMemberId);
+    this.getMentorships();
     this.getActiveTeamMembers();
     this.setMarketingMemberForm();
   }
@@ -38,16 +38,14 @@ export class MarketingAdminComponent implements OnInit {
     this.adminService.getMentors()
     .then((data: TeamMember[]) => {
       this.mentors = data;
-      console.log(this.mentors);
     })
     .catch(this.handleError);
   }
 
-  getMentorshipList(mentorId: number) {
-    this.adminService.getMentorshipList(mentorId)
-    .then((data: IMentor[]) => {
+  getMentorships() {
+    this.adminService.getMentorships()
+    .then((data) => {
       this.mentorshipList = data;
-      console.log(this.mentorshipList);
     })
     .catch(this.handleError);
   }
@@ -61,8 +59,8 @@ export class MarketingAdminComponent implements OnInit {
   setMarketingMemberForm() {
     this.mentorshipForm = this.fb.group({
       MentorshipId: 0,
-      MentorId: this.teamMemberId,
-      TeamMemberId: '',
+      MentorId: ['', Validators.required],
+      TeamMemberId: ['', Validators.required],
     });
   }
 
@@ -98,6 +96,7 @@ export class MarketingAdminComponent implements OnInit {
   saveMentorship(mentorship) {
     this.adminService.createMentorship(mentorship)
     .then((data: IMentor) => {
+      console.log(data);
       this.mentorshipList.push(data);
     })
     .catch(this.handleError);

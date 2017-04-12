@@ -31,7 +31,14 @@ export class MarketingAdminService {
   }
 
   getMentorshipList(mentorId: number): Promise<IMentor[]> {
-    return this.http.get(this.baseUrl + 'getMentorshipList/' + mentorId)
+    return this.http.get(this.baseUrl + 'GetMentorshipListForMentor/' + mentorId)
+    .toPromise()
+    .then((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  getMentorships() {
+    return this.http.get(this.baseUrl + 'GetMentorships')
     .toPromise()
     .then((response: Response) => response.json())
     .catch(this.handleError);
