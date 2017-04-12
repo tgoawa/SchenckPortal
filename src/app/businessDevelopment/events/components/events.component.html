@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="row" *ngIf="existingEvents">
+<div class="row" [hidden]="!existingEvents">
   <div class="col-md-12">
   <table class="table table-striped table-sm">
           <thead>

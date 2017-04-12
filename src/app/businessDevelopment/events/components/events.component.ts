@@ -130,7 +130,8 @@ export class EventsComponent implements OnInit {
     this.eventService.createEvent(value)
     .then(data => {
       if (data.EventId > 0) {
-        this.getPlanEvents();
+        this.currentEvents.push(data);
+        this.isExistingEvents();
       } else {
         alert(this.config.serverErrorMessage);
       }
