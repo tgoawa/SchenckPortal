@@ -29,7 +29,7 @@ export class TierMetricBase {
         let progressPosition = displayVal - this.scoreRange[this.indexVal].MinValue;
         let progressRange = this.scoreRange[this.indexVal].MaxValue - this.scoreRange[this.indexVal].MinValue;
 
-        return progressPosition / progressRange;
+        return (progressPosition / progressRange) * 100;
     }
 
     protected getCurrentBandIndex(displayVal: number) {

@@ -21,7 +21,7 @@ export class PaymentMetric extends TierMetricBase {
     protected getPaymentPercentage(displayVal: number): number {
         let denominator = this.score.MaxValue - this.score.MinValue;
         let numerator = this.score.MaxValue - displayVal;
-        return numerator / denominator;
+        return (numerator / denominator) * 100;
     }
 
     protected islowerThanBand(displayVal: number): boolean {
