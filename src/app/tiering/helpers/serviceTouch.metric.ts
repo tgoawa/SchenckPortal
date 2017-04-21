@@ -19,6 +19,6 @@ export class ServiceTouchMetric extends TierMetricBase {
     }
 
     protected getServiceTouchPercentage(displayVal: number): number {
-        return displayVal / this.score.MaxValue;
+        return (displayVal / this.score.MaxValue) * 100;
     }
 }
