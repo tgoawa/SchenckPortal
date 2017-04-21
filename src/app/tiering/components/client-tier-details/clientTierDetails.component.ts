@@ -69,7 +69,7 @@ export class ClientTierDetailsComponent implements OnInit {
   }
 
   updateBilling() {
-    if (isNaN(this.billingValue) || (this.billingValue < 0)) {
+    if ((this.billingValue === '') || (this.billingValue < 0)) {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.Billings = this.billingValue;
@@ -78,7 +78,7 @@ export class ClientTierDetailsComponent implements OnInit {
   }
 
   updateRealization() {
-    if (isNaN(this.realizationValue) || (this.realizationValue < 0)) {
+    if ((this.realizationValue === '') || (this.realizationValue < 0)) {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.Realization = this.realizationValue;
@@ -87,7 +87,7 @@ export class ClientTierDetailsComponent implements OnInit {
   }
 
   updateWorkTiming() {
-    if (isNaN(this.workTimingValue) || (this.workTimingValue < 0)) {
+    if ((this.workTimingValue === '') || (this.workTimingValue < 0)) {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.PeakPercent = this.workTimingValue;
@@ -96,7 +96,7 @@ export class ClientTierDetailsComponent implements OnInit {
   }
 
   updateService() {
-    if (isNaN(this.serviceTouch) || (this.serviceTouch < 0)) {
+    if ((this.serviceTouch === '') || (this.serviceTouch < 0)) {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.ServiceTouchCount = this.serviceTouch;
@@ -105,7 +105,7 @@ export class ClientTierDetailsComponent implements OnInit {
   }
 
   updatePayment() {
-    if (isNaN(this.payment) || (this.payment < 0)) {
+    if ((this.payment === '') || (this.payment < 0)) {
       alert(this.config.calcErrorMessage);
     } else {
       this.displayData.PaymentTimeliness = this.payment;
