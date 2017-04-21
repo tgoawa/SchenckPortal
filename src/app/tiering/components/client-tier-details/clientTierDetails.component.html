@@ -65,7 +65,7 @@
         <div class="calc-headers-scores">
           <span>Test Value</span>
         </div>
-        <input type="text" class="form-control score-box-blue" [(ngModel)]="billingValue" id="billing-test-val" (blur)="updateBilling()" (keyup.enter)="updateBilling()">
+        <input type="text" class="form-control score-box-blue" [(ngModel)]="billingValue" id="billing-test-val" (change)="updateBilling()" (keyup.enter)="updateBilling()">
       </div>
       <div class="col-md-1">
         <div class="calc-headers-scores">
@@ -130,7 +130,7 @@
         </div>
       </div>
       <div class="col-md-2">
-        <input type="text" class="form-control score-box-blue" [(ngModel)]="realizationValue" id="realization-test-val" (blur)="updateRealization()" (keyup.enter)="updateRealization()">
+        <input type="text" class="form-control score-box-blue" [(ngModel)]="realizationValue" id="realization-test-val" (change)="updateRealization()" (keyup.enter)="updateRealization()">
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.RealizationScore.MinValue | number:'1.1-1'}}%</span>
@@ -217,7 +217,7 @@
         </div>
       </div>
       <div class="col-md-2">
-        <input type="text" class="form-control score-box-blue" [(ngModel)]="workTimingValue" id="work-timing-test-val" (blur)="updateWorkTiming()" (keyup.enter)="updateWorkTiming()">
+        <input type="text" class="form-control score-box-blue" [(ngModel)]="workTimingValue" id="work-timing-test-val" (change)="updateWorkTiming()" (keyup.enter)="updateWorkTiming()">
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.TimelinessScore.MaxValue | number:'1.1-1'}}%</span>
@@ -278,7 +278,7 @@
         </div>
       </div>
       <div class="col-md-2">
-        <input type="text" class="form-control score-box-blue" [(ngModel)]="serviceTouch" id="service-test-val" (blur)="updateService()" (keyup.enter)="updateService()">
+        <input type="text" class="form-control score-box-blue" [(ngModel)]="serviceTouch" id="service-test-val" (change)="updateService()" (keyup.enter)="updateService()">
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.ServiceTouchesScore.MinValue}}</span>
@@ -335,7 +335,7 @@
         </div>
       </div>
       <div class="col-md-2">
-        <input type="text" class="form-control score-box-blue" [(ngModel)]="payment" id="payment-test-val" (blur)="updatePayment()" (keyup.enter)="updatePayment()">
+        <input type="text" class="form-control score-box-blue" [(ngModel)]="payment" id="payment-test-val" (change)="updatePayment()" (keyup.enter)="updatePayment()">
       </div>
       <div class="col-md-1">
         <span class="range-text">{{clientTierScore?.PaymentScore.MaxValue}}</span>
