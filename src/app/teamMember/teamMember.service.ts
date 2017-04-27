@@ -9,8 +9,8 @@ import { TeamMember } from './';
 export class TeamMemberService {
   public teamMember: TeamMember;
 
-  private environmentName = environment.envApi;
-  private url_teamMember = this.environmentName + 'schencksolutions.com:1016/EmployeeService/GetEmployee/';
+  private environmentApi = environment.envApi;
+  private url_teamMember = this.environmentApi + '/EmployeeService/GetEmployee/';
 
   constructor(private http: Http) { }
 

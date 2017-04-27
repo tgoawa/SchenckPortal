@@ -9,8 +9,8 @@ import { ClientTierList } from '../models/clientTierList.model';
 @Injectable()
 export class ClientTierListService {
 
-    private environmentName = environment.envApi;
-    private baseUrl = this.environmentName + 'schencksolutions.com:1016/ClientTierService/';
+    private environmentApi = environment.envApi;
+  private baseUrl = this.environmentApi + '/ClientTierService/';
 
     constructor(private http: Http) {}
 

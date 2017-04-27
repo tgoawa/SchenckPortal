@@ -11,7 +11,7 @@ import { IClientVal } from '../models/';
 export class ClientTierAnalysisService {
 
   private environmentApi = environment.envApi;
-  private baseUrl = this.environmentApi + 'schencksolutions.com:1016/ClientTierService/';
+  private baseUrl = this.environmentApi + '/ClientTierService/';
   private apiMethod = 'GetTierParent/';
 
   constructor(private http: Http) { }

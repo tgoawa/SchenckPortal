@@ -8,8 +8,8 @@ import { IScore } from '../models/';
 @Injectable()
 export class ClientTierScoreService {
 
-  private environmentName = environment.envApi;
-  private baseUrl = this.environmentName + 'schencksolutions.com:1016/ClientTierService/';
+ private environmentApi = environment.envApi;
+  private baseUrl = this.environmentApi + '/ClientTierService/';
   private billingsApi = 'getBillingsLookups';
   private realizationApi = 'getRealizationLookups';
   private multiplierApi = 'getMultiplyLookups';
