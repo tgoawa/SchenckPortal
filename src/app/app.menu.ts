@@ -11,32 +11,32 @@ export const MENU = [
       },
     ]
   },
-  {
-    id: 2,
-    inDev: false,
-    path: 'business-development',
-    title: 'Business Development',
-    children: [
-      {
-        path: 'strategy-plan',
-        title: 'Individual Business Development Plan'
-      }
-    ]
-  },
-  {
-    id: 3,
-    inDev: false,
-    path: 'mentor-admin',
-    title: 'Mentor Admin',
-    children: [
-      {
-        path: 'marketing-admin',
-        title: 'Marketing Member Admin'
-      },
-      {
-        path: 'mentor-plan-admin',
-        title: 'Mentor Strategy Plan'
-      }
-    ]
-  },
+  // {
+  //   id: 2,
+  //   inDev: true,
+  //   path: 'business-development',
+  //   title: 'Business Development',
+  //   children: [
+  //     {
+  //       path: 'strategy-plan',
+  //       title: 'Individual Business Development Plan'
+  //     }
+  //   ]
+  // },
+  // {
+  //   id: 3,
+  //   inDev: true,
+  //   path: 'mentor-admin',
+  //   title: 'Mentor Admin',
+  //   children: [
+  //     {
+  //       path: 'marketing-admin',
+  //       title: 'Marketing Member Admin'
+  //     },
+  //     {
+  //       path: 'mentor-plan-admin',
+  //       title: 'Mentor Strategy Plan'
+  //     }
+  //   ]
+  // },
 ];
