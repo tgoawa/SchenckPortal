@@ -88,3 +88,7 @@
 .green {
     background-color: green;
 }
+
+.data-section {
+    border-bottom: 1px solid #00AFED;
+}
