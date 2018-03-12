@@ -34,6 +34,11 @@
         <button class="btn btn-schenck btn-block" (click)="reset()">Reset Values</button>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-5">
+        <span *ngIf="parentAnalysisData?.IsNew" style="color:#5FBB46">*New Client*</span>
+      </div>
+    </div>
     <div class="data-section">
     <div class="row" style="margin-top: 25px">
       <div class="col-md-2">
@@ -112,7 +117,7 @@
               <td>{{child.ClientName}}</td>
               <td>${{child.Billings | number:'1.0-0' | negativeToParenthesis }}</td>
               <td>${{child.Adjustments | number:'1.0-0' | negativeToParenthesis}}</td>
-            </tr> 
+            </tr>
           </tbody>
         </table>
       </div>
@@ -168,7 +173,7 @@
             <tr *ngFor="let child of parentAnalysisData?.Children">
               <td>{{child.ClientName}}</td>
               <td>{{child.Realization | number:'1.1-1'}}%</td>
-            </tr> 
+            </tr>
           </tbody>
         </table>
       </div>
@@ -261,7 +266,7 @@
               <td>{{child.ClientName}}</td>
               <td>{{child.BusySeasonHours | number:'1.1-1'}}</td>
               <td>{{child.NormalHours | number:'1.1-1'}}</td>
-            </tr> 
+            </tr>
           </tbody>
         </table>
       </div>
@@ -320,7 +325,7 @@
           <tbody>
             <tr *ngFor="let serviceTouch of parentAnalysisData?.ServiceTouches">
               <td>{{serviceTouch.Service}}</td>
-            </tr> 
+            </tr>
           </tbody>
         </table>
       </div>
@@ -381,7 +386,7 @@
             <tr *ngFor="let child of parentAnalysisData?.Children">
               <td>{{child.ClientName}}</td>
               <td>{{child.Timeliness}}</td>
-            </tr> 
+            </tr>
           </tbody>
         </table>
       </div>

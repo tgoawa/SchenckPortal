@@ -3,6 +3,7 @@ import { IServices } from './services.model';
 
 export interface IClientVal {
     ClientName: string;
+    IsNew: boolean;
     Billings: number;
     Realization: number;
     ServiceTouchCount: number;
@@ -14,6 +15,7 @@ export interface IClientVal {
 
 export class ClientVal implements IClientVal {
     ClientName: string;
+    IsNew: boolean;
     Billings: number;
     Realization: number;
     ServiceTouchCount: number;
