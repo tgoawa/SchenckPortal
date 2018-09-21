@@ -7,6 +7,7 @@ export class TierMetricBase {
 
     constructor(scoreRange: IScore[]) {
         this.scoreRange = scoreRange;
+        console.log(this.scoreRange);
     }
 
     protected getScoreValue(): number {

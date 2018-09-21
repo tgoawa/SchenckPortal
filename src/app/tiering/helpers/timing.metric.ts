@@ -8,7 +8,7 @@ export class TimingMetric extends TierMetricBase {
 
     getTimingScore(displayVal: number, multiplier: number): Score {
         this.score = new Score();
-        this.getCurrentBandIndex(displayVal);
+        this.getCurrentBandIndex(Math.round(displayVal));
         this.score.MaxValue = this.getMaxValue();
         this.score.MinValue = this.getMinValue();
         this.score.Score = this.getScoreValue();
