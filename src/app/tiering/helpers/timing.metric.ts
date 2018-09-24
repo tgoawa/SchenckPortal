@@ -8,7 +8,7 @@ export class TimingMetric extends TierMetricBase {
 
     getTimingScore(displayVal: number, multiplier: number): Score {
         this.score = new Score();
-        this.getCurrentBandIndex(Math.round(displayVal));
+        this.getCurrentBandIndex(displayVal);
         this.score.MaxValue = this.getMaxValue();
         this.score.MinValue = this.getMinValue();
         this.score.Score = this.getScoreValue();
@@ -33,6 +33,6 @@ export class TimingMetric extends TierMetricBase {
     }
 
     protected isInBand(displayVal: number, index: number): boolean {
-        return displayVal >= this.scoreRange[index].MinValue && displayVal <= this.scoreRange[index].MaxValue;
+        return displayVal > this.scoreRange[index].MinValue && displayVal <= this.scoreRange[index].MaxValue;
     }
 }

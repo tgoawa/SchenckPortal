@@ -7,7 +7,6 @@ export class TierMetricBase {
 
     constructor(scoreRange: IScore[]) {
         this.scoreRange = scoreRange;
-        console.log(this.scoreRange);
     }
 
     protected getScoreValue(): number {
@@ -46,6 +45,7 @@ export class TierMetricBase {
         for (let index = 0; index < this.scoreRange.length; index++) {
             if (this.isInBand(displayVal, index)) {
                 this.indexVal = index;
+                return;
             }
         }
     }
@@ -59,7 +59,7 @@ export class TierMetricBase {
     }
 
     protected isInBand(displayVal: number, index: number): boolean {
-         return displayVal >= this.scoreRange[index].MinValue && displayVal <= this.scoreRange[index].MaxValue;
+         return displayVal > this.scoreRange[index].MinValue && displayVal <= this.scoreRange[index].MaxValue;
     }
 
 }

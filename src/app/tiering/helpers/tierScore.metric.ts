@@ -26,6 +26,6 @@ export class TierScoreMetric extends TierMetricBase {
     }
 
     protected isInBand(displayVal: number, index: number): boolean {
-        return displayVal >= this.scoreRange[index].MinValue && displayVal <= this.scoreRange[index].MaxValue;
+        return displayVal > this.scoreRange[index].MinValue && displayVal <= this.scoreRange[index].MaxValue;
     }
 }
