@@ -36,17 +36,16 @@ export class TierMetricBase {
         if (this.islowerThanBand(displayVal)) {
             this.indexVal = 0;
             return;
-        }
-
-        if (this.isHigherThanBand(displayVal)) {
+        } else if (this.isHigherThanBand(displayVal)) {
             this.indexVal = this.scoreRange.length - 1;
             return;
-        }
-        for (let index = 0; index < this.scoreRange.length; index++) {
+        } else {
+          for (let index = 0; index < this.scoreRange.length; index++) {
             if (this.isInBand(displayVal, index)) {
                 this.indexVal = index;
                 return;
             }
+        }
         }
     }
 

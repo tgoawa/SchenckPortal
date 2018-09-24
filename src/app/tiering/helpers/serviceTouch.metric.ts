@@ -21,4 +21,8 @@ export class ServiceTouchMetric extends TierMetricBase {
     protected getServiceTouchPercentage(displayVal: number): number {
         return (displayVal / this.score.MaxValue) * 100;
     }
+
+    protected isInBand(displayVal: number, index: number): boolean {
+        return displayVal >= this.scoreRange[index].MinValue && displayVal <= this.scoreRange[index].MaxValue;
+    }
 }
