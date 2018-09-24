@@ -21,4 +21,8 @@ export class MultiplierMetric extends TierMetricBase {
     protected getWeightedValue(billingScore: number, realizationScore: number): number {
         return billingScore * realizationScore;
     }
+
+    protected isInBand(displayVal: number, index: number): boolean {
+      return displayVal >= this.scoreRange[index].MinValue && displayVal <= this.scoreRange[index].MaxValue;
+ }
 }
