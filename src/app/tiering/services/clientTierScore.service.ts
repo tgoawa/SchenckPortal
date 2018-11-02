@@ -9,7 +9,7 @@ import { IScore } from '../models/';
 export class ClientTierScoreService {
 
  private environmentApi = environment.envApi;
-  private baseUrl = this.environmentApi + '/ClientTierService/';
+  private baseUrl = this.environmentApi + 'ClientTierService/';
   private billingsApi = 'getBillingsLookups';
   private realizationApi = 'getRealizationLookups';
   private multiplierApi = 'getMultiplyLookups';

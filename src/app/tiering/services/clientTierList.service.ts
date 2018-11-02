@@ -10,7 +10,7 @@ import { ClientTierList } from '../models/clientTierList.model';
 export class ClientTierListService {
 
     private environmentApi = environment.envApi;
-  private baseUrl = this.environmentApi + '/ClientTierService/';
+  private baseUrl = this.environmentApi + 'ClientTierService/';
 
     constructor(private http: Http) {}
 

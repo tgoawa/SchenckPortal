@@ -10,7 +10,7 @@ export class TeamMemberService {
   public teamMember: TeamMember;
 
   private environmentApi = environment.envApi;
-  private url_teamMember = this.environmentApi + '/EmployeeService/GetEmployee/';
+  private url_teamMember = this.environmentApi + 'EmployeeService/GetEmployee/';
 
   constructor(private http: Http) { }
 
