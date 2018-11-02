@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { User } from '../models/user';
+import { environment } from 'environments/environment';
+const api = environment.envApi;
 
 @Injectable()
 export class LoginService {
-  private serverUrl = 'http://webdev.schencksolutions.com:1016/';
   constructor(private http: Http) { }
 
   checkStatus(user: User) {
-    return this.http.post(this.serverUrl + 'UserService/IsUserValid/', user)
+    return this.http.post(api + 'UserService/IsUserValid/', user)
       .toPromise()
       .then((response: Response) => response.json())
       .catch(this.handleError);
